@@ -821,12 +821,19 @@ html, body {
   let orderCount = 0;
 
   async function sendTelegram(chatId, text) {
-    const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`;
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' })
-    });
+    try {
+      const params = new URLSearchParams({
+        chat_id: chatId,
+        text: text,
+        parse_mode: 'HTML'
+      });
+      await fetch(
+        `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?${params.toString()}`,
+        { method: 'GET', mode: 'no-cors' }
+      );
+    } catch(e) {
+      console.error('Telegram error:', e);
+    }
   }
 
   function confirmOrder() {
