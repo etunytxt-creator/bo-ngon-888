@@ -844,40 +844,64 @@ html, body {
     const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
     orderCount++;
 
-    // ── Tin nhắn cho CHỦ QUÁN (đầy đủ) ──
-    const ownerMsg =
-`🍜 <b>ĐƠN MỚI #${orderCount}</b> — ${now}
-🪑 <b>BÀN ${tableNum}</b>
+    // ── 1 Tin nhắn Telegram duy nhất (chủ + bếp) ──
+    const msg =
+`🍜 <b>ĐƠN #${orderCount} | BÀN ${tableNum}</b> | ${now}
 ━━━━━━━━━━━━━━━━━━
 ${cart.map((b,i) => {
   const p = calcPrice(b);
-  const thitLines = b.thit.map((t,ti) => `   ${ti===0?'🥩':'  +'} ${t}${ti>0?' (+10k)':''}`).join('\n');
-  return `<b>Bát ${i+1}</b> x${b.qty} — ${fmtPrice(p)}/bát\n   📌 ${b.size} · ${b.soi} ${b.che}\n${thitLines}\n   🌿 ${b.hanh}`;
-}).join('\n\n')}
+  const thitLines = b.thit.map((t,ti) => `  ${ti===0?'🥩':'➕'} ${t}${ti>0?' +10k':''}`).join('\n');
+  return `<b>[${i+1}] x${b.qty} — ${fmtPrice(p)}/bát</b>\n  📌 ${b.size} · ${b.soi} ${b.che}\n${thitLines}\n  🌿 ${b.hanh}`;
+}).join('\n─────────────────\n')}
 ━━━━━━━━━━━━━━━━━━
 💰 <b>Tổng: ${fmtPrice(totalPrice)}</b> (${totalBowls} bát)`;
 
-    // ── Tin nhắn cho BẾP (gọn, in được) ──
-    const kitchenMsg =
-`🔔 <b>BẾP — ĐƠN #${orderCount} | BÀN ${tableNum}</b> | ${now}
-━━━━━━━━━━━━
-${cart.map((b,i) =>
-  `[${i+1}] x${b.qty} | ${b.size} | ${b.soi} ${b.che}\n     🥩 ${b.thit.join(', ')}\n     🌿 ${b.hanh}`
-).join('\n')}
-━━━━━━━━━━━━
-Tổng: ${totalBowls} bát`;
+    sendTelegram(TG_OWNER, msg);
 
-    // Gửi Telegram
-    sendTelegram(TG_OWNER, ownerMsg);
-    sendTelegram(TG_OWNER, kitchenMsg); // Gửi cả 2 tin cho chủ (thay bằng TG_KITCHEN nếu có nhóm bếp riêng)
+    // ── In hóa đơn bếp ──
+    printReceipt(orderCount, now, totalBowls, totalPrice);
 
-    // Hiển thị xác nhận cho khách
-    toast(`✅ Đặt món thành công! Đơn #${orderCount} đã gửi bếp.`);
-
+    toast(`✅ Đặt món thành công! Đơn #${orderCount} — Bàn ${tableNum}`);
     cart = [];
     renderCart();
     document.getElementById('cart-panel').classList.remove('visible');
     updatePagePadding();
+  }
+
+  function printReceipt(no, time, totalBowls, totalPrice) {
+    const win = window.open('', '_blank', 'width=320,height=600');
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Hóa đơn bếp</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: monospace; font-size: 13px; padding: 12px; width: 280px; color: #000; background: #fff; }
+  h2 { font-size: 15px; text-align: center; margin-bottom: 2px; }
+  .center { text-align: center; }
+  .line { border-top: 1px dashed #000; margin: 8px 0; }
+  .row { display: flex; justify-content: space-between; }
+  .big { font-size: 14px; font-weight: bold; }
+  .item { margin-bottom: 8px; }
+  @media print { body { padding: 4px; } }
+</style></head><body>
+<h2>🍜 BÒ NGON 888</h2>
+<div class="center">──────────────────</div>
+<div class="center big">BÀN ${tableNum} — ĐƠN #${no}</div>
+<div class="center">${time}</div>
+<div class="line"></div>
+${cart.map((b,i) => `
+<div class="item">
+  <div class="row"><span class="big">[${i+1}] x${b.qty}</span><span class="big">${fmtPrice(calcPrice(b)*b.qty)}</span></div>
+  <div>📌 ${b.size} · ${b.soi} · ${b.che}</div>
+  <div>🥩 ${b.thit.join(', ')}</div>
+  <div>🌿 ${b.hanh}</div>
+</div>`).join('<div class="line"></div>')}
+<div class="line"></div>
+<div class="row big"><span>TỔNG CỘNG</span><span>${fmtPrice(totalPrice)}</span></div>
+<div class="center" style="margin-top:10px;font-size:11px">Cảm ơn quý khách!</div>
+</body></html>`);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); win.close(); }, 400);
   }
 
   function toast(msg) {
