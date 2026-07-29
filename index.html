@@ -28,27 +28,27 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .shell{display:flex;flex-direction:column;height:100dvh;max-width:480px;margin:0 auto;background:#fff;box-shadow:0 0 20px rgba(0,0,0,0.05);position:relative}
 
 /* HEADER */
-.hdr{text-align:center;padding:12px 14px 10px;flex-shrink:0;background:var(--brand-green);color:#fff}
-.hdr h1{font-size:clamp(1.4rem,5.5vw,1.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.02em}
-.hdr .sub{font-size:0.65rem;font-weight:600;letter-spacing:0.25em;padding-left:0.25em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-top:3px}
-.hdr .table-tag{display:inline-block;font-size:0.75rem;font-weight:600;color:var(--brand-orange);background:rgba(255,255,255,0.12);padding:2px 12px;border-radius:12px;margin-top:4px}
+.hdr{text-align:center;padding:10px 14px 8px;flex-shrink:0;background:var(--brand-green);color:#fff}
+.hdr h1{font-size:clamp(1.3rem,5vw,1.6rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.02em}
+.hdr .sub{font-size:0.6rem;font-weight:600;letter-spacing:0.2em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-top:2px}
+.hdr .table-tag{display:inline-block;font-size:0.7rem;font-weight:600;color:var(--brand-orange);background:rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;margin-top:3px}
 
 /* TABS */
 .tabs{display:flex;flex-shrink:0;background:var(--brand-green-dark);padding:4px 4px 0}
-.tab{flex:1;padding:8px 2px;text-align:center;cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;transition:all 0.2s}
-.tab-icon{width:100%;height:clamp(28px,7vw,34px);object-fit:cover;border-radius:50%;display:block;margin:0 auto 3px;border:1.5px solid rgba(255,255,255,0.2)}
+.tab{flex:1;padding:6px 2px;text-align:center;cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-icon{width:100%;height:clamp(26px,6vw,30px);object-fit:cover;border-radius:50%;display:block;margin:0 auto 2px;border:1.5px solid rgba(255,255,255,0.2)}
 .tab.active .tab-icon{border-color:var(--brand-orange);filter:brightness(1.1)}
-.tab-label{font-size:clamp(0.5rem,1.8vw,0.6rem);font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.02em;display:block}
+.tab-label{font-size:0.55rem;font-weight:700;color:rgba(255,255,255,0.6);display:block}
 .tab.active .tab-label{color:#fff}
 .tab.active{border-bottom-color:var(--brand-orange);background:rgba(255,255,255,0.05)}
 
-/* PAGES & SMOOTH SCROLLING TẤT CẢ CÁC TRANG */
+/* PAGES */
 .page{
   display:none;
   flex:1;
   flex-direction:column;
   overflow-y:auto;
-  padding:12px 10px 100px;
+  padding:10px 10px 180px; /* Dành khoảng trống cho giỏ hàng đáy */
   background:var(--bg-main);
   -webkit-overflow-scrolling:touch;
   scroll-behavior:smooth;
@@ -56,60 +56,52 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 }
 .page.active{display:flex}
 
-/* SECTION TITLE (ĐÃ ĐƠN GIẢN HÓA & LÀM TINH TẾ) */
 .sec-title{
   font-size:0.85rem;
   color:var(--brand-green-dark);
   font-weight:800;
-  letter-spacing:0.02em;
-  padding:6px 0 6px 10px;
-  margin-bottom:8px;
-  margin-top:4px;
+  padding:4px 0 4px 8px;
+  margin:4px 0 8px;
   flex-shrink:0;
-  display:flex;
-  align-items:center;
   border-left:4px solid var(--brand-orange);
 }
 
-/* STEP ROWS (ĂN SÁNG) */
-.step-row{background:var(--card-bg);padding:10px;border-radius:12px;margin-bottom:10px;border:1px solid var(--border-color);flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
+.step-row{background:var(--card-bg);padding:8px 10px;border-radius:10px;margin-bottom:8px;border:1px solid var(--border-color);flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
 
-/* TIÊU ĐỀ BƯỚC ĐÃ LOẠI BỎ HÌNH BẦU DỤC KHÔNG CẦN THI, CHỮ TO RÕ */
 .step-head{
   display:flex;
   align-items:center;
-  margin-bottom:10px;
-  padding-left:8px;
-  border-left:3.5px solid var(--brand-green);
+  margin-bottom:8px;
+  padding-left:6px;
+  border-left:3px solid var(--brand-green);
 }
 .slabel{
-  font-size:0.88rem;
+  font-size:0.82rem;
   color:var(--brand-green-dark);
   font-weight:800;
-  letter-spacing:-0.01em;
 }
 
-/* SOPT OPTIONS (KÍCH THƯỚC ICON ĐÃ ĐƯỢC TĂNG LỚN HƠN) */
-.sopts{display:flex;flex-wrap:wrap;gap:8px}
+/* SOPT OPTIONS */
+.sopts{display:flex;flex-wrap:wrap;gap:6px}
 .sopt{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:4px;
+  gap:3px;
   cursor:pointer;
   user-select:none;
-  padding:6px 4px;
-  border-radius:10px;
+  padding:5px 4px;
+  border-radius:8px;
   border:1.5px solid #f3f4f6;
   transition:all 0.15s;
   flex:1;
-  min-width:65px;
+  min-width:60px;
   background:#fafafa;
 }
 .sopt-img{
-  width:52px; /* Tăng kích thước từ 40px -> 52px */
-  height:52px;
-  border-radius:10px;
+  width:48px;
+  height:48px;
+  border-radius:8px;
   overflow:hidden;
   border:1px solid #e5e7eb;
   position:relative;
@@ -124,104 +116,246 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   inset:0;
   background:rgba(245,124,0,0.65);
   color:#fff;
-  font-size:1.1rem;
+  font-size:1rem;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:bold;
 }
-.sopt-name{font-size:0.65rem;color:var(--text-dark);text-align:center;font-weight:700}
+.sopt-name{font-size:0.62rem;color:var(--text-dark);text-align:center;font-weight:700}
 
-/* ROW2 */
-.row2{display:flex;gap:8px;flex-shrink:0}
+/* RIÊNG BƯỚC 5: KHẨU PHẦN (ICON NHỎ HƠN ĐỂ VỪA VẶN) */
+#sopts-5 .sopt-img {
+  width:34px;
+  height:34px;
+}
+#sopts-5 .sopt {
+  padding:4px 2px;
+  min-width:50px;
+}
+
+.row2{display:flex;gap:6px;flex-shrink:0}
 .row2 .half{flex:1}
 
 /* PHOTO GRID */
-.photo-grid{display:grid;gap:8px;flex-shrink:0}
+.photo-grid{display:grid;gap:6px;flex-shrink:0}
 .photo-grid.cols-4{grid-template-columns:repeat(4,1fr)}
 
-/* PHOTO CARD */
-.pcard{cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;padding:6px;background:var(--card-bg);border-radius:10px;border:1px solid #e5e7eb;transition:transform 0.15s;position:relative;height:100%;justify-content:space-between}
+.pcard{cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;padding:5px;background:var(--card-bg);border-radius:8px;border:1px solid #e5e7eb;position:relative;height:100%;justify-content:space-between}
 .pcard:active{transform:scale(0.96)}
-.pcard-img-wrap{width:100%;aspect-ratio:1/1;border-radius:8px;overflow:hidden;position:relative;background:#f3f4f6;flex-shrink:0}
+.pcard-img-wrap{width:100%;aspect-ratio:1/1;border-radius:6px;overflow:hidden;position:relative;background:#f3f4f6;flex-shrink:0}
 .pcard-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .pcard.sel{border-color:var(--brand-orange);background:var(--brand-orange-light)}
-.pcard.sel .pcard-img-wrap::after{content:'✓';position:absolute;inset:0;background:rgba(245,124,0,0.5);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.pcard.sel .pcard-img-wrap::after{content:'✓';position:absolute;inset:0;background:rgba(245,124,0,0.5);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
 
-.pcard-name{font-size:0.65rem;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.4em;word-break:break-word}
+.pcard-name{font-size:0.62rem;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.4em;word-break:break-word}
 .pcard-price{font-size:0.6rem;color:var(--brand-orange);font-weight:800;margin-top:2px}
 
-/* Qty badge */
-.pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.6rem;font-weight:800;display:none;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+.pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.55rem;font-weight:800;display:none;align-items:center;justify-content:center}
 .pcard.sel .pcard-qty-badge{display:flex}
 
-/* CỐ ĐỊNH NÚT THÊM VÀO GIỎ HÀNG Ở CUỐI TRANG KHÔNG BỊ CHE KHUẤT */
-.sticky-btn-wrap{
-  position:sticky;
+/* GIỎ HÀNG CỐ ĐỊNH PHÍA CUỐI MÀN HÌNH */
+.bottom-cart-bar {
+  position:fixed;
   bottom:0;
-  left:0;
-  right:0;
-  padding:10px 0 4px;
-  background:linear-gradient(to top, var(--bg-main) 80%, rgba(244,247,244,0));
-  z-index:100;
-  margin-top:auto;
-}
-.add-btn{
+  left:50%;
+  transform:translateX(-50%);
   width:100%;
+  max-width:480px;
+  background:var(--brand-green-dark);
+  color:#fff;
+  border-top-left-radius:14px;
+  border-top-right-radius:14px;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.3);
+  z-index:900;
+  display:flex;
+  flex-direction:column;
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-bar-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.cart-bar-title {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:0.8rem;
+  font-weight:700;
+}
+
+.cart-count-badge {
+  background:var(--brand-orange);
+  color:#fff;
+  font-size:0.65rem;
+  font-weight:800;
+  padding:1px 6px;
+  border-radius:10px;
+}
+
+/* NÚT TÁC VỤ GIỎ HÀNG */
+.cart-header-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.btn-expand-cart {
+  background:rgba(255,255,255,0.15);
+  color:#fff;
+  border:none;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:0.65rem;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.btn-add-action {
   font-family:inherit;
   font-weight:800;
-  font-size:0.85rem;
-  letter-spacing:0.03em;
+  font-size:0.75rem;
   text-transform:uppercase;
   color:#fff;
   background:var(--brand-orange);
   border:none;
-  padding:14px;
-  border-radius:12px;
+  padding:7px 12px;
+  border-radius:8px;
   cursor:pointer;
-  box-shadow:0 4px 12px rgba(245,124,0,0.35);
-  transition:background 0.2s, transform 0.1s;
-  display:block;
+  box-shadow:0 2px 6px rgba(245,124,0,0.4);
 }
-.add-btn:active{background:var(--brand-orange-hover);transform:scale(0.98)}
+.btn-add-action:active{transform:scale(0.96)}
 
-/* FLOATING CART BUTTON (NÚT GIỎ HÀNG NỔI GÓC PHẢI MÀN HÌNH) */
-.cart-fab{position:absolute;bottom:75px;right:16px;z-index:450;background:var(--brand-green);color:#fff;border:none;border-radius:30px;padding:10px 16px;display:none;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(27,67,50,0.4);cursor:pointer;transition:transform 0.2s}
-.cart-fab:active{transform:scale(0.95)}
-.cart-fab-icon{font-size:1.1rem;position:relative}
-.cart-fab-badge{position:absolute;top:-6px;right:-8px;background:var(--brand-orange);color:#fff;font-size:0.55rem;font-weight:800;border-radius:10px;padding:2px 5px;border:1px solid #fff}
-.cart-fab-text{font-size:0.75rem;font-weight:700;letter-spacing:0.02em}
+/* DANH SÁCH GIỎ HÀNG (MẶC ĐỊNH HIỆN 2 DÒNG ~85px) */
+.cart-list-scroll {
+  height: 85px; /* Giới hạn đúng 2 dòng món */
+  overflow-y: auto;
+  padding: 4px 12px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  transition: height 0.3s ease;
+}
 
-/* CART SLIDE PANEL */
-#cart-panel{position:fixed;bottom:0;left:0;right:0;z-index:500;background:var(--brand-green-dark);color:#fff;box-shadow:0 -4px 20px rgba(0,0,0,0.25);transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);max-width:480px;margin:0 auto;border-top-left-radius:16px;border-top-right-radius:16px}
-#cart-panel.visible{transform:translateY(0)}
-.cart-handle-wrap{display:flex;justify-content:center;padding:8px 0 4px;cursor:pointer}
-.cart-handle{width:36px;height:4px;background:rgba(255,255,255,0.3);border-radius:2px}
-.cart-head{display:flex;align-items:center;justify-content:space-between;padding:0 14px 10px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.cart-head-left{display:flex;align-items:center;gap:8px}
-.cart-head-title{font-size:0.85rem;font-weight:700;color:#fff;text-transform:uppercase}
-.cart-badge{background:var(--brand-orange);color:#fff;font-weight:800;font-size:0.65rem;min-width:20px;height:20px;border-radius:10px;padding:0 5px;display:flex;align-items:center;justify-content:center}
-.cart-confirm-mini{font-family:inherit;font-weight:800;font-size:0.75rem;text-transform:uppercase;color:#fff;background:var(--brand-orange);border:none;padding:8px 16px;cursor:pointer;border-radius:8px;box-shadow:0 2px 6px rgba(245,124,0,0.4)}
-.cart-scroll{overflow-y:auto;max-height:240px;padding:8px 14px;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
-.cart-scroll::-webkit-scrollbar{width:3px}
-.cart-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:2px}
-.cart-empty-msg{text-align:center;padding:16px 0;color:rgba(255,255,255,0.5);font-size:0.8rem}
-.cart-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
-.cart-row:last-child{border-bottom:none}
-.cart-row-thumb{width:36px;height:36px;border-radius:6px;overflow:hidden;flex-shrink:0;background:#fff}
-.cart-row-thumb img{width:100%;height:100%;object-fit:cover}
-.cart-row-info{flex:1;min-width:0}
-.cart-row-title{font-size:0.72rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cart-row-sub{font-size:0.6rem;color:rgba(255,255,255,0.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cart-qty{display:flex;align-items:center;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;flex-shrink:0}
-.cart-qty-btn{background:none;border:none;color:#fff;font-size:0.85rem;width:22px;height:22px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.cart-qty-num{font-size:0.7rem;font-weight:700;color:#fff;min-width:18px;text-align:center}
-.cart-row-price{font-size:0.75rem;font-weight:700;color:var(--brand-orange);min-width:40px;text-align:right;flex-shrink:0}
-.cart-row-del{background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:0.8rem;padding:2px 4px;flex-shrink:0}
-.cart-row-del:hover{color:#fff}
-.cart-total-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 14px;border-top:1px solid rgba(255,255,255,0.1)}
-.cart-total-label{font-size:0.7rem;color:rgba(255,255,255,0.7);text-transform:uppercase;font-weight:700}
-.cart-total-amount{font-size:1rem;font-weight:800;color:var(--brand-orange)}
+/* KHI MỞ RỘNG TOÀN BỘ GIỎ HÀNG */
+.bottom-cart-bar.expanded .cart-list-scroll {
+  height: 230px;
+}
+
+.cart-empty-text {
+  text-align:center;
+  padding:25px 0;
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.4);
+}
+
+.cart-item-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 0;
+  border-bottom:1px dashed rgba(255,255,255,0.1);
+  height: 40px; /* Định dạng chuẩn chiều cao cho 1 dòng */
+}
+.cart-item-row:last-child { border-bottom: none; }
+
+.cart-item-info {
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-width:0;
+  padding-right:8px;
+}
+.cart-item-title {
+  font-size:0.72rem;
+  font-weight:700;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.cart-item-sub {
+  font-size:0.58rem;
+  color:rgba(255,255,255,0.6);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.cart-item-controls {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.cart-qty-ctrl {
+  display:flex;
+  align-items:center;
+  background:rgba(255,255,255,0.12);
+  border-radius:4px;
+}
+.cart-qty-ctrl button {
+  background:none;
+  border:none;
+  color:#fff;
+  width:20px;
+  height:20px;
+  font-size:0.8rem;
+  cursor:pointer;
+}
+.cart-qty-ctrl span {
+  font-size:0.68rem;
+  font-weight:700;
+  padding:0 4px;
+  min-width:16px;
+  text-align:center;
+}
+
+.cart-item-price {
+  font-size:0.72rem;
+  font-weight:800;
+  color:var(--brand-orange);
+  min-width:38px;
+  text-align:right;
+}
+
+/* THANH THANH TOÁN CUỐI */
+.cart-bar-footer {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 12px;
+  background:rgba(0,0,0,0.2);
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.cart-total-text {
+  font-size:0.8rem;
+  font-weight:800;
+  color:#fff;
+}
+.cart-total-text span {
+  color:var(--brand-orange);
+  font-size:0.95rem;
+  margin-left:4px;
+}
+
+.btn-submit-order {
+  background:var(--brand-green-light);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.2);
+  padding:6px 14px;
+  border-radius:8px;
+  font-size:0.75rem;
+  font-weight:800;
+  cursor:pointer;
+  text-transform:uppercase;
+}
 
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brand-green);color:#fff;font-size:0.75rem;font-weight:700;padding:8px 18px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:all 0.25s;pointer-events:none;z-index:999;max-width:88vw;text-align:center;border:1px solid rgba(255,255,255,0.2)}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -251,7 +385,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
     </div>
     <div class="step-row" id="step-3">
       <div class="step-head">
-        <div class="slabel">3. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500;text-transform:none">(có thể chọn nhiều)</span></div>
+        <div class="slabel">3. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
       </div>
       <div class="sopts" id="sopts-3"></div>
     </div>
@@ -263,16 +397,18 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
         </div>
       </div>
       <div class="half">
-        <div class="step-row" id="step-4b">
+        <div class="step-row" id="step-5">
           <div class="step-head"><div class="slabel">5. Khẩu phần</div></div>
           <div class="sopts" id="sopts-5"></div>
         </div>
       </div>
     </div>
-    
-    <!-- CỐ ĐỊNH NÚT BẤM CỦA TRANG 1 -->
-    <div class="sticky-btn-wrap">
-      <button class="add-btn" onclick="addToCartPage0()">+ Thêm vào giỏ hàng</button>
+    <!-- BƯỚC 6 MỚI: ĐỒ ĂN KÈM -->
+    <div class="step-row" id="step-6">
+      <div class="step-head">
+        <div class="slabel">6. Đồ ăn kèm <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
+      </div>
+      <div class="sopts" id="sopts-6"></div>
     </div>
   </div>
 
@@ -280,66 +416,51 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   <div class="page" id="page-1">
     <div class="sec-title">Đồ ăn kèm</div>
     <div class="photo-grid cols-4" id="grid-an-kem"></div>
-    <div class="sec-title" style="margin-top:12px">Đồ uống</div>
+    <div class="sec-title" style="margin-top:10px">Đồ uống</div>
     <div class="photo-grid cols-4" id="grid-uong"></div>
-    
-    <div class="sticky-btn-wrap">
-      <button class="add-btn" onclick="addSimple(1)">+ Thêm món đã chọn</button>
-    </div>
   </div>
 
   <!-- PAGE 3: ĐỒ NHẬU -->
   <div class="page" id="page-2">
     <div class="sec-title">Đồ uống nhậu</div>
     <div class="photo-grid cols-4" id="grid-nhau"></div>
-    <div class="sec-title" style="margin-top:12px">Mồi nhậu</div>
+    <div class="sec-title" style="margin-top:10px">Mồi nhậu</div>
     <div class="photo-grid cols-4" id="grid-moi"></div>
-    
-    <div class="sticky-btn-wrap">
-      <button class="add-btn" onclick="addSimple(2)">+ Thêm món đã chọn</button>
-    </div>
   </div>
 
   <!-- PAGE 4: LẨU -->
   <div class="page" id="page-3">
     <div class="sec-title">Chọn nồi lẩu</div>
     <div class="photo-grid cols-4" id="grid-lau"></div>
-    <div class="sec-title" style="margin-top:12px">Đồ nhúng thêm</div>
+    <div class="sec-title" style="margin-top:10px">Đồ nhúng thêm</div>
     <div class="photo-grid cols-4" id="grid-nhung"></div>
-    
-    <div class="sticky-btn-wrap">
-      <button class="add-btn" onclick="addSimple(3)">+ Thêm món đã chọn</button>
-    </div>
   </div>
 
-  <!-- NÚT GIỎ HÀNG NỔI -->
-  <button class="cart-fab" id="cart-fab" onclick="toggleCartPanel()">
-    <div class="cart-fab-icon">
-      🛒
-      <span class="cart-fab-badge" id="fab-badge">0</span>
+  <!-- GIỎ HÀNG CỐ ĐỊNH PHÍA CUỐI MÀN HÌNH -->
+  <div class="bottom-cart-bar" id="cart-bar">
+    <div class="cart-bar-header">
+      <div class="cart-bar-title">
+        🛒 Giỏ hàng <span class="cart-count-badge" id="cart-badge-count">0</span>
+      </div>
+      <div class="cart-header-actions">
+        <button class="btn-expand-cart" id="btn-toggle-expand" onclick="toggleExpandCart()">▲ Mở rộng</button>
+        <button class="btn-add-action" id="btn-main-add" onclick="handleAddAction()">+ Thêm ở đây</button>
+      </div>
     </div>
-    <span class="cart-fab-text" id="fab-total">0k</span>
-  </button>
+
+    <!-- DANH SÁCH MÓN CUỘN MƯỢT MẶC ĐỊNH 2 DÒNG -->
+    <div class="cart-list-scroll" id="cart-list-scroll">
+      <div class="cart-empty-text">Chưa chọn món nào</div>
+    </div>
+
+    <div class="cart-bar-footer">
+      <div class="cart-total-text">Tổng: <span id="cart-total-val">0k</span></div>
+      <button class="btn-submit-order" onclick="confirmOrder()">✦ Đặt món</button>
+    </div>
+  </div>
 
 </div>
 
-<!-- CART SLIDE PANEL -->
-<div id="cart-panel">
-  <div class="cart-handle-wrap" onclick="toggleCartPanel()"><div class="cart-handle"></div></div>
-  <div class="cart-head">
-    <div class="cart-head-left">
-      <span style="font-size:1.1rem">🛒</span>
-      <span class="cart-head-title">Giỏ hàng</span>
-      <span class="cart-badge" id="cart-badge">0</span>
-    </div>
-    <button class="cart-confirm-mini" onclick="confirmOrder()">✦ Đặt món</button>
-  </div>
-  <div class="cart-scroll" id="cart-scroll"><div class="cart-empty-msg">Chưa có món nào được chọn</div></div>
-  <div class="cart-total-bar" id="cart-total-bar" style="display:none">
-    <span class="cart-total-label">Tổng thanh toán</span>
-    <span class="cart-total-amount" id="cart-total-amount">0đ</span>
-  </div>
-</div>
 <div id="toast"></div>
 
 <script>
@@ -370,13 +491,19 @@ const IMG = {
   thitnuong: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&auto=format&fit=crop&q=80',
   chanuong: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&auto=format&fit=crop&q=80',
   timcat:   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&auto=format&fit=crop&q=80',
-  trungga:  'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&auto=format&fit=crop&q=80',
+  dacbiet:  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
 
   cohanh:   'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&auto=format&fit=crop&q=80',
   khonghanh:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
   treemsize:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&auto=format&fit=crop&q=80',
   binhthuong:'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
   suatlon:  'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
+
+  trungga:  'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&auto=format&fit=crop&q=80',
+  quay:     'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
+  trunglon: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
+  changa:   'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=300&auto=format&fit=crop&q=80',
+  gio:      'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
 
   rausong:  'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
   giado:    'https://images.unsplash.com/photo-1592417817098-8f3d6eb19655?w=300&auto=format&fit=crop&q=80',
@@ -411,17 +538,24 @@ const IMG = {
   mitoi:    'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80'
 };
 
-// ── MENU DATA ──
+// ── DATA MENU ──
 const STEP1 = [{v:'Phở',img:IMG.pho,g:'s1'},{v:'Bún',img:IMG.bun,g:'s1'},{v:'Mỳ',img:IMG.my,g:'s1'}];
 const STEP2 = [{v:'Nước béo',img:IMG.nuocbeo,g:'s2'},{v:'Nước trong',img:IMG.nuoctong,g:'s2'},{v:'Xào',img:IMG.xao,g:'s2'},{v:'Trộn',img:IMG.tron,g:'s2'}];
+// BƯỚC 3: ĐÃ XÓA TRỨNG GÀ, THAY BẰNG ĐẶC BIỆT
 const STEP3 = [
+  {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s3'},
   {v:'Bò tái',img:IMG.botai,g:'s3'},{v:'Tái lăn',img:IMG.tailan,g:'s3'},{v:'Tái băm',img:IMG.taibam,g:'s3'},
   {v:'Nạm giòn',img:IMG.namgion,g:'s3'},{v:'Gầu giòn',img:IMG.gaugion,g:'s3'},{v:'Lõi rùa',img:IMG.loirua,g:'s3'},
   {v:'Bò viên',img:IMG.bovien,g:'s3'},{v:'Sốt vang',img:IMG.sotvang,g:'s3'},{v:'Thịt nướng',img:IMG.thitnuong,g:'s3'},
-  {v:'Chả nướng',img:IMG.chanuong,g:'s3'},{v:'Tim cật',img:IMG.timcat,g:'s3'},{v:'Trứng gà',img:IMG.trungga,g:'s3'}
+  {v:'Chả nướng',img:IMG.chanuong,g:'s3'},{v:'Tim cật',img:IMG.timcat,g:'s3'}
 ];
 const STEP4 = [{v:'Có hành',img:IMG.cohanh,g:'s4'},{v:'Không hành',img:IMG.khonghanh,g:'s4'}];
 const STEP5 = [{v:'Trẻ em',img:IMG.treemsize,g:'s5'},{v:'Bình thường',img:IMG.binhthuong,g:'s5'},{v:'Suất lớn',img:IMG.suatlon,g:'s5'}];
+// BƯỚC 6 MỚI: ĐỒ ĂN KÈM
+const STEP6 = [
+  {v:'Trứng gà',img:IMG.trungga,g:'s6'},{v:'Quẩy',img:IMG.quay,g:'s6'},
+  {v:'Trứng lộn',img:IMG.trunglon,g:'s6'},{v:'Chân gà',img:IMG.changa,g:'s6'},{v:'Giò',img:IMG.gio,g:'s6'}
+];
 
 const MENU = {
   'an-kem':[
@@ -475,6 +609,8 @@ const TABS=[
   {label:'Lẩu',img:IMG.laubo},
 ];
 
+let activeTabIdx = 0;
+
 function buildTabs(){
   const bar=document.getElementById('tab-bar');
   bar.innerHTML=TABS.map((t,i)=>`
@@ -498,6 +634,7 @@ function buildPage0(){
   document.getElementById('sopts-3').innerHTML=STEP3.map(i=>buildSopt(i,true)).join('');
   document.getElementById('sopts-4').innerHTML=STEP4.map(i=>buildSopt(i)).join('');
   document.getElementById('sopts-5').innerHTML=STEP5.map(i=>buildSopt(i)).join('');
+  document.getElementById('sopts-6').innerHTML=STEP6.map(i=>buildSopt(i,true)).join('');
 }
 
 function buildGrids(){
@@ -537,11 +674,16 @@ function setDefaults(){
   const b=document.querySelector('[data-g="s5"][data-v="Bình thường"]');if(b)b.classList.add('sel');
 }
 
+/* BƯỚC 3 ĐẶC BIỆT THÌ GIÁ LÀ 50K */
 function calcPricePho(thit,size){
+  if(thit.includes('Đặc biệt (Đủ loại bò)')){
+    return 50000;
+  }
   return 40000+Math.max(0,thit.length-1)*10000+(size==='Suất lớn'?10000:size==='Trẻ em'?-5000:0);
 }
 
 function switchTab(n){
+  activeTabIdx = n;
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
   document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));
 }
@@ -549,14 +691,37 @@ function switchTab(n){
 let cart=[],orderCount=0;
 function fmtPrice(n){return(n/1000).toLocaleString('vi-VN')+'k'}
 
+function handleAddAction(){
+  if(activeTabIdx === 0) {
+    addToCartPage0();
+  } else {
+    addSimple(activeTabIdx);
+  }
+}
+
 function addToCartPage0(){
-  const s1=getG('s1'),s2=getG('s2'),s3=getG('s3'),s4=getG('s4'),s5=getG('s5');
-  const checks=[{g:s1,step:'step-1',label:'loại sợi'},{g:s2,step:'step-2',label:'cách chế biến'},{g:s3,step:'step-3',label:'loại thịt'},{g:s4,step:'step-4',label:'hành'},{g:s5,step:'step-4b',label:'định lượng'}];
+  const s1=getG('s1'),s2=getG('s2'),s3=getG('s3'),s4=getG('s4'),s5=getG('s5'),s6=getG('s6');
+  const checks=[{g:s1,step:'step-1',label:'loại sợi'},{g:s2,step:'step-2',label:'cách chế biến'},{g:s3,step:'step-3',label:'loại thịt'},{g:s4,step:'step-4',label:'hành'},{g:s5,step:'step-5',label:'khẩu phần'}];
   const miss=checks.find(x=>!x.g.length);
-  if(miss){toast(`⚠️ Chưa chọn ${miss.label}!`);const el=document.getElementById(miss.step);if(el){el.style.outline='2px solid var(--brand-orange)';el.style.borderRadius='8px';setTimeout(()=>{el.style.outline='';el.style.borderRadius='';},1500);}return;}
-  const img=document.querySelector('[data-g="s1"].sel .sopt-img img');
-  cart.push({label:`${s5[0]} · ${s1[0]} ${s2[0]}`,sub:`🥩 ${s3.join(', ')} · 🌿 ${s4[0]}`,price:calcPricePho(s3,s5[0]),qty:1,img:img?img.src:IMG.pho});
-  ['s1','s2','s3'].forEach(g=>document.querySelectorAll(`[data-g="${g}"].sel`).forEach(e=>e.classList.remove('sel')));
+  if(miss){
+    toast(`⚠️ Chưa chọn ${miss.label}!`);
+    const el=document.getElementById(miss.step);
+    if(el){el.style.outline='2px solid var(--brand-orange)';el.style.borderRadius='8px';setTimeout(()=>{el.style.outline='';el.style.borderRadius='';},1500);}
+    return;
+  }
+  
+  let subText = `🥩 ${s3.join(', ')} · 🌿 ${s4[0]}`;
+  if(s6.length) subText += ` · ➕ Kèm: ${s6.join(', ')}`;
+
+  cart.push({
+    label:`${s5[0]} · ${s1[0]} ${s2[0]}`,
+    sub: subText,
+    price: calcPricePho(s3,s5[0]),
+    qty: 1
+  });
+
+  // Reset bớt các trường chọn
+  ['s1','s2','s3','s6'].forEach(g=>document.querySelectorAll(`[data-g="${g}"].sel`).forEach(e=>e.classList.remove('sel')));
   setDefaults();
   renderCart();
   toast('✅ Đã thêm vào giỏ hàng!');
@@ -570,7 +735,7 @@ function addSimple(tab){
       const q=parseInt(el.dataset.qty)||0;
       if(q>0){
         const m=MENU[key][parseInt(el.dataset.idx)];
-        cart.push({label:m.name,sub:'',price:m.price,qty:q,img:m.img});
+        cart.push({label:m.name,sub:'',price:m.price,qty:q});
         el.dataset.qty=0;el.classList.remove('sel');
         const badge=el.querySelector('.pcard-qty-badge');if(badge)badge.style.display='none';
         added++;
@@ -583,49 +748,49 @@ function addSimple(tab){
 }
 
 function changeQty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);renderCart()}
-function removeItem(i){cart.splice(i,1);renderCart();if(!cart.length)document.getElementById('cart-panel').classList.remove('visible')}
+function removeItem(i){cart.splice(i,1);renderCart()}
 
-function toggleCartPanel(){
-  const panel=document.getElementById('cart-panel');
-  if(cart.length) panel.classList.toggle('visible');
+function toggleExpandCart(){
+  const bar = document.getElementById('cart-bar');
+  const btn = document.getElementById('btn-toggle-expand');
+  bar.classList.toggle('expanded');
+  if(bar.classList.contains('expanded')){
+    btn.textContent = '▼ Thu gọn';
+  } else {
+    btn.textContent = '▲ Mở rộng';
+  }
 }
 
 function renderCart(){
   const totalQty=cart.reduce((s,b)=>s+b.qty,0);
   const totalPrice=cart.reduce((s,b)=>s+b.price*b.qty,0);
 
-  const fab=document.getElementById('cart-fab');
-  const fabBadge=document.getElementById('fab-badge');
-  const fabTotal=document.getElementById('fab-total');
-  
-  if(totalQty>0){
-    fab.style.display='flex';
-    fabBadge.textContent=totalQty;
-    fabTotal.textContent=fmtPrice(totalPrice);
-  }else{
-    fab.style.display='none';
+  document.getElementById('cart-badge-count').textContent = totalQty;
+  document.getElementById('cart-total-val').textContent = fmtPrice(totalPrice);
+
+  const scroll=document.getElementById('cart-list-scroll');
+  if(!cart.length){
+    scroll.innerHTML='<div class="cart-empty-text">Chưa chọn món nào</div>';
+    return;
   }
 
-  document.getElementById('cart-badge').textContent=totalQty;
-  const scroll=document.getElementById('cart-scroll');
-  const bar=document.getElementById('cart-total-bar');
-  if(!cart.length){scroll.innerHTML='<div class="cart-empty-msg">Chưa có món nào được chọn</div>';bar.style.display='none';return;}
-  scroll.innerHTML=cart.map((b,i)=>`<div class="cart-row">
-    <div class="cart-row-thumb"><img src="${b.img}" alt="${b.label}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
-    <div class="cart-row-info">
-      <div class="cart-row-title">${b.label}</div>
-      ${b.sub?`<div class="cart-row-sub">${b.sub}</div>`:''}
+  scroll.innerHTML=cart.map((b,i)=>`
+    <div class="cart-item-row">
+      <div class="cart-item-info">
+        <div class="cart-item-title">${b.label}</div>
+        ${b.sub?`<div class="cart-item-sub">${b.sub}</div>`:''}
+      </div>
+      <div class="cart-item-controls">
+        <div class="cart-qty-ctrl">
+          <button onclick="changeQty(${i},-1)">−</button>
+          <span>${b.qty}</span>
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
+        <div class="cart-item-price">${fmtPrice(b.price*b.qty)}</div>
+        <button style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:0.75rem;padding:2px" onclick="removeItem(${i})">✕</button>
+      </div>
     </div>
-    <div class="cart-qty">
-      <button class="cart-qty-btn" onclick="changeQty(${i},-1)">−</button>
-      <span class="cart-qty-num">${b.qty}</span>
-      <button class="cart-qty-btn" onclick="changeQty(${i},1)">+</button>
-    </div>
-    <span class="cart-row-price">${fmtPrice(b.price*b.qty)}</span>
-    <button class="cart-row-del" onclick="removeItem(${i})">✕</button>
-  </div>`).join('');
-  document.getElementById('cart-total-amount').textContent=fmtPrice(totalPrice);
-  bar.style.display='flex';
+  `).join('');
 }
 
 async function sendTelegram(chatId,text){
@@ -648,7 +813,8 @@ ${snap.map((b,i)=>`<b>[${i+1}] ${b.label} x${b.qty}</b> — ${fmtPrice(b.price*b
   sendTelegram(TG_OWNER,msg);
   printReceipt(orderCount,now,snap,totalQty,totalPrice);
   toast(`✅ Đặt món thành công! Đơn #${orderCount} — Bàn ${tableNum}`);
-  cart=[];renderCart();document.getElementById('cart-panel').classList.remove('visible');
+  cart=[];
+  renderCart();
 }
 
 function printReceipt(no,time,snap,totalQty,totalPrice){
