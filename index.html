@@ -3,361 +3,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bò Ngon 888 — Thực Đơn</title>
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+Display:wght@300;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<title>Bò Ngon 888 — Thực Đơn Nhà Hàng</title>
+<meta name="description" content="Thực đơn chính thức của nhà hàng Bò Ngon 888. Phở, bún bò, đồ nhậu hấp dẫn và các món lẩu bò đặc sắc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Philosopher:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gold:    #c8a96e;
-  --dark:    #2c1a0e;
-  --mid:     #8b6533;
-  --light:   #e8d5a8;
-  --accent:  #5a1a1a;
+  --gold: #d4af37;
+  --gold-light: #f5e6be;
+  --gold-dark: #997a15;
+  --bg-dark: #1a100a;
+  --bg-card: #241710;
+  --text-light: #f3ece0;
+  --text-muted: #c2b29d;
+  --accent-red: #9e2a2b;
+  --border-gold: rgba(212, 175, 55, 0.25);
 }
 
-html, body {
+body {
   min-height: 100vh;
-  background: var(--gold);
-  color: var(--dark);
-  font-family: 'Libre Baskerville', serif;
-  overflow-x: hidden;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Cormorant Garamond', serif;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(158, 42, 43, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 50% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  padding-bottom: 90px;
 }
 
 /* ── HEADER ── */
 .header {
   text-align: center;
-  padding: 56px 24px 40px;
+  padding: 40px 20px 25px;
   position: relative;
 }
-.header::after {
-  content: '';
-  display: block;
-  width: 120px; height: 1px;
-  background: linear-gradient(to right, transparent, var(--mid), transparent);
-  margin: 20px auto 0;
-}
-.header h1 {
-  font-family: 'Satisfy', cursive;
-  font-size: clamp(3.6rem, 12vw, 6.5rem);
-  color: var(--dark);
-  line-height: 1;
-  letter-spacing: .01em;
-}
-.header .sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(.7rem, 2vw, .88rem);
-  letter-spacing: .5em;
-  padding-left: .5em;
-  color: #5a3510;
-  text-transform: uppercase;
-  margin-top: 10px;
-}
-.header .tag {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #7a4f1a;
-  margin-top: 6px;
-}
-
-/* ── ORNAMENT ── */
-.ornament {
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--mid);
-  letter-spacing: .3em;
-  margin: 8px 0 40px;
-  opacity: .6;
-}
-
-/* ── GRID 3 Ô ── */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px 80px;
-}
-
-@media (max-width: 680px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-    padding: 0 20px 60px;
-    gap: 20px;
-  }
-}
-
-/* ── CARD ── */
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 480px;
-  padding: 36px 28px;
-  text-decoration: none;
-  color: var(--dark);
-  cursor: pointer;
-  overflow: hidden;
-  border: 1px solid rgba(139,101,51,.25);
-  transition: z-index 0s;
-}
-
-/* nền hoa văn riêng mỗi ô */
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform .6s cubic-bezier(.25,.46,.45,.94), opacity .4s;
-  opacity: .12;
-}
-.card:hover::before { transform: scale(1.06); opacity: .2; }
-
-/* pattern SVG nền */
-.card-an-sang::before  { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232c1a0e' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.card-do-nhau::before  { background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232c1a0e' fill-opacity='1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.card-lau::before      { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%232c1a0e' fill-opacity='1'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-
-/* overlay gradient */
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(44,26,14,.18) 0%, transparent 60%);
-  transition: opacity .4s;
-}
-.card:hover .card-overlay { opacity: 1.5; }
-
-/* icon vùng */
-.card-icon {
-  position: relative;
-  z-index: 2;
-  width: 96px; height: 96px;
-  border-radius: 50%;
-  background: var(--dark);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 32px rgba(44,26,14,.25);
-  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s;
-  flex-shrink: 0;
-}
-.card:hover .card-icon {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 16px 40px rgba(44,26,14,.35);
-}
-.card-icon svg {
-  width: 46px; height: 46px;
-  fill: var(--gold);
-}
-
-.card-body {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-.card-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: .72rem;
-  letter-spacing: .35em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 8px;
-}
-.card-title {
-  font-family: 'Satisfy', cursive;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  color: var(--dark);
-  line-height: 1.1;
-  margin-bottom: 10px;
-  transition: color .3s;
-}
-.card:hover .card-title { color: var(--accent); }
-
-.card-desc {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(.9rem, 2vw, 1.05rem);
-  color: #5a3510;
-  line-height: 1.55;
-  margin-bottom: 22px;
-}
-
-/* divider line */
-.card-line {
-  width: 48px; height: 1px;
-  background: var(--mid);
-  margin: 0 auto 20px;
-  transition: width .4s;
-}
-.card:hover .card-line { width: 80px; }
-
-.card-cta {
+.header-badge {
   display: inline-block;
-  font-family: 'Noto Serif Display', serif;
-  font-weight: 600;
-  font-size: .78rem;
-  letter-spacing: .18em;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  background: var(--dark);
-  padding: 11px 28px;
-  border: none;
-  cursor: pointer;
-  transition: background .25s, transform .2s;
-  text-decoration: none;
+  border: 1px solid var(--border-gold);
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  background: rgba(36, 23, 16, 0.6);
 }
-.card:hover .card-cta {
-  background: var(--accent);
-  transform: translateY(-2px);
+.header h1 {
+  font-family: 'Philosopher', serif;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  color: var(--gold);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  line-height: 1.1;
+}
+.header .tag {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+.header .ban-highlight {
+  color: #ffffff;
+  background: var(--accent-red);
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: 600;
 }
 
-/* vertical divider giữa các card trên desktop */
-@media (min-width: 681px) {
-  .card:not(:last-child) {
-    border-right: 1px solid rgba(139,101,51,.3);
-  }
+/* ── QUICK INFO BAR (WIFI, HOTLINE) ── */
+.info-bar {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  background: rgba(36, 23, 16, 0.7);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.info-item span {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── CATEGORY TABS ── */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto 35px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-gold);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-family: 'Philosopher', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn:hover, .tab-btn.active {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-color: var(--gold);
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ── MENU CONTENT SECTIONS ── */
+.menu-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.menu-section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.menu-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-family: 'Philosopher', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ── MENU ITEM CARDS ── */
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.dish-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  border-color: var(--gold);
+}
+
+.dish-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background-color: #332015;
+}
+
+.dish-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.dish-name {
+  font-family: 'Philosopher', serif;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.dish-price {
+  font-size: 1.2rem;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dish-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.dish-tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  background: rgba(158, 42, 43, 0.3);
+  color: #ff9e9e;
+  border: 1px solid rgba(158, 42, 43, 0.6);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ── FIXED CALL BUTTON ── */
+.call-btn-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+.call-btn {
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+.call-btn:active {
+  transform: scale(0.95);
 }
 
 /* ── FOOTER ── */
 .footer {
   text-align: center;
-  padding: 24px;
-  border-top: 1px solid rgba(139,101,51,.3);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: .85rem;
-  color: #7a5530;
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 1px solid var(--border-gold);
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: none; }
+@media (max-width: 600px) {
+  .dish-grid {
+    grid-template-columns: 1fr;
+  }
 }
-.header  { animation: fadeUp .7s ease both; }
-.ornament{ animation: fadeUp .7s .1s ease both; }
-.card    { animation: fadeUp .6s ease both; opacity: 0; }
-.card:nth-child(1) { animation-delay: .2s; }
-.card:nth-child(2) { animation-delay: .35s; }
-.card:nth-child(3) { animation-delay: .5s; }
 </style>
 </head>
 <body>
 
 <div class="header">
+  <div class="header-badge">Hành Trình Vị Giác</div>
   <h1>Bò Ngon 888</h1>
-  <div class="sub">Hành Trình Vị Giác</div>
   <div class="tag">Chào mừng bạn đến với thực đơn của chúng mình</div>
 </div>
 
-<div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+<!-- WIFI & HOTLINE QUICK BAR -->
+<div class="info-bar">
+  <div class="info-item">
+    📶 Wi-Fi: <span>BoNgon888_Guest</span> (Pass: <span>88888888</span>)
+  </div>
+  <div class="info-item">
+    📞 Hotline hỗ trợ: <span>0988.888.888</span>
+  </div>
+</div>
 
-<div class="menu-grid">
+<!-- CATEGORY TABS -->
+<div class="category-tabs">
+  <button class="tab-btn active" onclick="switchTab('an-sang')">🥣 Ăn Sáng</button>
+  <button class="tab-btn" onclick="switchTab('do-nhau')">🍺 Đồ Nhậu</button>
+  <button class="tab-btn" onclick="switchTab('lau')">🍲 Các Món Lẩu</button>
+</div>
 
-  <!-- ĂN SÁNG -->
-  <a class="card card-an-sang" href="bo-ngon-888.html">
-    <div class="card-overlay"></div>
-    <div class="card-icon">
-      <svg viewBox="0 0 64 64">
-        <path d="M10 28 Q10 48 32 50 Q54 48 54 28 Z"/>
-        <path d="M8 28 H56" stroke="#c8a96e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M18 23 Q22 18 26 23 Q30 18 34 23 Q38 18 42 23" fill="none" stroke="#c8a96e" stroke-width="2" stroke-linecap="round"/>
-        <line x1="41" y1="13" x2="37" y2="41" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="45" y1="12" x2="41" y2="40" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="card-body">
-      <div class="card-num">✦ Thực đơn 01 ✦</div>
-      <div class="card-title">Ăn Sáng</div>
-      <div class="card-line"></div>
-      <div class="card-desc">Phở · Bún · Mỳ bò<br>Hương vị đậm đà từ sáng sớm</div>
-      <span class="card-cta">Xem thực đơn</span>
-    </div>
-  </a>
+<!-- MENU CONTENT -->
+<div class="menu-container">
 
-  <!-- ĐỒ NHẬU -->
-  <a class="card card-do-nhau" href="do-nhau.html">
-    <div class="card-overlay"></div>
-    <div class="card-icon">
-      <svg viewBox="0 0 64 64">
-        <!-- ly bia -->
-        <path d="M16 20 L18 50 Q18 54 32 54 Q46 54 46 50 L48 20 Z" fill="#c8a96e" stroke="#c8a96e" stroke-width="0"/>
-        <path d="M16 20 Q20 12 32 12 Q44 12 48 20" fill="#c8a96e" stroke="#c8a96e" stroke-width="0"/>
-        <!-- bọt -->
-        <circle cx="26" cy="16" r="3" fill="var(--gold)" opacity=".7"/>
-        <circle cx="38" cy="15" r="2.5" fill="var(--gold)" opacity=".7"/>
-        <circle cx="32" cy="12" r="3" fill="var(--gold)" opacity=".7"/>
-        <!-- thân ly outline -->
-        <path d="M16 20 L18 50 Q18 54 32 54 Q46 54 46 50 L48 20 Z" fill="none" stroke="var(--gold)" stroke-width="2.2"/>
-        <path d="M16 20 Q20 12 32 12 Q44 12 48 20" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="card-body">
-      <div class="card-num">✦ Thực đơn 02 ✦</div>
-      <div class="card-title">Đồ Nhậu</div>
-      <div class="card-line"></div>
-      <div class="card-desc">Món nhắm · Bia · Rượu<br>Vui vẻ cùng bạn bè</div>
-      <span class="card-cta">Xem thực đơn</span>
-    </div>
-  </a>
+  <!-- 1. ĂN SÁNG -->
+  <div id="an-sang" class="menu-section active">
+    <h2 class="section-title">Thực Đơn Ăn Sáng (06:00 - 10:30)</h2>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80" alt="Phở Bò Tái Lăn">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Phở Bò Tái Lăn</span>
+            <span class="dish-price">55.000đ</span>
+          </div>
+          <div class="dish-desc">Thịt bò tươi xào tái tỏi ớt, nước dùng đậm đà béo ngậy chuẩn vị Hà Thành.</div>
+          <span class="dish-tag">Bán chạy nhất 🔥</span>
+        </div>
+      </div>
 
-  <!-- LẨU -->
-  <a class="card card-lau" href="lau.html">
-    <div class="card-overlay"></div>
-    <div class="card-icon">
-      <svg viewBox="0 0 64 64">
-        <!-- nồi lẩu -->
-        <path d="M10 32 Q10 52 32 54 Q54 52 54 32 Z" fill="var(--gold)"/>
-        <path d="M8 32 H56" stroke="var(--gold)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="32" cy="32" rx="24" ry="6" fill="none" stroke="var(--gold)" stroke-width="2"/>
-        <!-- tay cầm -->
-        <path d="M10 32 Q6 32 6 28 Q6 24 10 24" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M54 32 Q58 32 58 28 Q58 24 54 24" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round"/>
-        <!-- hơi nước -->
-        <path d="M22 22 Q24 16 22 10" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-        <path d="M32 20 Q34 14 32 8" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-        <path d="M42 22 Q44 16 42 10" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-      </svg>
-    </div>
-    <div class="card-body">
-      <div class="card-num">✦ Thực đơn 03 ✦</div>
-      <div class="card-title">Lẩu</div>
-      <div class="card-line"></div>
-      <div class="card-desc">Lẩu bò · Lẩu hải sản · Lẩu thái<br>Ấm áp sum vầy</div>
-      <span class="card-cta">Xem thực đơn</span>
-    </div>
-  </a>
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Bún Bò Huế Đặc Biệt">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Bún Bò Huế Đặc Biệt</span>
+            <span class="dish-price">60.000đ</span>
+          </div>
+          <div class="dish-desc">Đầy đủ nạm, gân, chả giò, mọc bò và huyết. Nước dùng sả ớt thơm nức.</div>
+          <span class="dish-tag">Đặc sản</span>
+        </div>
+      </div>
 
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80" alt="Mỳ Bò Sốt Vang">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Mỳ Bò Sốt Vang</span>
+            <span class="dish-price">50.000đ</span>
+          </div>
+          <div class="dish-desc">Bắp bò hầm rượu vang mềm tan, ăn kèm mì trứng và rau thơm tươi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. ĐỒ NHẬU -->
+  <div id="do-nhau" class="menu-section">
+    <h2 class="section-title">Món Nhắm & Đồ Bồi</h2>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Bò Tái Chanh">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Bò Tái Chanh</span>
+            <span class="dish-price">120.000đ</span>
+          </div>
+          <div class="dish-desc">Bắp bò tơ bóp chanh tươi, hành tây, rau thơm, chấm mắm nêm đậm đà.</div>
+          <span class="dish-tag">Món nhậu số 1</span>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=600&q=80" alt="Bò Nướng Tảng Sốt Tiêu">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Bò Nướng Tảng</span>
+            <span class="dish-price">180.000đ</span>
+          </div>
+          <div class="dish-desc">Thịt thăn bò tơ nướng than hoa mềm mọng, kèm sốt tiêu đen đậm vị.</div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=600&q=80" alt="Gân Bò Cháy Tỏi">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Gân Bò Cháy Tỏi</span>
+            <span class="dish-price">135.000đ</span>
+          </div>
+          <div class="dish-desc">Gân bò giòn sần sật chao tỏi ớt thơm lừng, rất hợp dùng cùng bia lạnh.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. LẨU -->
+  <div id="lau" class="menu-section">
+    <h2 class="section-title">Các Món Lẩu Sum Vầy</h2>
+    <div class="dish-grid">
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Lẩu Bò Thập Cẩm">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Lẩu Bò Thập Cẩm</span>
+            <span class="dish-price">350.000đ</span>
+          </div>
+          <div class="dish-desc">Gồm đuôi bò, bắp bò, gân bò, nấm tươi và rau nhúng lẩu theo mùa.</div>
+          <span class="dish-tag">Khuyên dùng (3-4 người)</span>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img class="dish-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Lẩu Riêu Cua Bắp Bò">
+        <div class="dish-info">
+          <div class="dish-header">
+            <span class="dish-name">Lẩu Riêu Cua Bắp Bò</span>
+            <span class="dish-price">380.000đ</span>
+          </div>
+          <div class="dish-desc">Nước dùng riêu cua đồng thanh ngọt, sườn sụn giòn ngon và thịt bắp bò tươi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FLOATING CALL STAFF BUTTON -->
+<div class="call-btn-container">
+  <button class="call-btn" onclick="callStaff()">
+    🔔 Call Nhân Viên
+  </button>
 </div>
 
 <div class="footer">
   © Bò Ngon 888 — Mọi góp ý xin trao đổi với chúng mình ạ 🤍
 </div>
 
-
 <script>
-  // Nhận số bàn từ URL và gắn vào tất cả link trang con
+  // Chuyển Tab danh mục trực tiếp
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.menu-section').forEach(sec => sec.classList.remove('active'));
+
+    const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+    if (activeBtn) activeBtn.classList.add('active');
+
+    const activeSec = document.getElementById(tabId);
+    if (activeSec) activeSec.classList.add('active');
+  }
+
+  // Gọi nhân viên
+  function callStaff() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ban = urlParams.get('ban') || 'chưa xác định';
+    alert(`Đã gửi yêu cầu hỗ trợ cho Bàn số ${ban}! Nhân viên sẽ tới ngay ạ.`);
+  }
+
+  // Xử lý tham số ?ban=X trên URL
   (function() {
-    const ban = new URLSearchParams(window.location.search).get('ban');
+    const urlParams = new URLSearchParams(window.location.search);
+    const ban = urlParams.get('ban');
     if (!ban) return;
-    // Hiện số bàn trên header tag
-    window.addEventListener('DOMContentLoaded', () => {
-      const tag = document.querySelector('.header .tag');
-      if (tag) tag.innerHTML = `Bàn số <strong style="font-style:normal;font-size:1.1em">${ban}</strong> — Chào mừng bạn đến với chúng mình`;
-    });
-    // Gắn ?ban=X vào tất cả link card
-    document.querySelectorAll('a.card').forEach(a => {
-      const href = a.getAttribute('href');
-      if (href && !href.includes('?')) {
-        a.setAttribute('href', href + '?ban=' + ban);
-      }
-    });
+
+    const tag = document.querySelector('.header .tag');
+    if (tag) {
+      tag.innerHTML = `Quý khách đang ở <span class="ban-highlight">Bàn số ${ban}</span> — Chúc bạn ngon miệng!`;
+    }
   })();
 </script>
+
 </body>
 </html>
