@@ -234,70 +234,73 @@ const urlParams=new URLSearchParams(window.location.search);
 const tableNum=urlParams.get('ban')||'?';
 document.getElementById('table-tag').textContent=tableNum!=='?'?`Bàn số: ${tableNum}`:'Bạn chọn để chúng mình phục vụ';
 
-// ── ICON SVG INLINE ──
-function svgUri(shapes, bg) {
-  const s = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='${bg}'/>${shapes}</svg>`;
-  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
-}
-const W = "#ffffff", DK = "#1b4332", RD = "#c0392b";
-const bowl = (bg) => `<path d='M15 55 Q15 80 50 82 Q85 80 85 55 Z' fill='${DK}' opacity='.75'/><path d='M13 55 H87' stroke='${W}' stroke-width='3' fill='none' stroke-linecap='round'/>`;
-const steam = `<path d='M32 42 Q34 34 32 26' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M50 40 Q52 32 50 24' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M68 42 Q70 34 68 26' stroke='${W}' stroke-width='2.5' fill='none'/>`;
-const noodle1 = `<path d='M22 46 Q36 32 50 38 Q64 32 78 46' stroke='${W}' stroke-width='2.5' fill='none'/>`;
-const noodle2 = `<path d='M24 52 Q40 38 50 44 Q62 38 76 52' stroke='${W}' stroke-width='2' fill='none' opacity='.6'/>`;
-const chop = `<line x1='66' y1='18' x2='62' y2='60' stroke='${W}' stroke-width='2.2' stroke-linecap='round'/><line x1='72' y1='16' x2='68' y2='58' stroke='${W}' stroke-width='2.2' stroke-linecap='round'/>`;
+// ── KHỞI TẠO HÌNH ẢNH THẬT CHẤT LƯỢNG CAO (UNSPLASH REAL IMAGES) ──
 const IMG = {
-  pho:      svgUri(bowl()+steam+noodle1+chop, '#2d6a4f'),
-  bun:      svgUri(bowl()+`<circle cx='50' cy='40' r='10' fill='none' stroke='${W}' stroke-width='2.5'/><circle cx='50' cy='40' r='5' fill='none' stroke='${W}' stroke-width='2'/>`+chop, '#40916c'),
-  my:       svgUri(`<rect x='16' y='52' width='68' height='22' rx='11' fill='${DK}' opacity='.75'/>`+noodle1+noodle2, '#52b788'),
-  nuocbeo:  svgUri(bowl()+steam, '#f57c00'),
-  nuoctong: svgUri(bowl()+`<path d='M50 20 Q60 32 60 42 Q60 54 50 54 Q40 54 40 42 Q40 32 50 20Z' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#2d6a4f'),
-  xao:      svgUri(`<path d='M24 60 Q24 78 50 80 Q76 78 76 60 Z' fill='${DK}' opacity='.75'/><path d='M22 60 H78' stroke='${W}' stroke-width='3' fill='none'/><line x1='76' y1='60' x2='88' y2='52' stroke='${W}' stroke-width='3' stroke-linecap='round'/><path d='M36 48 Q40 34 36 22 Q44 30 42 42 Q48 28 46 18 Q54 30 50 44 Q56 30 60 20 Q62 32 58 48' stroke='${W}' stroke-width='2' fill='none'/>`, '#e65100'),
-  tron:     svgUri(bowl()+`<path d='M34 24 Q24 36 28 52' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M28 52 L20 48 M28 52 L32 44' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M66 52 Q76 36 66 24' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M66 24 L72 28 M66 24 L70 34' stroke='${W}' stroke-width='2.5' fill='none'/>`, '#40916c'),
-  botai:    svgUri(`<ellipse cx='50' cy='55' rx='30' ry='18' fill='${DK}' opacity='.75'/><path d='M22 50 Q32 36 50 36 Q68 36 78 50' stroke='${W}' stroke-width='2' fill='none'/><path d='M26 52 Q38 44 50 48 Q62 44 74 52' stroke='${W}' stroke-width='1.8' fill='none' stroke-dasharray='4,2' opacity='.7'/>`, '#c0392b'),
-  tailan:   svgUri(`<path d='M26 58 Q26 76 50 78 Q74 76 74 58 Q74 44 62 42 Q50 40 38 42 Q24 46 26 58Z' fill='${DK}' opacity='.75'/><path d='M38 44 Q46 52 58 44' stroke='${W}' stroke-width='2' fill='none'/><path d='M30 58 Q40 64 50 60 Q60 64 70 58' stroke='${W}' stroke-width='1.8' fill='none' opacity='.6'/>`, '#d35400'),
-  taibam:   svgUri(`<ellipse cx='50' cy='58' rx='28' ry='16' fill='${DK}' opacity='.75'/><circle cx='38' cy='56' r='3.5' fill='${W}'/><circle cx='50' cy='52' r='3.5' fill='${W}'/><circle cx='62' cy='56' r='3.5' fill='${W}'/><circle cx='44' cy='64' r='3' fill='${W}'/><circle cx='56' cy='64' r='3' fill='${W}'/>`, '#a04000'),
-  namgion:  svgUri(`<path d='M20 44 Q20 76 50 78 Q80 76 80 44 Q74 28 50 28 Q26 28 20 44Z' fill='${DK}' opacity='.75'/><path d='M28 48 Q38 38 50 46 Q62 38 72 48' stroke='${W}' stroke-width='2.5' fill='none'/><path d='M24 60 Q36 50 50 56 Q64 50 76 60' stroke='${W}' stroke-width='2' fill='none' opacity='.6'/>`, '#f57c00'),
-  gaugion:  svgUri(`<rect x='20' y='32' width='60' height='16' rx='8' fill='${DK}' opacity='.8'/><rect x='20' y='52' width='60' height='16' rx='8' fill='${DK}' opacity='.8'/><line x1='24' y1='40' x2='76' y2='40' stroke='${W}' stroke-width='1.2' opacity='.4'/><line x1='24' y1='60' x2='76' y2='60' stroke='${W}' stroke-width='1.2' opacity='.4'/>`, '#2d6a4f'),
-  loirua:   svgUri(`<path d='M32 24 Q20 40 22 58 Q24 72 40 76 Q56 78 68 66 Q78 54 74 36 Q68 18 52 18 Q38 18 32 24Z' fill='${DK}' opacity='.75'/><path d='M38 34 Q48 28 58 36 Q66 44 62 56 Q56 66 46 62 Q34 56 38 34Z' fill='none' stroke='${W}' stroke-width='2' opacity='.5'/>`, '#c0392b'),
-  bovien:   svgUri(`<circle cx='34' cy='62' r='16' fill='${DK}' opacity='.8'/><circle cx='66' cy='62' r='16' fill='${DK}' opacity='.8'/><circle cx='50' cy='38' r='16' fill='${DK}' opacity='.8'/>`, '#1b4332'),
-  sotvang:  svgUri(bowl()+`<path d='M20 55 Q20 42 50 42 Q80 42 80 55' fill='none' stroke='${W}' stroke-width='2'/><ellipse cx='50' cy='40' rx='26' ry='6' fill='none' stroke='${W}' stroke-width='2'/><line x1='50' y1='32' x2='50' y2='26' stroke='${W}' stroke-width='2.5'/><circle cx='50' cy='22' r='4' fill='${W}'/>`, '#e65100'),
-  thitnuong:svgUri(`<path d='M20 44 Q20 72 50 74 Q80 72 80 44 Q76 28 50 28 Q24 28 20 44Z' fill='${DK}' opacity='.75'/><line x1='32' y1='30' x2='30' y2='72' stroke='${W}' stroke-width='3' stroke-linecap='round'/><line x1='50' y1='28' x2='48' y2='74' stroke='${W}' stroke-width='3' stroke-linecap='round'/><line x1='68' y1='30' x2='66' y2='72' stroke='${W}' stroke-width='3' stroke-linecap='round'/>`, '#f57c00'),
-  chanuong: svgUri(`<rect x='18' y='36' width='64' height='34' rx='10' fill='${DK}' opacity='.75'/><line x1='34' y1='36' x2='34' y2='70' stroke='${W}' stroke-width='2.5' opacity='.65'/><line x1='50' y1='36' x2='50' y2='70' stroke='${W}' stroke-width='2.5' opacity='.65'/><line x1='66' y1='36' x2='66' y2='70' stroke='${W}' stroke-width='2.5' opacity='.65'/><line x1='18' y1='50' x2='82' y2='50' stroke='${W}' stroke-width='2' opacity='.65'/><line x1='18' y1='60' x2='82' y2='60' stroke='${W}' stroke-width='2' opacity='.65'/>`, '#2d6a4f'),
-  timcat:   svgUri(`<path d='M50 78 Q24 62 24 40 Q24 22 36 22 Q42 22 50 32 Q58 22 64 22 Q76 22 76 40 Q76 62 50 78Z' fill='${RD}' opacity='.85'/><path d='M38 38 Q44 32 52 38' stroke='${W}' stroke-width='2' fill='none' opacity='.5'/>`, RD),
-  trungga:  svgUri(`<ellipse cx='50' cy='55' rx='22' ry='28' fill='${DK}' opacity='.75'/><circle cx='50' cy='55' r='11' fill='none' stroke='${W}' stroke-width='3'/><circle cx='50' cy='55' r='4' fill='${W}' opacity='.6'/>`, '#f57c00'),
-  cohanh:   svgUri(`<line x1='50' y1='84' x2='50' y2='28' stroke='#fff' stroke-width='4' stroke-linecap='round'/><path d='M50 60 Q32 46 26 28' stroke='#fff' stroke-width='3' fill='none'/><path d='M50 44 Q68 30 72 16' stroke='#fff' stroke-width='3' fill='none'/><ellipse cx='50' cy='84' rx='10' ry='5' fill='none' stroke='#fff' stroke-width='3'/>`, '#2d6a4f'),
-  khonghanh:svgUri(`<circle cx='50' cy='50' r='28' fill='none' stroke='${W}' stroke-width='4'/><line x1='28' y1='28' x2='72' y2='72' stroke='${W}' stroke-width='4' stroke-linecap='round'/>`, '#c0392b'),
-  treemsize:svgUri(`<path d='M36 68 Q36 82 50 84 Q64 82 64 68 Z' fill='${DK}' opacity='.75'/><path d='M34 68 H66' stroke='${W}' stroke-width='3' fill='none'/><path d='M40 68 Q40 60 50 60 Q60 60 60 68' fill='none' stroke='${W}' stroke-width='2'/>`, '#52b788'),
-  binhthuong:svgUri(bowl()+noodle1, '#2d6a4f'),
-  suatlon:  svgUri(`<path d='M12 64 Q12 88 50 90 Q88 88 88 64 Z' fill='${DK}' opacity='.75'/><path d='M10 64 H90' stroke='${W}' stroke-width='3' fill='none'/>`+noodle1+noodle2, '#1b4332'),
-  rausong:  svgUri(`<ellipse cx='50' cy='52' rx='28' ry='22' fill='#1b4332' opacity='.8'/><path d='M50 72 L50 28' stroke='#fff' stroke-width='2.5' fill='none'/><path d='M34 52 Q50 42 66 52' stroke='#fff' stroke-width='2.5' fill='none'/><path d='M28 44 Q50 32 72 44' stroke='#fff' stroke-width='2' fill='none' opacity='.7'/>`, '#2d6a4f'),
-  giado:    svgUri(`<ellipse cx='50' cy='60' rx='22' ry='14' fill='#1b4332' opacity='.7'/><line x1='50' y1='16' x2='50' y2='62' stroke='#fff' stroke-width='3'/><path d='M50 32 Q36 24 34 14' stroke='#fff' stroke-width='2.5' fill='none'/><path d='M50 44 Q64 34 68 22' stroke='#fff' stroke-width='2.5' fill='none'/>`, '#40916c'),
-  banhquay: svgUri(`<rect x='32' y='28' width='36' height='44' rx='12' fill='${DK}' opacity='.75'/><line x1='32' y1='44' x2='68' y2='44' stroke='${W}' stroke-width='2' opacity='.5'/><line x1='32' y1='56' x2='68' y2='56' stroke='${W}' stroke-width='2' opacity='.5'/><line x1='44' y1='28' x2='44' y2='72' stroke='${W}' stroke-width='2' opacity='.5'/><line x1='56' y1='28' x2='56' y2='72' stroke='${W}' stroke-width='2' opacity='.5'/>`, '#f57c00'),
-  trungcut: svgUri(`<ellipse cx='50' cy='55' rx='14' ry='18' fill='${DK}' opacity='.75'/><circle cx='50' cy='55' r='6' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#e65100'),
-  soisua:   svgUri(noodle1+noodle2, '#2d6a4f'),
-  trrada:   svgUri(`<rect x='34' y='28' width='32' height='52' rx='6' fill='none' stroke='${W}' stroke-width='3'/><rect x='36' y='30' width='28' height='22' rx='3' fill='${W}' opacity='.2'/><line x1='34' y1='52' x2='66' y2='52' stroke='${W}' stroke-width='2'/>`, '#2d6a4f'),
-  nuocloc:  svgUri(`<path d='M50 18 Q62 36 62 50 Q62 64 50 64 Q38 64 38 50 Q38 36 50 18Z' fill='${W}' opacity='.3'/><path d='M50 18 Q62 36 62 50 Q62 64 50 64 Q38 64 38 50 Q38 36 50 18Z' fill='none' stroke='${W}' stroke-width='3'/>`, '#40916c'),
-  nuocngot: svgUri(`<rect x='36' y='26' width='28' height='52' rx='6' fill='none' stroke='${W}' stroke-width='3'/><circle cx='50' cy='20' r='6' fill='none' stroke='${W}' stroke-width='2.5'/><line x1='36' y1='46' x2='64' y2='46' stroke='${W}' stroke-width='2' opacity='.5'/>`, '#f57c00'),
-  suadau:   svgUri(`<rect x='28' y='30' width='44' height='50' rx='8' fill='none' stroke='${W}' stroke-width='3'/><rect x='30' y='32' width='40' height='22' rx='4' fill='${W}' opacity='.18'/><circle cx='50' cy='24' r='7' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#52b788'),
-  caphesuada:svgUri(`<rect x='28' y='34' width='44' height='46' rx='6' fill='${DK}' opacity='.85'/><path d='M70 52 Q80 48 80 56 Q80 64 70 60' fill='none' stroke='${W}' stroke-width='2.5'/><rect x='30' y='36' width='40' height='20' rx='3' fill='${W}' opacity='.12'/><path d='M40 24 Q42 16 44 24' stroke='${W}' stroke-width='2' fill='none'/><path d='M54 22 Q56 14 58 22' stroke='${W}' stroke-width='2' fill='none'/>`, '#e65100'),
-  capheden: svgUri(`<rect x='26' y='36' width='48' height='42' rx='8' fill='${DK}' opacity='.9'/><path d='M72 52 Q82 48 82 56 Q82 64 72 60' fill='none' stroke='${W}' stroke-width='2.5'/><path d='M36 26 Q38 18 40 26' stroke='${W}' stroke-width='2' fill='none'/><path d='M58 24 Q60 16 62 24' stroke='${W}' stroke-width='2' fill='none'/>`, '#1b4332'),
-  biahanoi: svgUri(`<rect x='36' y='22' width='28' height='58' rx='8' fill='none' stroke='${W}' stroke-width='3'/><rect x='38' y='24' width='24' height='24' rx='4' fill='${W}' opacity='.18'/><line x1='36' y1='48' x2='64' y2='48' stroke='${W}' stroke-width='2'/><path d='M62 36 Q72 34 72 44 Q72 54 62 50' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#f57c00'),
-  biatiger: svgUri(`<rect x='36' y='22' width='28' height='58' rx='8' fill='none' stroke='${W}' stroke-width='3'/><rect x='38' y='24' width='24' height='24' rx='4' fill='${W}' opacity='.18'/><line x1='36' y1='48' x2='64' y2='48' stroke='${W}' stroke-width='2'/><path d='M62 36 Q72 34 72 44 Q72 54 62 50' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#e65100'),
-  biaheineken:svgUri(`<rect x='36' y='22' width='28' height='58' rx='8' fill='none' stroke='${W}' stroke-width='3'/><rect x='38' y='24' width='24' height='24' rx='4' fill='${W}' opacity='.18'/><line x1='36' y1='48' x2='64' y2='48' stroke='${W}' stroke-width='2'/><path d='M62 36 Q72 34 72 44 Q72 54 62 50' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#2d6a4f'),
-  ruoutrang:svgUri(`<path d='M42 82 L40 52 Q36 44 36 34 Q36 22 50 22 Q64 22 64 34 Q64 44 60 52 L58 82 Z' fill='none' stroke='${W}' stroke-width='3'/><line x1='38' y1='56' x2='62' y2='56' stroke='${W}' stroke-width='2'/><ellipse cx='50' cy='22' rx='8' ry='4' fill='none' stroke='${W}' stroke-width='2'/>`, '#40916c'),
-  longbo:   svgUri(`<ellipse cx='50' cy='56' rx='30' ry='18' fill='${DK}' opacity='.75'/><path d='M22 50 Q36 36 50 40 Q64 36 78 50' stroke='${W}' stroke-width='2.5' fill='none'/><circle cx='38' cy='48' r='4' fill='${W}' opacity='.6'/><circle cx='50' cy='44' r='4' fill='${W}' opacity='.6'/><circle cx='62' cy='48' r='4' fill='${W}' opacity='.6'/>`, '#f57c00'),
-  bacbo:    svgUri(`<path d='M20 46 Q20 74 50 76 Q80 74 80 46 Q76 30 50 30 Q24 30 20 46Z' fill='${DK}' opacity='.75'/>`+noodle1+noodle2, '#2d6a4f'),
-  duoibo:   svgUri(`<path d='M30 28 Q18 48 22 68 Q24 82 42 84 Q60 86 72 72 Q84 60 78 42 Q68 20 50 18 Q34 16 30 28Z' fill='${DK}' opacity='.75'/><line x1='38' y1='58' x2='42' y2='80' stroke='${W}' stroke-width='3' stroke-linecap='round'/>`, '#e65100'),
-  lacrang:  svgUri(`<ellipse cx='50' cy='58' rx='22' ry='15' fill='${DK}' opacity='.7'/><circle cx='40' cy='54' r='7' fill='none' stroke='${W}' stroke-width='2'/><circle cx='56' cy='52' r='8' fill='none' stroke='${W}' stroke-width='2'/><circle cx='50' cy='65' r='6' fill='none' stroke='${W}' stroke-width='2'/>`, '#f57c00'),
-  xucxich:  svgUri(`<path d='M26 42 Q22 58 28 70 Q36 82 50 82 Q64 82 72 70 Q78 58 74 42 Q68 26 50 26 Q32 26 26 42Z' fill='${DK}' opacity='.75'/><line x1='50' y1='26' x2='50' y2='82' stroke='${W}' stroke-width='2.5'/>`, '#c0392b'),
-  laubo:    svgUri(bowl()+steam+`<path d='M18 55 Q18 42 50 42 Q82 42 82 55' fill='none' stroke='${W}' stroke-width='2'/><ellipse cx='50' cy='40' rx='28' ry='6' fill='none' stroke='${W}' stroke-width='2'/>`, '#2d6a4f'),
-  lauthai:  svgUri(bowl()+steam+`<circle cx='36' cy='28' r='5' fill='${RD}' opacity='.9'/><circle cx='50' cy='24' r='5' fill='${RD}' opacity='.9'/><circle cx='64' cy='28' r='5' fill='${RD}' opacity='.9'/>`, '#f57c00'),
-  laumam:   svgUri(bowl()+steam+`<path d='M36 30 Q40 20 44 30 Q48 20 52 30 Q56 18 60 30' stroke='${W}' stroke-width='2.5' fill='none'/>`, '#e65100'),
-  launam:   svgUri(bowl()+steam+`<path d='M42 32 Q42 20 50 18 Q58 20 58 32' fill='none' stroke='${W}' stroke-width='2.5'/>`, '#1b4332'),
-  raumuong: svgUri(`<line x1='50' y1='84' x2='50' y2='20' stroke='#fff' stroke-width='4' stroke-linecap='round'/><path d='M50 62 Q32 48 26 30' stroke='#fff' stroke-width='3' fill='none'/><path d='M50 44 Q68 32 74 16' stroke='#fff' stroke-width='3' fill='none'/>`, '#2d6a4f'),
-  dauphu:   svgUri(`<rect x='22' y='28' width='56' height='44' rx='6' fill='${W}' opacity='.3'/><rect x='22' y='28' width='56' height='44' rx='6' fill='none' stroke='${W}' stroke-width='3'/><line x1='50' y1='28' x2='50' y2='72' stroke='${W}' stroke-width='2' opacity='.5'/><line x1='22' y1='50' x2='78' y2='50' stroke='${W}' stroke-width='2' opacity='.5'/>`, '#f57c00'),
-  namhuong: svgUri(`<path d='M50 22 Q80 32 80 50 Q80 58 50 60 Q20 58 20 50 Q20 32 50 22Z' fill='${DK}' opacity='.8'/><line x1='50' y1='60' x2='50' y2='84' stroke='${DK}' stroke-width='7' stroke-linecap='round' opacity='.8'/>`, '#1b4332'),
-  mitoi:    svgUri(noodle1+`<path d='M18 62 Q28 50 36 58 Q44 46 50 58 Q56 46 64 58 Q72 48 82 62' stroke='${W}' stroke-width='2.5' fill='none'/>`, '#f57c00'),
+  // Loại sợi & Chế biến
+  pho:      'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
+  bun:      'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=300&auto=format&fit=crop&q=80',
+  my:       'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80',
+  nuocbeo:  'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
+  nuoctong: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
+  xao:      'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=300&auto=format&fit=crop&q=80',
+  tron:     'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
+
+  // Các loại thịt & topping
+  botai:    'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
+  tailan:   'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
+  taibam:   'https://images.unsplash.com/photo-1558030006-450675393462?w=300&auto=format&fit=crop&q=80',
+  namgion:  'https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=300&auto=format&fit=crop&q=80',
+  gaugion:  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
+  loirua:   'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=300&auto=format&fit=crop&q=80',
+  bovien:   'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
+  sotvang:  'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=300&auto=format&fit=crop&q=80',
+  thitnuong: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&auto=format&fit=crop&q=80',
+  chanuong: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&auto=format&fit=crop&q=80',
+  timcat:   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&auto=format&fit=crop&q=80',
+  trungga:  'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&auto=format&fit=crop&q=80',
+
+  // Hành & Suất
+  cohanh:   'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&auto=format&fit=crop&q=80',
+  khonghanh:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
+  treemsize:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&auto=format&fit=crop&q=80',
+  binhthuong:'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
+  suatlon:  'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
+
+  // Ăn kèm
+  rausong:  'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
+  giado:    'https://images.unsplash.com/photo-1592417817098-8f3d6eb19655?w=300&auto=format&fit=crop&q=80',
+  banhquay: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
+  trungcut: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
+  soisua:   'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80',
+
+  // Đồ uống
+  trrada:   'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&auto=format&fit=crop&q=80',
+  nuocloc:  'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=300&auto=format&fit=crop&q=80',
+  nuocngot: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&auto=format&fit=crop&q=80',
+  suadau:   'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&auto=format&fit=crop&q=80',
+  capheden: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&auto=format&fit=crop&q=80',
+  caphesuada:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&auto=format&fit=crop&q=80',
+
+  // Nhậu & Mồi
+  biahanoi: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=300&auto=format&fit=crop&q=80',
+  biatiger: 'https://images.unsplash.com/photo-1618886614638-80e3c103d31a?w=300&auto=format&fit=crop&q=80',
+  biaheineken:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=300&auto=format&fit=crop&q=80',
+  ruoutrang:'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=300&auto=format&fit=crop&q=80',
+  longbo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
+  bacbo:    'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
+  duoibo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
+  lacrang:  'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=300&auto=format&fit=crop&q=80',
+  xucxich:  'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=300&auto=format&fit=crop&q=80',
+
+  // Lẩu & Đồ nhúng
+  laubo:    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
+  lauthai:  'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
+  laumam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
+  launam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
+  raumuong: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
+  dauphu:   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
+  namhuong: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
+  mitoi:    'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80'
 };
 
 // ── MENU DATA ──
@@ -378,7 +381,7 @@ function buildTabs(){
   const bar=document.getElementById('tab-bar');
   bar.innerHTML=TABS.map((t,i)=>`
     <button class="tab ${i===0?'active':''}" onclick="switchTab(${i})">
-      <img class="tab-icon" src="${t.img}" alt="${t.label}" onerror="this.style.display='none'">
+      <img class="tab-icon" src="${t.img}" alt="${t.label}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
       <span class="tab-label">${t.label}</span>
     </button>`).join('');
 }
@@ -386,7 +389,7 @@ function buildTabs(){
 function buildSopt(item,multi=false){
   const fn=multi?'multiSopt(this)':'pickSopt(this)';
   return `<div class="sopt ${item.g?'':'item-card'}" data-g="${item.g||''}" data-v="${item.v||''}" onclick="${fn}">
-    <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy" onerror="this.parentElement.style.background='#2d6a4f'"></div>
+    <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
     <span class="sopt-name">${item.v||item.name}</span>
   </div>`;
 }
@@ -406,7 +409,7 @@ function buildGrids(){
     el.innerHTML=MENU[key].map((m,i)=>`
       <div class="pcard" data-menu="${key}" data-idx="${i}" data-qty="0" onclick="togglePcard(this,'${key}',${i})">
         <div class="pcard-img-wrap">
-          <img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.style.display='none'">
+          <img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
           <div class="pcard-qty-badge" id="qbadge-${key}-${i}">1</div>
         </div>
         <div class="pcard-name">${m.name}</div>
@@ -499,7 +502,7 @@ function renderCart(){
   const bar=document.getElementById('cart-total-bar');
   if(!cart.length){scroll.innerHTML='<div class="cart-empty-msg">Chưa có món nào được chọn</div>';hint.textContent='';bar.style.display='none';return;}
   scroll.innerHTML=cart.map((b,i)=>`<div class="cart-row">
-    <div class="cart-row-thumb"><img src="${b.img}" alt="${b.label}" onerror="this.style.display='none'"></div>
+    <div class="cart-row-thumb"><img src="${b.img}" alt="${b.label}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
     <div class="cart-row-info">
       <div class="cart-row-title">${b.label}</div>
       ${b.sub?`<div class="cart-row-sub">${b.sub}</div>`:''}
