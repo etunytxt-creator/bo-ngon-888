@@ -125,7 +125,6 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .sopt-name{font-size:0.62rem;color:var(--text-dark);text-align:center;font-weight:700}
 .sopt-price{font-size:0.55rem;color:var(--brand-orange);font-weight:800}
 
-/* KHẨU PHẦN ICON NHỎ HƠN */
 #sopts-5 .sopt-img {
   width:34px;
   height:34px;
@@ -155,7 +154,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.55rem;font-weight:800;display:none;align-items:center;justify-content:center}
 .pcard.sel .pcard-qty-badge{display:flex}
 
-/* GIỎ HÀNG CỐ ĐỊNH PHÍA CUỐI MÀN HÌNH */
+/* BOTTOM CART */
 .bottom-cart-bar {
   position:fixed;
   bottom:0;
@@ -233,7 +232,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .btn-add-action:active{transform:scale(0.96)}
 
 .cart-list-scroll {
-  height: 85px; /* Giới hạn đúng 2 dòng món */
+  height: 85px;
   overflow-y: auto;
   padding: 4px 12px;
   -webkit-overflow-scrolling: touch;
@@ -356,7 +355,6 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brand-green);color:#fff;font-size:0.75rem;font-weight:700;padding:8px 18px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:all 0.25s;pointer-events:none;z-index:999;max-width:88vw;text-align:center;border:1px solid rgba(255,255,255,0.2)}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(prefers-color-scheme:dark){html,body{background:var(--bg-main)!important;color:var(--text-dark)!important}}
 </style>
 </head>
 <body>
@@ -370,7 +368,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 
   <div class="tabs" id="tab-bar"></div>
 
-  <!-- PAGE 1: ĂN SÁNG -->
+  <!-- PAGE 0: ĂN SÁNG -->
   <div class="page active" id="page-0">
     <div class="step-row" id="step-1">
       <div class="step-head"><div class="slabel">1. Chọn loại sợi</div></div>
@@ -400,7 +398,6 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
         </div>
       </div>
     </div>
-    <!-- BƯỚC 6: ĐỒ ĂN KÈM -->
     <div class="step-row" id="step-6">
       <div class="step-head">
         <div class="slabel">6. Đồ ăn kèm <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
@@ -409,31 +406,31 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
     </div>
   </div>
 
-  <!-- PAGE 2: ĂN KÈM & UỐNG -->
+  <!-- PAGE 1: ĐỒ UỐNG -->
   <div class="page" id="page-1">
-    <div class="sec-title">Đồ ăn kèm</div>
-    <div class="photo-grid cols-4" id="grid-an-kem"></div>
-    <div class="sec-title" style="margin-top:10px">Đồ uống</div>
-    <div class="photo-grid cols-4" id="grid-uong"></div>
+    <div class="sec-title">Đồ uống đóng chai</div>
+    <div class="photo-grid cols-4" id="grid-chai"></div>
+    <div class="sec-title" style="margin-top:10px">Đồ pha chế & Cồn</div>
+    <div class="photo-grid cols-4" id="grid-phache"></div>
   </div>
 
-  <!-- PAGE 3: ĐỒ NHẬU -->
+  <!-- PAGE 2: ĐỒ NHẬU -->
   <div class="page" id="page-2">
-    <div class="sec-title">Đồ uống nhậu</div>
-    <div class="photo-grid cols-4" id="grid-nhau"></div>
-    <div class="sec-title" style="margin-top:10px">Mồi nhậu</div>
-    <div class="photo-grid cols-4" id="grid-moi"></div>
+    <div class="sec-title">Món Bắt Mồi</div>
+    <div class="photo-grid cols-4" id="grid-batmoi"></div>
+    <div class="sec-title" style="margin-top:10px">Món Thưởng Thức</div>
+    <div class="photo-grid cols-4" id="grid-thuongthuc"></div>
   </div>
 
-  <!-- PAGE 4: LẨU -->
+  <!-- PAGE 3: LẨU -->
   <div class="page" id="page-3">
-    <div class="sec-title">Chọn nồi lẩu</div>
-    <div class="photo-grid cols-4" id="grid-lau"></div>
-    <div class="sec-title" style="margin-top:10px">Đồ nhúng thêm</div>
-    <div class="photo-grid cols-4" id="grid-nhung"></div>
+    <div class="sec-title">Nồi Lẩu Chính</div>
+    <div class="photo-grid cols-4" id="grid-lauchin"></div>
+    <div class="sec-title" style="margin-top:10px">Đồ Nhúng Thêm & Tinh Bột</div>
+    <div class="photo-grid cols-4" id="grid-nhungthem"></div>
   </div>
 
-  <!-- GIỎ HÀNG CỐ ĐỊNH PHÍA CUỐI MÀN HÌNH -->
+  <!-- GIỎ HÀNG -->
   <div class="bottom-cart-bar" id="cart-bar">
     <div class="cart-bar-header">
       <div class="cart-bar-title">
@@ -441,7 +438,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
       </div>
       <div class="cart-header-actions">
         <button class="btn-expand-cart" id="btn-toggle-expand" onclick="toggleExpandCart()">▲ Mở rộng</button>
-        <button class="btn-add-action" id="btn-main-add" onclick="handleAddAction()">+ Thêm ở đây</button>
+        <button class="btn-add-action" id="btn-main-add" onclick="handleAddAction()">+ Thêm món</button>
       </div>
     </div>
 
@@ -466,7 +463,6 @@ const urlParams=new URLSearchParams(window.location.search);
 const tableNum=urlParams.get('ban')||'?';
 document.getElementById('table-tag').textContent=tableNum!=='?'?`Bàn số: ${tableNum}`:'Bạn chọn để chúng mình phục vụ';
 
-// ── UNISPLASH IMAGES ──
 const IMG = {
   pho:      'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
   bun:      'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=300&auto=format&fit=crop&q=80',
@@ -475,7 +471,6 @@ const IMG = {
   nuoctong: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
   xao:      'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=300&auto=format&fit=crop&q=80',
   tron:     'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
-
   botai:    'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
   tailan:   'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
   taibam:   'https://images.unsplash.com/photo-1558030006-450675393462?w=300&auto=format&fit=crop&q=80',
@@ -488,56 +483,26 @@ const IMG = {
   chanuong: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&auto=format&fit=crop&q=80',
   timcat:   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&auto=format&fit=crop&q=80',
   dacbiet:  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-
   cohanh:   'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&auto=format&fit=crop&q=80',
   khonghanh:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
   treemsize:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&auto=format&fit=crop&q=80',
   binhthuong:'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
   suatlon:  'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
-
   trungga:  'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&auto=format&fit=crop&q=80',
   quay:     'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
   trunglon: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
   changa:   'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=300&auto=format&fit=crop&q=80',
   gio:      'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
-
-  rausong:  'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
-  giado:    'https://images.unsplash.com/photo-1592417817098-8f3d6eb19655?w=300&auto=format&fit=crop&q=80',
-  banhquay: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
-  trungcut: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
-  soisua:   'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80',
-
-  trrada:   'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&auto=format&fit=crop&q=80',
-  nuocloc:  'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=300&auto=format&fit=crop&q=80',
   nuocngot: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&auto=format&fit=crop&q=80',
-  suadau:   'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&auto=format&fit=crop&q=80',
   capheden: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&auto=format&fit=crop&q=80',
-  caphesuada:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&auto=format&fit=crop&q=80',
-
   biahanoi: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=300&auto=format&fit=crop&q=80',
-  biatiger: 'https://images.unsplash.com/photo-1618886614638-80e3c103d31a?w=300&auto=format&fit=crop&q=80',
-  biaheineken:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=300&auto=format&fit=crop&q=80',
-  ruoutrang:'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=300&auto=format&fit=crop&q=80',
-  longbo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  bacbo:    'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
-  duoibo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  lacrang:  'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=300&auto=format&fit=crop&q=80',
-  xucxich:  'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=300&auto=format&fit=crop&q=80',
-
   laubo:    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
-  lauthai:  'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  laumam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  launam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
   raumuong: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
-  dauphu:   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
-  namhuong: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
-  mitoi:    'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80'
+  lacrang:  'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=300&auto=format&fit=crop&q=80'
 };
 
-// ── DATA MENU ──
 const STEP1 = [{v:'Phở',img:IMG.pho,g:'s1'},{v:'Bún',img:IMG.bun,g:'s1'},{v:'Mỳ',img:IMG.my,g:'s1'}];
 const STEP2 = [{v:'Nước béo',img:IMG.nuocbeo,g:'s2'},{v:'Nước trong',img:IMG.nuoctong,g:'s2'},{v:'Xào',img:IMG.xao,g:'s2',price:'+10k'},{v:'Trộn',img:IMG.tron,g:'s2'}];
-
 const STEP3 = [
   {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s3'},
   {v:'Bò tái',img:IMG.botai,g:'s3'},{v:'Tái lăn',img:IMG.tailan,g:'s3'},{v:'Tái băm',img:IMG.taibam,g:'s3'},
@@ -547,8 +512,6 @@ const STEP3 = [
 ];
 const STEP4 = [{v:'Có hành',img:IMG.cohanh,g:'s4'},{v:'Không hành',img:IMG.khonghanh,g:'s4'}];
 const STEP5 = [{v:'Trẻ em',img:IMG.treemsize,g:'s5'},{v:'Bình thường',img:IMG.binhthuong,g:'s5'},{v:'Suất lớn',img:IMG.suatlon,g:'s5'}];
-
-// BƯỚC 6: ĐỒ ĂN KÈM BỔ SUNG GIÁ MỚI
 const STEP6 = [
   {v:'Trứng gà',img:IMG.trungga,g:'s6',p:8000,price:'8k'},
   {v:'Quẩy',img:IMG.quay,g:'s6',p:10000,price:'10k'},
@@ -558,53 +521,77 @@ const STEP6 = [
 ];
 
 const MENU = {
-  'an-kem':[
-    {name:'Rau sống',img:IMG.rausong,price:10000},
-    {name:'Giá đỗ',img:IMG.giado,price:8000},
-    {name:'Bánh quẩy',img:IMG.banhquay,price:8000},
-    {name:'Trứng cút',img:IMG.trungcut,price:15000},
-    {name:'Phụ phí sợi',img:IMG.soisua,price:10000},
+  'chai':[
+    {name:'Pepsi',img:IMG.nuocngot,price:15000},
+    {name:'Rockstar',img:IMG.nuocngot,price:20000},
+    {name:'Sting Vàng / Đỏ',img:IMG.nuocngot,price:15000},
+    {name:'7Up',img:IMG.nuocngot,price:15000},
+    {name:'Nước cam ép',img:IMG.nuocngot,price:20000},
+    {name:'Revive',img:IMG.nuocngot,price:15000},
+    {name:'Trà Ô Long Tea+',img:IMG.nuocngot,price:15000},
+    {name:'Trà xanh Tea+',img:IMG.nuocngot,price:15000},
+    {name:'Trà trái cây Tea+',img:IMG.nuocngot,price:15000},
+    {name:'Twister cam',img:IMG.nuocngot,price:15000},
+    {name:'Aquafina',img:IMG.nuocngot,price:10000},
   ],
-  'uong':[
-    {name:'Trà đá',img:IMG.trrada,price:5000},
-    {name:'Nước lọc',img:IMG.nuocloc,price:5000},
-    {name:'Nước ngọt',img:IMG.nuocngot,price:15000},
-    {name:'Sữa đậu',img:IMG.suadau,price:15000},
-    {name:'Cà phê đen',img:IMG.capheden,price:20000},
-    {name:'Cà phê sữa',img:IMG.caphesuada,price:25000},
+  'phache':[
+    {name:'Trà tắc / Chanh',img:IMG.capheden,price:15000},
+    {name:'Cafe đen',img:IMG.capheden,price:20000},
+    {name:'Cafe sữa',img:IMG.capheden,price:25000},
+    {name:'Bạc sỉu',img:IMG.capheden,price:25000},
+    {name:'Bia các loại',img:IMG.biahanoi,price:20000},
+    {name:'Rượu Men lá',img:IMG.biahanoi,price:25000},
+    {name:'Rượu ngâm',img:IMG.biahanoi,price:60000},
   ],
-  'nhau':[
-    {name:'Bia Hà Nội',img:IMG.biahanoi,price:15000},
-    {name:'Bia Tiger',img:IMG.biatiger,price:20000},
-    {name:'Bia Heineken',img:IMG.biaheineken,price:25000},
-    {name:'Rượu trắng',img:IMG.ruoutrang,price:30000},
-  ],
-  'moi':[
-    {name:'Lòng bò xào',img:IMG.longbo,price:45000},
-    {name:'Bắp bò hấp',img:IMG.bacbo,price:55000},
-    {name:'Đuôi bò hầm',img:IMG.duoibo,price:65000},
+  'batmoi':[
     {name:'Lạc rang',img:IMG.lacrang,price:20000},
-    {name:'Xúc xích',img:IMG.xucxich,price:35000},
+    {name:'Nộm bò khô',img:IMG.lacrang,price:65000},
+    {name:'Giò 7 phút',img:IMG.gio,price:15000},
+    {name:'Chân gà luộc',img:IMG.changa,price:60000},
   ],
-  'lau':[
-    {name:'Lẩu bò',img:IMG.laubo,price:150000},
-    {name:'Lẩu thái',img:IMG.lauthai,price:140000},
-    {name:'Lẩu mắm',img:IMG.laumam,price:130000},
-    {name:'Lẩu nấm',img:IMG.launam,price:120000},
+  'thuongthuc':[
+    {name:'Bò múa lửa',img:IMG.botai,price:180000},
+    {name:'Bò đắp chăn',img:IMG.botai,price:180000},
+    {name:'Bò nằm rừng tre',img:IMG.botai,price:190000},
+    {name:'Bò tắm thảo mộc',img:IMG.botai,price:190000},
   ],
-  'nhung':[
-    {name:'Bò tái',img:IMG.botai,price:60000},
-    {name:'Bò viên',img:IMG.bovien,price:40000},
-    {name:'Rau muống',img:IMG.raumuong,price:20000},
-    {name:'Đậu phụ',img:IMG.dauphu,price:20000},
-    {name:'Nấm hương',img:IMG.namhuong,price:35000},
-    {name:'Mì tươi',img:IMG.mitoi,price:20000},
+  'lauchin':[
+    {name:'Lẩu Bò 888 (Nhỏ)',img:IMG.laubo,price:249000},
+    {name:'Lẩu Bò 888 (Lớn)',img:IMG.laubo,price:499000},
+    {name:'Lẩu Xuyên Tiêu (Nhỏ)',img:IMG.laubo,price:249000},
+    {name:'Lẩu Xuyên Tiêu (Lớn)',img:IMG.laubo,price:499000},
+    {name:'Lẩu Thái (Nhỏ)',img:IMG.laubo,price:249000},
+    {name:'Lẩu Thái (Lớn)',img:IMG.laubo,price:499000},
+    {name:'Lẩu Nhúng Dấm (Nhỏ)',img:IMG.laubo,price:249000},
+    {name:'Lẩu Nhúng Dấm (Lớn)',img:IMG.laubo,price:499000},
+    {name:'Lẩu Đông Trùng (Nhỏ)',img:IMG.laubo,price:350000},
+    {name:'Lẩu Đông Trùng (Lớn)',img:IMG.laubo,price:550000},
+  ],
+  'nhungthem':[
+    {name:'Bắp bò',img:IMG.botai,price:99000},
+    {name:'Gầu bò',img:IMG.botai,price:99000},
+    {name:'Đuôi bò',img:IMG.botai,price:99000},
+    {name:'Sườn heo',img:IMG.botai,price:99000},
+    {name:'Bò tái',img:IMG.botai,price:80000},
+    {name:'Nạm bò',img:IMG.botai,price:80000},
+    {name:'Gân bò',img:IMG.botai,price:80000},
+    {name:'Cuống tim',img:IMG.botai,price:80000},
+    {name:'Nầm bò',img:IMG.botai,price:80000},
+    {name:'Gà lọc xương',img:IMG.botai,price:80000},
+    {name:'Bò viên',img:IMG.bovien,price:60000},
+    {name:'Viên thả lẩu',img:IMG.bovien,price:60000},
+    {name:'Xúc xích',img:IMG.gio,price:35000},
+    {name:'Đậu phụ',img:IMG.raumuong,price:20000},
+    {name:'Rau lẩu tổng hợp',img:IMG.raumuong,price:30000},
+    {name:'Nấm tổng hợp',img:IMG.raumuong,price:45000},
+    {name:'Mỳ tôm (2 gói)',img:IMG.my,price:10000},
+    {name:'Bún / Phở / Quẩy',img:IMG.quay,price:15000},
   ],
 };
 
 const TABS=[
   {label:'Ăn sáng',img:IMG.pho},
-  {label:'Ăn kèm & Uống',img:IMG.trrada},
+  {label:'Đồ uống',img:IMG.nuocngot},
   {label:'Đồ nhậu',img:IMG.biahanoi},
   {label:'Lẩu',img:IMG.laubo},
 ];
@@ -615,7 +602,7 @@ function buildTabs(){
   const bar=document.getElementById('tab-bar');
   bar.innerHTML=TABS.map((t,i)=>`
     <button class="tab ${i===0?'active':''}" onclick="switchTab(${i})">
-      <img class="tab-icon" src="${t.img}" alt="${t.label}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
+      <img class="tab-icon" src="${t.img}" alt="${t.label}">
       <span class="tab-label">${t.label}</span>
     </button>`).join('');
 }
@@ -623,7 +610,7 @@ function buildTabs(){
 function buildSopt(item,multi=false,isStep3=false){
   const fn=isStep3?'toggleThitStep3(this)':(multi?'multiSopt(this)':'pickSopt(this)');
   return `<div class="sopt" data-g="${item.g||''}" data-v="${item.v||''}" data-p="${item.p||0}" onclick="${fn}">
-    <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
+    <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}"></div>
     <span class="sopt-name">${item.v||item.name}</span>
     ${item.price?`<span class="sopt-price">${item.price}</span>`:''}
   </div>`;
@@ -645,7 +632,7 @@ function buildGrids(){
     el.innerHTML=MENU[key].map((m,i)=>`
       <div class="pcard" data-menu="${key}" data-idx="${i}" data-qty="0" onclick="togglePcard(this,'${key}',${i})">
         <div class="pcard-img-wrap">
-          <img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
+          <img src="${m.img}" alt="${m.name}">
           <div class="pcard-qty-badge" id="qbadge-${key}-${i}">1</div>
         </div>
         <div class="pcard-name">${m.name}</div>
@@ -670,7 +657,6 @@ function pickSopt(el){
 
 function multiSopt(el){el.classList.toggle('sel')}
 
-/* LOGIC BƯỚC 3: ĐẶC BIỆT THÌ KHÔNG CHỌN CÁC LOẠI THỊT KHÁC */
 function toggleThitStep3(el){
   const isDacBiet = el.dataset.v.includes('Đặc biệt');
   if(isDacBiet){
@@ -686,41 +672,27 @@ function toggleThitStep3(el){
 function getG(g){return[...document.querySelectorAll(`[data-g="${g}"].sel`)].map(e=>e.dataset.v)}
 
 function setDefaults(){
-  // Bỏ chọn tất cả các tùy chọn trước
   ['s1','s2','s3','s4','s5','s6'].forEach(g=>{
     document.querySelectorAll(`[data-g="${g}"]`).forEach(e=>e.classList.remove('sel'));
   });
-
-  // Chuyển về mặc định: Khẩu phần Bình Thường & Có Hành
   const h=document.querySelector('[data-g="s4"][data-v="Có hành"]');if(h)h.classList.add('sel');
   const b=document.querySelector('[data-g="s5"][data-v="Bình thường"]');if(b)b.classList.add('sel');
 }
 
-/* TÍNH GIÁ DỰA TRÊN ĐẶC BIỆT, XÀO VÀ ĐỒ ĂN KÈM */
 function calcPricePho(thit, size, chebien, listKemElem){
   let total = 0;
-
-  // 1. Giá món chính
   if(thit.includes('Đặc biệt (Đủ loại bò)')){
     total += 50000;
   } else {
     total += 40000 + Math.max(0, thit.length - 1) * 10000;
   }
-
-  // 2. Chế biến xào +10k
-  if(chebien === 'Xào') {
-    total += 10000;
-  }
-
-  // 3. Size
+  if(chebien === 'Xào') total += 10000;
   if(size === 'Suất lớn') total += 10000;
   if(size === 'Trẻ em') total -= 5000;
 
-  // 4. Giá đồ ăn kèm bước 6
   listKemElem.forEach(el => {
     total += parseInt(el.dataset.p) || 0;
   });
-
   return total;
 }
 
@@ -754,7 +726,6 @@ function addToCartPage0(){
   }
   
   const selectedKemElem = [...document.querySelectorAll('[data-g="s6"].sel')];
-
   let subText = `🥩 ${s3.join(', ')} · 🌿 ${s4[0]}`;
   if(s6.length) subText += ` · ➕ Kèm: ${s6.join(', ')}`;
 
@@ -767,15 +738,13 @@ function addToCartPage0(){
     qty: 1
   });
 
-  // ĐÃ SỬA: Chuyển hết về mặc định sau khi thêm món
   setDefaults();
-
   renderCart();
   toast('✅ Đã thêm vào giỏ hàng!');
 }
 
 function addSimple(tab){
-  const grids=tab===1?['an-kem','uong']:tab===2?['nhau','moi']:['lau','nhung'];
+  const grids=tab===1?['chai','phache']:tab===2?['batmoi','thuongthuc']:['lauchin','nhungthem'];
   let added=0;
   grids.forEach(key=>{
     document.querySelectorAll(`[data-menu="${key}"]`).forEach(el=>{
@@ -801,11 +770,7 @@ function toggleExpandCart(){
   const bar = document.getElementById('cart-bar');
   const btn = document.getElementById('btn-toggle-expand');
   bar.classList.toggle('expanded');
-  if(bar.classList.contains('expanded')){
-    btn.textContent = '▼ Thu gọn';
-  } else {
-    btn.textContent = '▲ Mở rộng';
-  }
+  btn.textContent = bar.classList.contains('expanded') ? '▼ Thu gọn' : '▲ Mở rộng';
 }
 
 function renderCart(){
@@ -890,138 +855,3 @@ renderCart();
 </script>
 </body>
 </html>
-<!-- CẤU TRÚC TABS DANH MỤC THỰC ĐƠN -->
-<div class="menu-wrapper">
-  <!-- THANH TABS -->
-  <div class="menu-tabs">
-    <button class="tab-btn active" onclick="switchTab(event, 'an-sang')">Ăn Sáng</button>
-    <button class="tab-btn" onclick="switchTab(event, 'do-uong')">Đồ Uống</button>
-    <button class="tab-btn" onclick="switchTab(event, 'do-nhau')">Đồ Nhậu</button>
-    <button class="tab-btn" onclick="switchTab(event, 'lau')">Lẩu</button>
-  </div>
-
-  <!-- NỘI DUNG TỪNG TAB -->
-  <div class="menu-content">
-    
-    <!-- TAB 1: ĂN SÁNG -->
-    <div id="an-sang" class="tab-panel active">
-      <p class="note">Các món ăn sáng giữ nguyên theo thực đơn sẵn có.</p>
-    </div>
-
-    <!-- TAB 2: ĐỒ UỐNG -->
-    <div id="do-uong" class="tab-panel" style="display:none;">
-      <h3 class="section-title">1. Đồ Uống Đóng Chai</h3>
-      <ul class="item-list">
-        <li><span>Pepsi</span><b>15.000đ</b></li>
-        <li><span>Rockstar</span><b>20.000đ</b></li>
-        <li><span>Sting Vàng / Sting Đỏ</span><b>15.000đ</b></li>
-        <li><span>7Up</span><b>15.000đ</b></li>
-        <li><span>Nước cam ép</span><b>20.000đ</b></li>
-        <li><span>Revive</span><b>15.000đ</b></li>
-        <li><span>Trà Ô Long Tea+</span><b>15.000đ</b></li>
-        <li><span>Trà xanh Tea+</span><b>15.000đ</b></li>
-        <li><span>Trà trái cây Tea+</span><b>15.000đ</b></li>
-        <li><span>Twister cam / Tropicana Twister</span><b>15.000đ</b></li>
-        <li><span>Nước tinh khiết Aquafina</span><b>10.000đ</b></li>
-      </ul>
-
-      <h3 class="section-title">2. Đồ Pha Chế</h3>
-      <ul class="item-list">
-        <li><span>Trà tắc / Trà chanh</span><b>15.000đ</b></li>
-        <li><span>Cafe đen</span><b>20.000đ</b></li>
-        <li><span>Cafe sữa</span><b>25.000đ</b></li>
-        <li><span>Bạc sỉu</span><b>25.000đ</b></li>
-      </ul>
-
-      <h3 class="section-title">3. Đồ Có Cồn</h3>
-      <ul class="item-list">
-        <li><span>Bia các loại</span><b>20.000đ</b></li>
-        <li><span>Rượu Men lá</span><b>25.000đ</b></li>
-        <li><span>Rượu ngâm các loại</span><b>60.000đ</b></li>
-      </ul>
-    </div>
-
-    <!-- TAB 3: ĐỒ NHẬU -->
-    <div id="do-nhau" class="tab-panel" style="display:none;">
-      <h3 class="section-title">Món Bắt Mồi</h3>
-      <ul class="item-list">
-        <li><span>Lạc rang</span><b>20.000đ</b></li>
-        <li><span>Nộm bò khô</span><b>65.000đ</b></li>
-        <li><span>Giò 7 phút</span><b>15.000đ / chiếc</b></li>
-        <li><span>Chân gà luộc</span><b>60.000đ / đĩa</b></li>
-      </ul>
-
-      <h3 class="section-title">Món Thưởng Thức</h3>
-      <ul class="item-list">
-        <li><span>Bò múa lửa</span><b>180.000đ</b></li>
-        <li><span>Bò đắp chăn</span><b>180.000đ</b></li>
-        <li><span>Bò nằm rừng tre</span><b>190.000đ</b></li>
-        <li><span>Bò tắm thảo mộc</span><b>190.000đ</b></li>
-      </ul>
-    </div>
-
-    <!-- TAB 4: LẨU -->
-    <div id="lau" class="tab-panel" style="display:none;">
-      <h3 class="section-title">Các Loại Lẩu Chính (Size Nhỏ / Size Lớn)</h3>
-      <ul class="item-list">
-        <li><span>Lẩu Bò 888 (Đậm đà ngọt vị)</span><b>249.000đ / 499.000đ</b></li>
-        <li><span>Lẩu Xuyên Tiêu (Cay hot)</span><b>249.000đ / 499.000đ</b></li>
-        <li><span>Lẩu Thái (Chua cay)</span><b>249.000đ / 499.000đ</b></li>
-        <li><span>Lẩu Nhúng Dấm (Chua thanh mát)</span><b>249.000đ / 499.000đ</b></li>
-        <li><span>Lẩu Thuốc Bắc Đông Trùng (Bổ dưỡng thơm mát)</span><b>350.000đ / 550.000đ</b></li>
-      </ul>
-
-      <h3 class="section-title">Đồ Nhúng Gọi Thêm</h3>
-      <ul class="item-list">
-        <li><span>Bắp bò</span><b>99.000đ</b></li>
-        <li><span>Gầu bò</span><b>99.000đ</b></li>
-        <li><span>Đuôi bò</span><b>99.000đ</b></li>
-        <li><span>Sườn heo</span><b>99.000đ</b></li>
-        <li><span>Bò tái</span><b>80.000đ</b></li>
-        <li><span>Nạm bò</span><b>80.000đ</b></li>
-        <li><span>Gân bò</span><b>80.000đ</b></li>
-        <li><span>Cuống tim</span><b>80.000đ</b></li>
-        <li><span>Nầm bò</span><b>80.000đ</b></li>
-        <li><span>Gà lọc xương</span><b>80.000đ</b></li>
-        <li><span>Bò viên</span><b>60.000đ</b></li>
-        <li><span>Viên thả lẩu tổng hợp</span><b>60.000đ</b></li>
-        <li><span>Xúc xích</span><b>35.000đ</b></li>
-        <li><span>Đậu phụ</span><b>20.000đ</b></li>
-        <li><span>Rau lẩu tổng hợp</span><b>30.000đ</b></li>
-        <li><span>Nấm tổng hợp</span><b>45.000đ</b></li>
-      </ul>
-
-      <h3 class="section-title">Tinh Bột Ăn Kèm</h3>
-      <ul class="item-list">
-        <li><span>Mỳ tôm</span><b>10.000đ / 2 gói</b></li>
-        <li><span>Bún</span><b>15.000đ / đĩa</b></li>
-        <li><span>Bánh phở</span><b>15.000đ / đĩa</b></li>
-        <li><span>Quẩy</span><b>15.000đ / đĩa</b></li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<!-- ĐOẠN MÃ DIỀU KHIỂN & GIAO DIỆN -->
-<style>
-  .menu-wrapper { font-family: sans-serif; max-width: 800px; margin: 0 auto; }
-  .menu-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; border-bottom: 2px solid #eee; }
-  .tab-btn { padding: 10px 18px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 20px; font-weight: bold; cursor: pointer; white-space: nowrap; font-size: 15px; }
-  .tab-btn.active { background: #d97706; color: #fff; border-color: #d97706; }
-  .section-title { color: #d97706; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px; font-size: 16px; }
-  .item-list { list-style: none; padding: 0; margin: 0; }
-  .item-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 15px; }
-  .item-list b { color: #333; }
-</style>
-
-<script>
-  function switchTab(evt, tabName) {
-    var panels = document.getElementsByClassName("tab-panel");
-    for (var i = 0; i < panels.length; i++) { panels[i].style.display = "none"; }
-    var btns = document.getElementsByClassName("tab-btn");
-    for (var i = 0; i < btns.length; i++) { btns[i].className = btns[i].className.replace(" active", ""); }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-</script>
