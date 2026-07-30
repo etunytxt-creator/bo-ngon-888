@@ -890,3 +890,138 @@ renderCart();
 </script>
 </body>
 </html>
+<!-- CẤU TRÚC TABS DANH MỤC THỰC ĐƠN -->
+<div class="menu-wrapper">
+  <!-- THANH TABS -->
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="switchTab(event, 'an-sang')">Ăn Sáng</button>
+    <button class="tab-btn" onclick="switchTab(event, 'do-uong')">Đồ Uống</button>
+    <button class="tab-btn" onclick="switchTab(event, 'do-nhau')">Đồ Nhậu</button>
+    <button class="tab-btn" onclick="switchTab(event, 'lau')">Lẩu</button>
+  </div>
+
+  <!-- NỘI DUNG TỪNG TAB -->
+  <div class="menu-content">
+    
+    <!-- TAB 1: ĂN SÁNG -->
+    <div id="an-sang" class="tab-panel active">
+      <p class="note">Các món ăn sáng giữ nguyên theo thực đơn sẵn có.</p>
+    </div>
+
+    <!-- TAB 2: ĐỒ UỐNG -->
+    <div id="do-uong" class="tab-panel" style="display:none;">
+      <h3 class="section-title">1. Đồ Uống Đóng Chai</h3>
+      <ul class="item-list">
+        <li><span>Pepsi</span><b>15.000đ</b></li>
+        <li><span>Rockstar</span><b>20.000đ</b></li>
+        <li><span>Sting Vàng / Sting Đỏ</span><b>15.000đ</b></li>
+        <li><span>7Up</span><b>15.000đ</b></li>
+        <li><span>Nước cam ép</span><b>20.000đ</b></li>
+        <li><span>Revive</span><b>15.000đ</b></li>
+        <li><span>Trà Ô Long Tea+</span><b>15.000đ</b></li>
+        <li><span>Trà xanh Tea+</span><b>15.000đ</b></li>
+        <li><span>Trà trái cây Tea+</span><b>15.000đ</b></li>
+        <li><span>Twister cam / Tropicana Twister</span><b>15.000đ</b></li>
+        <li><span>Nước tinh khiết Aquafina</span><b>10.000đ</b></li>
+      </ul>
+
+      <h3 class="section-title">2. Đồ Pha Chế</h3>
+      <ul class="item-list">
+        <li><span>Trà tắc / Trà chanh</span><b>15.000đ</b></li>
+        <li><span>Cafe đen</span><b>20.000đ</b></li>
+        <li><span>Cafe sữa</span><b>25.000đ</b></li>
+        <li><span>Bạc sỉu</span><b>25.000đ</b></li>
+      </ul>
+
+      <h3 class="section-title">3. Đồ Có Cồn</h3>
+      <ul class="item-list">
+        <li><span>Bia các loại</span><b>20.000đ</b></li>
+        <li><span>Rượu Men lá</span><b>25.000đ</b></li>
+        <li><span>Rượu ngâm các loại</span><b>60.000đ</b></li>
+      </ul>
+    </div>
+
+    <!-- TAB 3: ĐỒ NHẬU -->
+    <div id="do-nhau" class="tab-panel" style="display:none;">
+      <h3 class="section-title">Món Bắt Mồi</h3>
+      <ul class="item-list">
+        <li><span>Lạc rang</span><b>20.000đ</b></li>
+        <li><span>Nộm bò khô</span><b>65.000đ</b></li>
+        <li><span>Giò 7 phút</span><b>15.000đ / chiếc</b></li>
+        <li><span>Chân gà luộc</span><b>60.000đ / đĩa</b></li>
+      </ul>
+
+      <h3 class="section-title">Món Thưởng Thức</h3>
+      <ul class="item-list">
+        <li><span>Bò múa lửa</span><b>180.000đ</b></li>
+        <li><span>Bò đắp chăn</span><b>180.000đ</b></li>
+        <li><span>Bò nằm rừng tre</span><b>190.000đ</b></li>
+        <li><span>Bò tắm thảo mộc</span><b>190.000đ</b></li>
+      </ul>
+    </div>
+
+    <!-- TAB 4: LẨU -->
+    <div id="lau" class="tab-panel" style="display:none;">
+      <h3 class="section-title">Các Loại Lẩu Chính (Size Nhỏ / Size Lớn)</h3>
+      <ul class="item-list">
+        <li><span>Lẩu Bò 888 (Đậm đà ngọt vị)</span><b>249.000đ / 499.000đ</b></li>
+        <li><span>Lẩu Xuyên Tiêu (Cay hot)</span><b>249.000đ / 499.000đ</b></li>
+        <li><span>Lẩu Thái (Chua cay)</span><b>249.000đ / 499.000đ</b></li>
+        <li><span>Lẩu Nhúng Dấm (Chua thanh mát)</span><b>249.000đ / 499.000đ</b></li>
+        <li><span>Lẩu Thuốc Bắc Đông Trùng (Bổ dưỡng thơm mát)</span><b>350.000đ / 550.000đ</b></li>
+      </ul>
+
+      <h3 class="section-title">Đồ Nhúng Gọi Thêm</h3>
+      <ul class="item-list">
+        <li><span>Bắp bò</span><b>99.000đ</b></li>
+        <li><span>Gầu bò</span><b>99.000đ</b></li>
+        <li><span>Đuôi bò</span><b>99.000đ</b></li>
+        <li><span>Sườn heo</span><b>99.000đ</b></li>
+        <li><span>Bò tái</span><b>80.000đ</b></li>
+        <li><span>Nạm bò</span><b>80.000đ</b></li>
+        <li><span>Gân bò</span><b>80.000đ</b></li>
+        <li><span>Cuống tim</span><b>80.000đ</b></li>
+        <li><span>Nầm bò</span><b>80.000đ</b></li>
+        <li><span>Gà lọc xương</span><b>80.000đ</b></li>
+        <li><span>Bò viên</span><b>60.000đ</b></li>
+        <li><span>Viên thả lẩu tổng hợp</span><b>60.000đ</b></li>
+        <li><span>Xúc xích</span><b>35.000đ</b></li>
+        <li><span>Đậu phụ</span><b>20.000đ</b></li>
+        <li><span>Rau lẩu tổng hợp</span><b>30.000đ</b></li>
+        <li><span>Nấm tổng hợp</span><b>45.000đ</b></li>
+      </ul>
+
+      <h3 class="section-title">Tinh Bột Ăn Kèm</h3>
+      <ul class="item-list">
+        <li><span>Mỳ tôm</span><b>10.000đ / 2 gói</b></li>
+        <li><span>Bún</span><b>15.000đ / đĩa</b></li>
+        <li><span>Bánh phở</span><b>15.000đ / đĩa</b></li>
+        <li><span>Quẩy</span><b>15.000đ / đĩa</b></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ĐOẠN MÃ DIỀU KHIỂN & GIAO DIỆN -->
+<style>
+  .menu-wrapper { font-family: sans-serif; max-width: 800px; margin: 0 auto; }
+  .menu-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+  .tab-btn { padding: 10px 18px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 20px; font-weight: bold; cursor: pointer; white-space: nowrap; font-size: 15px; }
+  .tab-btn.active { background: #d97706; color: #fff; border-color: #d97706; }
+  .section-title { color: #d97706; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px; font-size: 16px; }
+  .item-list { list-style: none; padding: 0; margin: 0; }
+  .item-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 15px; }
+  .item-list b { color: #333; }
+</style>
+
+<script>
+  function switchTab(evt, tabName) {
+    var panels = document.getElementsByClassName("tab-panel");
+    for (var i = 0; i < panels.length; i++) { panels[i].style.display = "none"; }
+    var btns = document.getElementsByClassName("tab-btn");
+    for (var i = 0; i < btns.length; i++) { btns[i].className = btns[i].className.replace(" active", ""); }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
