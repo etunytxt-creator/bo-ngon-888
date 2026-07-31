@@ -27,7 +27,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 
 .shell{display:flex;flex-direction:column;height:100dvh;max-width:480px;margin:0 auto;background:#fff;box-shadow:0 0 20px rgba(0,0,0,0.05);position:relative}
 
-/* HEADER GỌN GÀNG (ĐÃ TỐI ƯU DIỆN TÍCH) */
+/* HEADER GỌN GÀNG */
 .hdr{
   display:flex;
   align-items:center;
@@ -94,7 +94,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   font-weight:800;
 }
 
-/* SOPT OPTIONS */
+/* SOPT OPTIONS - TRANG ĂN SÁNG (TĂNG LÊN 88PX) */
 .sopts{display:flex;flex-wrap:wrap;gap:6px}
 .sopt{
   display:flex;
@@ -108,12 +108,14 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   border:1.5px solid #f3f4f6;
   transition:all 0.15s;
   flex:1;
-  min-width:70px;
+  min-width:90px;
   background:#fafafa;
 }
+
+/* TĂNG KÍCH THƯỚC ẢNH TRANG ĂN SÁNG LÊN 88PX */
 .sopt-img{
-  width:64px;
-  height:64px;
+  width:88px;
+  height:88px;
   border-radius:8px;
   overflow:hidden;
   border:1px solid #e5e7eb;
@@ -129,7 +131,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   inset:0;
   background:rgba(245,124,0,0.65);
   color:#fff;
-  font-size:1.2rem;
+  font-size:1.5rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -137,34 +139,40 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 }
 .sopt-name{font-size:0.68rem;color:var(--text-dark);text-align:center;font-weight:700}
 
-/* BƯỚC 5: KHẨU PHẦN */
-#sopts-5 .sopt-img {
-  width:48px;
-  height:48px;
-}
-#sopts-5 .sopt {
-  padding:5px 3px;
-  min-width:55px;
-}
-
+/* TỐI ƯU BƯỚC 4 & 5 TRONG ĂN SÁNG CHO KÍCH THƯỚC 88PX */
 .row2{display:flex;gap:6px;flex-shrink:0}
 .row2 .half{flex:1}
+#sopts-5 .sopt-img, #sopts-4 .sopt-img {
+  width:88px;
+  height:88px;
+}
 
-/* PHOTO GRID */
-.photo-grid{display:grid;gap:6px;flex-shrink:0}
-.photo-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+/* PHOTO GRID - CÁC TRANG CÒN LẠI (TĂNG KÍCH THƯỚC LÊN 100PX) */
+.photo-grid{display:grid;gap:8px;flex-shrink:0}
+.photo-grid.cols-3{grid-template-columns:repeat(3, 1fr)} /* Đổi thành 3 cột để ảnh 100px vừa đẹp */
 
-.pcard{cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;padding:5px;background:var(--card-bg);border-radius:8px;border:1px solid #e5e7eb;position:relative;height:100%;justify-content:space-between}
+.pcard{cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;padding:6px;background:var(--card-bg);border-radius:8px;border:1px solid #e5e7eb;position:relative;height:100%;justify-content:space-between}
 .pcard:active{transform:scale(0.96)}
-.pcard-img-wrap{width:100%;aspect-ratio:1/1;border-radius:6px;overflow:hidden;position:relative;background:#f3f4f6;flex-shrink:0}
+
+/* TĂNG KÍCH THƯỚC ẢNH CÁC TRANG CÒN LẠI LÊN 100PX */
+.pcard-img-wrap{
+  width:100px;
+  height:100px;
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+  background:#f3f4f6;
+  flex-shrink:0;
+  margin:0 auto;
+}
 .pcard-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .pcard.sel{border-color:var(--brand-orange);background:var(--brand-orange-light)}
-.pcard.sel .pcard-img-wrap::after{content:'✓';position:absolute;inset:0;background:rgba(245,124,0,0.5);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.pcard.sel .pcard-img-wrap::after{content:'✓';position:absolute;inset:0;background:rgba(245,124,0,0.5);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
 
-.pcard-name{font-size:0.68rem;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.4em;word-break:break-word}
-.pcard-price{font-size:0.65rem;color:var(--brand-orange);font-weight:800;margin-top:2px}
+.pcard-name{font-size:0.7rem;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.4em;word-break:break-word}
+.pcard-price{font-size:0.68rem;color:var(--brand-orange);font-weight:800;margin-top:2px}
 
-.pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.6rem;font-weight:800;display:none;align-items:center;justify-content:center}
+.pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.65rem;font-weight:800;display:none;align-items:center;justify-content:center}
 .pcard.sel .pcard-qty-badge{display:flex}
 
 /* GIỎ HÀNG CỐ ĐỊNH */
@@ -373,7 +381,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 <body>
 <div class="shell">
 
-  <!-- HEADER ĐÃ ĐƯỢC THU GỌN DIỆN TÍCH -->
+  <!-- HEADER GỌN GÀNG -->
   <div class="hdr">
     <div class="hdr-brand">
       <h1>BÒ NGON 888</h1>
@@ -384,7 +392,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 
   <div class="tabs" id="tab-bar"></div>
 
-  <!-- PAGE 1: ĂN SÁNG -->
+  <!-- PAGE 1: ĂN SÁNG (ẢNH 88PX) -->
   <div class="page active" id="page-0">
     <div class="step-row" id="step-1">
       <div class="step-head"><div class="slabel">1. Chọn loại sợi</div></div>
@@ -422,28 +430,28 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
     </div>
   </div>
 
-  <!-- PAGE 2: ĂN KÈM & UỐNG -->
+  <!-- PAGE 2: ĂN KÈM & UỐNG (ẢNH 100PX) -->
   <div class="page" id="page-1">
     <div class="sec-title">Đồ ăn kèm</div>
-    <div class="photo-grid cols-4" id="grid-an-kem"></div>
+    <div class="photo-grid cols-3" id="grid-an-kem"></div>
     <div class="sec-title" style="margin-top:8px">Đồ uống</div>
-    <div class="photo-grid cols-4" id="grid-uong"></div>
+    <div class="photo-grid cols-3" id="grid-uong"></div>
   </div>
 
-  <!-- PAGE 3: ĐỒ NHẬU -->
+  <!-- PAGE 3: ĐỒ NHẬU (ẢNH 100PX) -->
   <div class="page" id="page-2">
     <div class="sec-title">Đồ uống nhậu</div>
-    <div class="photo-grid cols-4" id="grid-nhau"></div>
+    <div class="photo-grid cols-3" id="grid-nhau"></div>
     <div class="sec-title" style="margin-top:8px">Mồi nhậu</div>
-    <div class="photo-grid cols-4" id="grid-moi"></div>
+    <div class="photo-grid cols-3" id="grid-moi"></div>
   </div>
 
-  <!-- PAGE 4: LẨU -->
+  <!-- PAGE 4: LẨU (ẢNH 100PX) -->
   <div class="page" id="page-3">
     <div class="sec-title">Chọn nồi lẩu</div>
-    <div class="photo-grid cols-4" id="grid-lau"></div>
+    <div class="photo-grid cols-3" id="grid-lau"></div>
     <div class="sec-title" style="margin-top:8px">Đồ nhúng thêm</div>
-    <div class="photo-grid cols-4" id="grid-nhung"></div>
+    <div class="photo-grid cols-3" id="grid-nhung"></div>
   </div>
 
   <!-- GIỎ HÀNG CỐ ĐỊNH -->
@@ -688,7 +696,6 @@ function pickSopt(el, nextStepId){
 
 function multiSopt(el, nextStepId){
   el.classList.toggle('sel');
-  // Với tùy chọn chọn nhiều, tự động cuộn nhẹ ở lần đầu chọn
   if (el.classList.contains('sel') && nextStepId) {
     scrollToStep(nextStepId);
   }
@@ -780,7 +787,7 @@ function addToCartPage0(){
   renderCart();
   toast('✅ Đã thêm vào giỏ hàng!');
 
-  // TỰ ĐỘNG CUỘN TRỞ LẠI BƯỚC 1 (ĐỈNH TRANG)
+  // TỰ ĐỘNG CUỘN TRỜ LẠI BƯỚC 1 (ĐỈNH TRANG)
   const page0 = document.getElementById('page-0');
   if (page0) {
     page0.scrollTo({ top: 0, behavior: 'smooth' });
