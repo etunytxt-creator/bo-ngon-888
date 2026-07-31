@@ -108,7 +108,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   border:1.5px solid #f3f4f6;
   transition:all 0.15s;
   flex:1;
-  min-width:75px;
+  min-width:70px;
   background:#fafafa;
 }
 
@@ -140,11 +140,39 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .sopt-price{font-size:0.65rem;color:var(--brand-orange);font-weight:800}
 
 .row2{display:flex;gap:6px;flex-shrink:0}
-.row2 .half{flex:1}
+.row2 .half{flex:1;min-width:0}
 
-/* THIẾT LẬP KÍCH THƯỚC 68PX CHO BƯỚC 3 (HÀNH), BƯỚC 4 (KHẨU PHẦN), BƯỚC 6 (ĐỒ ĂN KÈM) */
-#sopts-3 .sopt-img, 
-#sopts-4 .sopt-img, 
+/* CHỈNH MỤC 3 & 4 NẰM VỪA KHÍT 1 DÒNG */
+#step-3, #step-4 {
+  padding: 6px 4px !important;
+}
+#step-3 .step-head, #step-4 .step-head {
+  margin-bottom: 4px !important;
+}
+#step-3 .slabel, #step-4 .slabel {
+  font-size: 0.72rem !important;
+}
+#sopts-3, #sopts-4 {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 3px !important;
+}
+#sopts-3 .sopt, #sopts-4 .sopt {
+  padding: 3px 1px !important;
+  min-width: 0 !important;
+  flex: 1 1 0 !important;
+}
+#sopts-3 .sopt-img, #sopts-4 .sopt-img {
+  width: 52px !important;
+  height: 52px !important;
+}
+#sopts-3 .sopt-name, #sopts-4 .sopt-name {
+  font-size: 0.6rem !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.3px;
+}
+
+/* THIẾT LẬP KÍCH THƯỚC 68PX CHO BƯỚC 6 (ĐỒ ĂN KÈM) */
 #sopts-6 .sopt-img {
   width: 68px !important;
   height: 68px !important;
@@ -443,7 +471,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
       <div class="sopts" id="sopts-2"></div>
     </div>
 
-    <!-- HÀNH VÀ KHẨU PHẦN ĐƯỢC ĐƯA LÊN THÀNH BƯỚC 3 VÀ 4 -->
+    <!-- HÀNH VÀ KHẨU PHẦN NẰM CÙNG ROW (VỪA KHÍT 1 DÒNG) -->
     <div class="row2">
       <div class="half">
         <div class="step-row" id="step-3">
@@ -459,7 +487,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
       </div>
     </div>
 
-    <!-- CHỌN THỊT ĐƯỢC CHUYỂN THÀNH BƯỚC 5 -->
+    <!-- MỤC 5: CHỌN LOẠI THỊT -->
     <div class="step-row" id="step-5">
       <div class="step-head">
         <div class="slabel">5. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
@@ -547,11 +575,10 @@ const IMG = {
   taibam:   'https://images.unsplash.com/photo-1558030006-450675393462?w=300&auto=format&fit=crop&q=80',
   namgion:  'https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=300&auto=format&fit=crop&q=80',
   gaugion:  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
-  loirua:   'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=300&auto=format&fit=crop&q=80',
   bovien:   'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
   sotvang:  'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=300&auto=format&fit=crop&q=80',
   thitnuong: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&auto=format&fit=crop&q=80',
-  chanuong: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&auto=format&fit=crop&q=80',
+  suon:      'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
   timcat:   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&auto=format&fit=crop&q=80',
   dacbiet:  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
 
@@ -606,12 +633,12 @@ const STEP2 = [{v:'Nước béo',img:IMG.nuocbeo,g:'s2'},{v:'Nước trong',img:
 const STEP3 = [{v:'Có hành',img:IMG.cohanh,g:'s3'},{v:'Không hành',img:IMG.khonghanh,g:'s3'}];
 const STEP4 = [{v:'Trẻ em',img:IMG.treemsize,g:'s4'},{v:'Bình thường',img:IMG.binhthuong,g:'s4'},{v:'Suất lớn',img:IMG.suatlon,g:'s4'}];
 
-// BƯỚC 5: ĐẶC BIỆT ĐƯỢC CHUYỂN XUỐNG CUỐI
+// BƯỚC 5: ĐÃ XÓA LÕI RÙA, THAY CHẢ NƯỚNG BẰNG SƯỜN
 const STEP5 = [
   {v:'Bò tái',img:IMG.botai,g:'s5'},{v:'Tái lăn',img:IMG.tailan,g:'s5'},{v:'Tái băm',img:IMG.taibam,g:'s5'},
-  {v:'Nạm giòn',img:IMG.namgion,g:'s5'},{v:'Gầu giòn',img:IMG.gaugion,g:'s5'},{v:'Lõi rùa',img:IMG.loirua,g:'s5'},
+  {v:'Nạm giòn',img:IMG.namgion,g:'s5'},{v:'Gầu giòn',img:IMG.gaugion,g:'s5'},
   {v:'Bò viên',img:IMG.bovien,g:'s5'},{v:'Sốt vang',img:IMG.sotvang,g:'s5'},{v:'Thịt nướng',img:IMG.thitnuong,g:'s5'},
-  {v:'Chả nướng',img:IMG.chanuong,g:'s5'},{v:'Tim cật',img:IMG.timcat,g:'s5'},
+  {v:'Sườn',img:IMG.suon,g:'s5'},{v:'Tim cật',img:IMG.timcat,g:'s5'},
   {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s5', special:true}
 ];
 
