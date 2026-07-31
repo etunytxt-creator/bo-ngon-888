@@ -27,7 +27,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 
 .shell{display:flex;flex-direction:column;height:100dvh;max-width:480px;margin:0 auto;background:#fff;box-shadow:0 0 20px rgba(0,0,0,0.05);position:relative}
 
-/* HEADER GỌN GÀNG */
+/* HEADER */
 .hdr{
   display:flex;
   align-items:center;
@@ -94,7 +94,7 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
   font-weight:800;
 }
 
-/* SOPT OPTIONS - TRANG ĂN SÁNG (BƯỚC 1, 2, 3 ĐỂ 88PX) */
+/* SOPT OPTIONS */
 .sopts{display:flex;flex-wrap:wrap;gap:6px}
 .sopt{
   display:flex;
@@ -142,15 +142,52 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
 .row2{display:flex;gap:6px;flex-shrink:0}
 .row2 .half{flex:1}
 
-/* THIẾT LẬP KÍCH THƯỚC 68PX CHO BƯỚC 4, BƯỚC 5, BƯỚC 6 */
+/* THIẾT LẬP KÍCH THƯỚC 68PX CHO BƯỚC 3 (HÀNH), BƯỚC 4 (KHẨU PHẦN), BƯỚC 6 (ĐỒ ĂN KÈM) */
+#sopts-3 .sopt-img, 
 #sopts-4 .sopt-img, 
-#sopts-5 .sopt-img, 
 #sopts-6 .sopt-img {
   width: 68px !important;
   height: 68px !important;
 }
 
-/* PHOTO GRID - CÁC TRANG CÒN LẠI (100PX) */
+/* PHẦN ĐẶC BIỆT NỔI BẬT NẰM CUỐI BƯỚC 5 */
+.sopt.sopt-special {
+  flex: 0 0 100% !important;
+  width: 100%;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  padding: 8px 12px;
+  gap: 12px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2px solid var(--brand-orange);
+  box-shadow: 0 2px 8px rgba(245, 124, 0, 0.15);
+  margin-top: 4px;
+}
+.sopt.sopt-special .sopt-img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.sopt.sopt-special .sopt-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.sopt.sopt-special .sopt-name {
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  color: #d84315;
+  text-align: left;
+}
+.sopt.sopt-special .sopt-desc {
+  font-size: 0.65rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* PHOTO GRID - CÁC TRANG CÒN LẠI */
 .photo-grid{display:grid;gap:8px;flex-shrink:0}
 .photo-grid.cols-3{grid-template-columns:repeat(3, 1fr)}
 
@@ -400,30 +437,36 @@ html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(-
       <div class="step-head"><div class="slabel">1. Chọn loại sợi</div></div>
       <div class="sopts" id="sopts-1"></div>
     </div>
+
     <div class="step-row" id="step-2">
       <div class="step-head"><div class="slabel">2. Cách chế biến</div></div>
       <div class="sopts" id="sopts-2"></div>
     </div>
-    <div class="step-row" id="step-3">
-      <div class="step-head">
-        <div class="slabel">3. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
-      </div>
-      <div class="sopts" id="sopts-3"></div>
-    </div>
+
+    <!-- HÀNH VÀ KHẨU PHẦN ĐƯỢC ĐƯA LÊN THÀNH BƯỚC 3 VÀ 4 -->
     <div class="row2">
       <div class="half">
+        <div class="step-row" id="step-3">
+          <div class="step-head"><div class="slabel">3. Tùy chọn hành</div></div>
+          <div class="sopts" id="sopts-3"></div>
+        </div>
+      </div>
+      <div class="half">
         <div class="step-row" id="step-4">
-          <div class="step-head"><div class="slabel">4. Tùy chọn hành</div></div>
+          <div class="step-head"><div class="slabel">4. Khẩu phần</div></div>
           <div class="sopts" id="sopts-4"></div>
         </div>
       </div>
-      <div class="half">
-        <div class="step-row" id="step-5">
-          <div class="step-head"><div class="slabel">5. Khẩu phần</div></div>
-          <div class="sopts" id="sopts-5"></div>
-        </div>
-      </div>
     </div>
+
+    <!-- CHỌN THỊT ĐƯỢC CHUYỂN THÀNH BƯỚC 5 -->
+    <div class="step-row" id="step-5">
+      <div class="step-head">
+        <div class="slabel">5. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
+      </div>
+      <div class="sopts" id="sopts-5"></div>
+    </div>
+
     <div class="step-row" id="step-6">
       <div class="step-head">
         <div class="slabel">6. Đồ ăn kèm <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
@@ -560,17 +603,18 @@ const IMG = {
 // ── DATA MENU ──
 const STEP1 = [{v:'Phở',img:IMG.pho,g:'s1'},{v:'Bún',img:IMG.bun,g:'s1'},{v:'Mỳ',img:IMG.my,g:'s1'}];
 const STEP2 = [{v:'Nước béo',img:IMG.nuocbeo,g:'s2'},{v:'Nước trong',img:IMG.nuoctong,g:'s2'},{v:'Xào',img:IMG.xao,g:'s2'},{v:'Trộn',img:IMG.tron,g:'s2'}];
-const STEP3 = [
-  {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s3'},
-  {v:'Bò tái',img:IMG.botai,g:'s3'},{v:'Tái lăn',img:IMG.tailan,g:'s3'},{v:'Tái băm',img:IMG.taibam,g:'s3'},
-  {v:'Nạm giòn',img:IMG.namgion,g:'s3'},{v:'Gầu giòn',img:IMG.gaugion,g:'s3'},{v:'Lõi rùa',img:IMG.loirua,g:'s3'},
-  {v:'Bò viên',img:IMG.bovien,g:'s3'},{v:'Sốt vang',img:IMG.sotvang,g:'s3'},{v:'Thịt nướng',img:IMG.thitnuong,g:'s3'},
-  {v:'Chả nướng',img:IMG.chanuong,g:'s3'},{v:'Tim cật',img:IMG.timcat,g:'s3'}
-];
-const STEP4 = [{v:'Có hành',img:IMG.cohanh,g:'s4'},{v:'Không hành',img:IMG.khonghanh,g:'s4'}];
-const STEP5 = [{v:'Trẻ em',img:IMG.treemsize,g:'s5'},{v:'Bình thường',img:IMG.binhthuong,g:'s5'},{v:'Suất lớn',img:IMG.suatlon,g:'s5'}];
+const STEP3 = [{v:'Có hành',img:IMG.cohanh,g:'s3'},{v:'Không hành',img:IMG.khonghanh,g:'s3'}];
+const STEP4 = [{v:'Trẻ em',img:IMG.treemsize,g:'s4'},{v:'Bình thường',img:IMG.binhthuong,g:'s4'},{v:'Suất lớn',img:IMG.suatlon,g:'s4'}];
 
-// CẬP NHẬT ĐỒ ĂN KÈM VỚI GIÁ MỚI
+// BƯỚC 5: ĐẶC BIỆT ĐƯỢC CHUYỂN XUỐNG CUỐI
+const STEP5 = [
+  {v:'Bò tái',img:IMG.botai,g:'s5'},{v:'Tái lăn',img:IMG.tailan,g:'s5'},{v:'Tái băm',img:IMG.taibam,g:'s5'},
+  {v:'Nạm giòn',img:IMG.namgion,g:'s5'},{v:'Gầu giòn',img:IMG.gaugion,g:'s5'},{v:'Lõi rùa',img:IMG.loirua,g:'s5'},
+  {v:'Bò viên',img:IMG.bovien,g:'s5'},{v:'Sốt vang',img:IMG.sotvang,g:'s5'},{v:'Thịt nướng',img:IMG.thitnuong,g:'s5'},
+  {v:'Chả nướng',img:IMG.chanuong,g:'s5'},{v:'Tim cật',img:IMG.timcat,g:'s5'},
+  {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s5', special:true}
+];
+
 const STEP6 = [
   {v:'Trứng gà',img:IMG.trungga,g:'s6',price:8000},
   {v:'Quẩy',img:IMG.quay,g:'s6',price:10000},
@@ -645,6 +689,17 @@ function buildTabs(){
 function buildSopt(item,multi=false,nextStepId=null){
   const fn=multi?`multiSopt(this,'${nextStepId}')`:`pickSopt(this,'${nextStepId}')`;
   const priceDisplay = item.price ? `<span class="sopt-price">+${fmtPrice(item.price)}</span>` : '';
+  
+  if (item.special) {
+    return `<div class="sopt sopt-special" data-g="${item.g||''}" data-v="${item.v||''}" data-price="${item.price||0}" onclick="${fn}">
+      <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy"></div>
+      <div class="sopt-info">
+        <span class="sopt-name">★ ${item.v||item.name}</span>
+        <span class="sopt-desc">Đầy đủ các loại bò tươi ngon nhất trong ngày</span>
+      </div>
+    </div>`;
+  }
+
   return `<div class="sopt" data-g="${item.g||''}" data-v="${item.v||''}" data-price="${item.price||0}" onclick="${fn}">
     <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
     <span class="sopt-name">${item.v||item.name}</span>
@@ -655,9 +710,9 @@ function buildSopt(item,multi=false,nextStepId=null){
 function buildPage0(){
   document.getElementById('sopts-1').innerHTML=STEP1.map(i=>buildSopt(i,false,'step-2')).join('');
   document.getElementById('sopts-2').innerHTML=STEP2.map(i=>buildSopt(i,false,'step-3')).join('');
-  document.getElementById('sopts-3').innerHTML=STEP3.map(i=>buildSopt(i,true,'step-4')).join('');
+  document.getElementById('sopts-3').innerHTML=STEP3.map(i=>buildSopt(i,false,'step-4')).join('');
   document.getElementById('sopts-4').innerHTML=STEP4.map(i=>buildSopt(i,false,'step-5')).join('');
-  document.getElementById('sopts-5').innerHTML=STEP5.map(i=>buildSopt(i,false,'step-6')).join('');
+  document.getElementById('sopts-5').innerHTML=STEP5.map(i=>buildSopt(i,true,'step-6')).join('');
   document.getElementById('sopts-6').innerHTML=STEP6.map(i=>buildSopt(i,true,null)).join('');
 }
 
@@ -719,8 +774,8 @@ function getSelectedS6Details(){
 }
 
 function setDefaults(){
-  const h=document.querySelector('[data-g="s4"][data-v="Có hành"]');if(h)h.classList.add('sel');
-  const b=document.querySelector('[data-g="s5"][data-v="Bình thường"]');if(b)b.classList.add('sel');
+  const h=document.querySelector('[data-g="s3"][data-v="Có hành"]');if(h)h.classList.add('sel');
+  const b=document.querySelector('[data-g="s4"][data-v="Bình thường"]');if(b)b.classList.add('sel');
 }
 
 function calcPricePho(thit, size, extraItems){
@@ -787,7 +842,13 @@ function addToCartPage0(){
   const s1=getG('s1'),s2=getG('s2'),s3=getG('s3'),s4=getG('s4'),s5=getG('s5');
   const s6Items=getSelectedS6Details();
   
-  const checks=[{g:s1,step:'step-1',label:'loại sợi'},{g:s2,step:'step-2',label:'cách chế biến'},{g:s3,step:'step-3',label:'loại thịt'},{g:s4,step:'step-4',label:'hành'},{g:s5,step:'step-5',label:'khẩu phần'}];
+  const checks=[
+    {g:s1,step:'step-1',label:'loại sợi'},
+    {g:s2,step:'step-2',label:'cách chế biến'},
+    {g:s3,step:'step-3',label:'hành'},
+    {g:s4,step:'step-4',label:'khẩu phần'},
+    {g:s5,step:'step-5',label:'loại thịt'}
+  ];
   const miss=checks.find(x=>!x.g.length);
   if(miss){
     toast(`⚠️ Chưa chọn ${miss.label}!`);
@@ -796,19 +857,19 @@ function addToCartPage0(){
     return;
   }
   
-  let subText = `🥩 ${s3.join(', ')} · 🌿 ${s4[0]}`;
+  let subText = `🥩 ${s5.join(', ')} · 🌿 ${s3[0]}`;
   if(s6Items.length) {
     subText += ` · ➕ Kèm: ${s6Items.map(i=>i.name).join(', ')}`;
   }
 
   cart.push({
-    label:`${s5[0]} · ${s1[0]} ${s2[0]}`,
+    label:`${s4[0]} · ${s1[0]} ${s2[0]}`,
     sub: subText,
-    price: calcPricePho(s3, s5[0], s6Items),
+    price: calcPricePho(s5, s4[0], s6Items),
     qty: 1
   });
 
-  ['s1','s2','s3','s6'].forEach(g=>document.querySelectorAll(`[data-g="${g}"].sel`).forEach(e=>e.classList.remove('sel')));
+  ['s1','s2','s5','s6'].forEach(g=>document.querySelectorAll(`[data-g="${g}"].sel`).forEach(e=>e.classList.remove('sel')));
   setDefaults();
   renderCart();
   toast('✅ Đã thêm vào giỏ hàng!');
