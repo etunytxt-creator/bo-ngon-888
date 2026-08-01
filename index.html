@@ -1,1021 +1,1169 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="color-scheme" content="light only">
-<title>Bò Ngon 888</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  color-scheme:light only;
-  --bg-main: #f4f7f4;
-  --brand-green: #1b4332;
-  --brand-green-light: #2d6a4f;
-  --brand-green-dark: #081c15;
-  --brand-orange: #f57c00;
-  --brand-orange-hover: #e65100;
-  --brand-orange-light: #fff3e0;
-  --text-dark: #1f2937;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
-  --card-bg: #ffffff;
-}
-
-html,body{width:100%;height:100%;background:var(--bg-main)!important;color:var(--text-dark)!important;font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden;-webkit-text-size-adjust:100%}
-
-.shell{display:flex;flex-direction:column;height:100dvh;max-width:480px;margin:0 auto;background:#fff;box-shadow:0 0 20px rgba(0,0,0,0.05);position:relative}
-
-/* HEADER */
-.hdr{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:6px 12px;
-  flex-shrink:0;
-  background:var(--brand-green);
-  color:#fff;
-}
-.hdr-brand {
-  display:flex;
-  align-items:baseline;
-  gap:6px;
-}
-.hdr h1{font-size:1.05rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.01em}
-.hdr .sub{font-size:0.6rem;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase}
-.hdr .table-tag{font-size:0.68rem;font-weight:700;color:var(--brand-orange);background:rgba(255,255,255,0.15);padding:3px 8px;border-radius:8px;white-space:nowrap}
-
-/* TABS */
-.tabs{display:flex;flex-shrink:0;background:var(--brand-green-dark);padding:4px 4px 0}
-.tab{flex:1;padding:4px 2px;text-align:center;cursor:pointer;border:none;background:none;border-bottom:2.5px solid transparent;transition:all 0.2s}
-.tab-icon{width:32px;height:32px;object-fit:cover;border-radius:50%;display:block;margin:0 auto 2px;border:1px solid rgba(255,255,255,0.2)}
-.tab.active .tab-icon{border-color:var(--brand-orange);filter:brightness(1.1);transform:scale(1.05)}
-.tab-label{font-size:0.6rem;font-weight:700;color:rgba(255,255,255,0.6);display:block}
-.tab.active .tab-label{color:#fff}
-.tab.active{border-bottom-color:var(--brand-orange);background:rgba(255,255,255,0.05)}
-
-/* PAGES */
-.page{
-  display:none;
-  flex:1;
-  flex-direction:column;
-  overflow-y:auto;
-  padding:10px 10px 180px;
-  background:var(--bg-main);
-  -webkit-overflow-scrolling:touch;
-  scroll-behavior:smooth;
-  touch-action: pan-x pan-y;
-}
-.page.active{display:flex}
-
-.sec-title{
-  font-size:0.85rem;
-  color:var(--brand-green-dark);
-  font-weight:800;
-  padding:2px 0 2px 6px;
-  margin:4px 0 6px;
-  flex-shrink:0;
-  border-left:3px solid var(--brand-orange);
-}
-
-.step-row{background:var(--card-bg);padding:8px;border-radius:10px;margin-bottom:8px;border:1px solid var(--border-color);flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
-
-.step-head{
-  display:flex;
-  align-items:center;
-  margin-bottom:6px;
-  padding-left:6px;
-  border-left:3px solid var(--brand-green);
-}
-.slabel{
-  font-size:0.82rem;
-  color:var(--brand-green-dark);
-  font-weight:800;
-}
-
-/* SOPT OPTIONS */
-.sopts{display:flex;flex-wrap:wrap;gap:6px}
-.sopt{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-  cursor:pointer;
-  user-select:none;
-  padding:6px 4px;
-  border-radius:8px;
-  border:1.5px solid #f3f4f6;
-  transition:all 0.15s;
-  flex:1;
-  min-width:70px;
-  background:#fafafa;
-}
-
-.sopt-img{
-  width:88px;
-  height:88px;
-  border-radius:8px;
-  overflow:hidden;
-  border:1px solid #e5e7eb;
-  position:relative;
-  background:#fff;
-}
-.sopt-img img{width:100%;height:100%;object-fit:cover}
-.sopt.sel{background:var(--brand-orange-light);border-color:var(--brand-orange)}
-.sopt.sel .sopt-img{border-color:var(--brand-orange)}
-.sopt.sel .sopt-img::after{
-  content:'✓';
-  position:absolute;
-  inset:0;
-  background:rgba(245,124,0,0.65);
-  color:#fff;
-  font-size:1.4rem;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-}
-.sopt-name{font-size:0.68rem;color:var(--text-dark);text-align:center;font-weight:700}
-.sopt-price{font-size:0.65rem;color:var(--brand-orange);font-weight:800}
-
-.row2{display:flex;gap:6px;flex-shrink:0}
-.row2 .half{flex:1;min-width:0}
-
-/* CHỈNH MỤC 3 & 4 NẰM VỪA KHÍT 1 DÒNG */
-#step-3, #step-4 {
-  padding: 6px 4px !important;
-}
-#step-3 .step-head, #step-4 .step-head {
-  margin-bottom: 4px !important;
-}
-#step-3 .slabel, #step-4 .slabel {
-  font-size: 0.72rem !important;
-}
-#sopts-3, #sopts-4 {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 3px !important;
-}
-#sopts-3 .sopt, #sopts-4 .sopt {
-  padding: 3px 1px !important;
-  min-width: 0 !important;
-  flex: 1 1 0 !important;
-}
-#sopts-3 .sopt-img, #sopts-4 .sopt-img {
-  width: 52px !important;
-  height: 52px !important;
-}
-#sopts-3 .sopt-name, #sopts-4 .sopt-name {
-  font-size: 0.6rem !important;
-  white-space: nowrap !important;
-  letter-spacing: -0.3px;
-}
-
-/* THIẾT LẬP KÍCH THƯỚC 68PX CHO BƯỚC 6 (ĐỒ ĂN KÈM) */
-#sopts-6 .sopt-img {
-  width: 68px !important;
-  height: 68px !important;
-}
-
-/* PHẦN ĐẶC BIỆT NỔI BẬT NẰM CUỐI BƯỚC 5 */
-.sopt.sopt-special {
-  flex: 0 0 100% !important;
-  width: 100%;
-  flex-direction: row !important;
-  justify-content: flex-start;
-  padding: 8px 12px;
-  gap: 12px;
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  border: 2px solid var(--brand-orange);
-  box-shadow: 0 2px 8px rgba(245, 124, 0, 0.15);
-  margin-top: 4px;
-}
-.sopt.sopt-special .sopt-img {
-  width: 80px !important;
-  height: 80px !important;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-.sopt.sopt-special .sopt-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-.sopt.sopt-special .sopt-name {
-  font-size: 0.9rem !important;
-  font-weight: 800 !important;
-  color: #d84315;
-  text-align: left;
-}
-.sopt.sopt-special .sopt-desc {
-  font-size: 0.65rem;
-  color: #666;
-  margin-top: 2px;
-}
-
-/* PHOTO GRID - CÁC TRANG CÒN LẠI */
-.photo-grid{display:grid;gap:8px;flex-shrink:0}
-.photo-grid.cols-3{grid-template-columns:repeat(3, 1fr)}
-
-.pcard{cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;padding:6px;background:var(--card-bg);border-radius:8px;border:1px solid #e5e7eb;position:relative;height:100%;justify-content:space-between}
-.pcard:active{transform:scale(0.96)}
-
-.pcard-img-wrap{
-  width:100px;
-  height:100px;
-  border-radius:6px;
-  overflow:hidden;
-  position:relative;
-  background:#f3f4f6;
-  flex-shrink:0;
-  margin:0 auto;
-}
-.pcard-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.pcard.sel{border-color:var(--brand-orange);background:var(--brand-orange-light)}
-.pcard.sel .pcard-img-wrap::after{content:'✓';position:absolute;inset:0;background:rgba(245,124,0,0.5);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;font-weight:bold}
-
-.pcard-name{font-size:0.7rem;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.4em;word-break:break-word}
-.pcard-price{font-size:0.68rem;color:var(--brand-orange);font-weight:800;margin-top:2px}
-
-.pcard-qty-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;background:var(--brand-orange);color:#fff;border-radius:50%;font-size:0.65rem;font-weight:800;display:none;align-items:center;justify-content:center}
-.pcard.sel .pcard-qty-badge{display:flex}
-
-/* GIỎ HÀNG CỐ ĐỊNH */
-.bottom-cart-bar {
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
-  background:var(--brand-green-dark);
-  color:#fff;
-  border-top-left-radius:12px;
-  border-top-right-radius:12px;
-  box-shadow:0 -4px 20px rgba(0,0,0,0.3);
-  z-index:900;
-  display:flex;
-  flex-direction:column;
-  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cart-bar-header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:6px 10px;
-  background:rgba(255,255,255,0.05);
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-.cart-bar-title {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:0.78rem;
-  font-weight:700;
-}
-
-.cart-count-badge {
-  background:var(--brand-orange);
-  color:#fff;
-  font-size:0.65rem;
-  font-weight:800;
-  padding:1px 6px;
-  border-radius:10px;
-}
-
-.cart-header-actions {
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.btn-expand-cart {
-  background:rgba(255,255,255,0.15);
-  color:#fff;
-  border:none;
-  padding:4px 8px;
-  border-radius:6px;
-  font-size:0.65rem;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.btn-add-action {
-  font-family:inherit;
-  font-weight:800;
-  font-size:0.72rem;
-  text-transform:uppercase;
-  color:#fff;
-  background:var(--brand-orange);
-  border:none;
-  padding:6px 10px;
-  border-radius:6px;
-  cursor:pointer;
-  box-shadow:0 2px 6px rgba(245,124,0,0.4);
-}
-.btn-add-action:active{transform:scale(0.96)}
-
-.cart-list-scroll {
-  height: 75px;
-  overflow-y: auto;
-  padding: 4px 10px;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  transition: height 0.3s ease;
-}
-
-.bottom-cart-bar.expanded .cart-list-scroll {
-  height: 220px;
-}
-
-.cart-empty-text {
-  text-align:center;
-  padding:20px 0;
-  font-size:0.75rem;
-  color:rgba(255,255,255,0.4);
-}
-
-.cart-item-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:5px 0;
-  border-bottom:1px dashed rgba(255,255,255,0.1);
-}
-.cart-item-row:last-child { border-bottom: none; }
-
-.cart-item-info {
-  display:flex;
-  flex-direction:column;
-  flex:1;
-  min-width:0;
-  padding-right:8px;
-}
-.cart-item-title {
-  font-size:0.7rem;
-  font-weight:700;
-  color:#fff;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.cart-item-sub {
-  font-size:0.58rem;
-  color:rgba(255,255,255,0.6);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.cart-item-controls {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  flex-shrink:0;
-}
-
-.cart-qty-ctrl {
-  display:flex;
-  align-items:center;
-  background:rgba(255,255,255,0.12);
-  border-radius:4px;
-}
-.cart-qty-ctrl button {
-  background:none;
-  border:none;
-  color:#fff;
-  width:18px;
-  height:18px;
-  font-size:0.75rem;
-  cursor:pointer;
-}
-.cart-qty-ctrl span {
-  font-size:0.65rem;
-  font-weight:700;
-  padding:0 3px;
-  min-width:14px;
-  text-align:center;
-}
-
-.cart-item-price {
-  font-size:0.7rem;
-  font-weight:800;
-  color:var(--brand-orange);
-  min-width:35px;
-  text-align:right;
-}
-
-.cart-bar-footer {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:6px 10px;
-  background:rgba(0,0,0,0.2);
-  border-top:1px solid rgba(255,255,255,0.08);
-}
-.cart-total-text {
-  font-size:0.78rem;
-  font-weight:800;
-  color:#fff;
-}
-.cart-total-text span {
-  color:var(--brand-orange);
-  font-size:0.9rem;
-  margin-left:4px;
-}
-
-.btn-submit-order {
-  background:var(--brand-green-light);
-  color:#fff;
-  border:1px solid rgba(255,255,255,0.2);
-  padding:5px 12px;
-  border-radius:6px;
-  font-size:0.72rem;
-  font-weight:800;
-  cursor:pointer;
-  text-transform:uppercase;
-}
-
-#toast{position:fixed;top:12px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brand-green);color:#fff;font-size:0.72rem;font-weight:700;padding:6px 14px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:all 0.25s;pointer-events:none;z-index:999;max-width:88vw;text-align:center;border:1px solid rgba(255,255,255,0.2)}
-#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(prefers-color-scheme:dark){html,body{background:var(--bg-main)!important;color:var(--text-dark)!important}}
-</style>
-</head>
-<body>
-<div class="shell">
-
-  <!-- HEADER -->
-  <div class="hdr">
-    <div class="hdr-brand">
-      <h1>BÒ NGON 888</h1>
-      <span class="sub">Thực Đơn</span>
-    </div>
-    <div class="table-tag" id="table-tag">Bàn ?</div>
-  </div>
-
-  <div class="tabs" id="tab-bar"></div>
-
-  <!-- PAGE 1: ĂN SÁNG -->
-  <div class="page active" id="page-0">
-    <div class="step-row" id="step-1">
-      <div class="step-head"><div class="slabel">1. Chọn loại sợi</div></div>
-      <div class="sopts" id="sopts-1"></div>
-    </div>
-
-    <div class="step-row" id="step-2">
-      <div class="step-head"><div class="slabel">2. Cách chế biến</div></div>
-      <div class="sopts" id="sopts-2"></div>
-    </div>
-
-    <!-- HÀNH VÀ KHẨU PHẦN NẰM CÙNG ROW (VỪA KHÍT 1 DÒNG) -->
-    <div class="row2">
-      <div class="half">
-        <div class="step-row" id="step-3">
-          <div class="step-head"><div class="slabel">3. Tùy chọn hành</div></div>
-          <div class="sopts" id="sopts-3"></div>
-        </div>
-      </div>
-      <div class="half">
-        <div class="step-row" id="step-4">
-          <div class="step-head"><div class="slabel">4. Khẩu phần</div></div>
-          <div class="sopts" id="sopts-4"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MỤC 5: CHỌN LOẠI THỊT -->
-    <div class="step-row" id="step-5">
-      <div class="step-head">
-        <div class="slabel">5. Chọn loại thịt <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
-      </div>
-      <div class="sopts" id="sopts-5"></div>
-    </div>
-
-    <div class="step-row" id="step-6">
-      <div class="step-head">
-        <div class="slabel">6. Đồ ăn kèm <span style="font-size:0.65rem;opacity:0.65;font-weight:500">(chọn nhiều)</span></div>
-      </div>
-      <div class="sopts" id="sopts-6"></div>
-    </div>
-  </div>
-
-  <!-- PAGE 2: ĂN KÈM & UỐNG -->
-  <div class="page" id="page-1">
-    <div class="sec-title">Đồ ăn kèm</div>
-    <div class="photo-grid cols-3" id="grid-an-kem"></div>
-    <div class="sec-title" style="margin-top:8px">Đồ uống</div>
-    <div class="photo-grid cols-3" id="grid-uong"></div>
-  </div>
-
-  <!-- PAGE 3: ĐỒ NHẬU -->
-  <div class="page" id="page-2">
-    <div class="sec-title">Đồ uống nhậu</div>
-    <div class="photo-grid cols-3" id="grid-nhau"></div>
-    <div class="sec-title" style="margin-top:8px">Mồi nhậu</div>
-    <div class="photo-grid cols-3" id="grid-moi"></div>
-  </div>
-
-  <!-- PAGE 4: LẨU -->
-  <div class="page" id="page-3">
-    <div class="sec-title">Chọn nồi lẩu</div>
-    <div class="photo-grid cols-3" id="grid-lau"></div>
-    <div class="sec-title" style="margin-top:8px">Đồ nhúng thêm</div>
-    <div class="photo-grid cols-3" id="grid-nhung"></div>
-  </div>
-
-  <!-- GIỎ HÀNG CỐ ĐỊNH -->
-  <div class="bottom-cart-bar" id="cart-bar">
-    <div class="cart-bar-header">
-      <div class="cart-bar-title">
-        🛒 Giỏ hàng <span class="cart-count-badge" id="cart-badge-count">0</span>
-      </div>
-      <div class="cart-header-actions">
-        <button class="btn-expand-cart" id="btn-toggle-expand" onclick="toggleExpandCart()">▲ Mở rộng</button>
-        <button class="btn-add-action" id="btn-main-add" onclick="handleAddAction()">+ Thêm ở đây</button>
-      </div>
-    </div>
-
-    <div class="cart-list-scroll" id="cart-list-scroll">
-      <div class="cart-empty-text">Chưa chọn món nào</div>
-    </div>
-
-    <div class="cart-bar-footer">
-      <div class="cart-total-text">Tổng: <span id="cart-total-val">0k</span></div>
-      <button class="btn-submit-order" onclick="confirmOrder()">✦ Đặt món</button>
-    </div>
-  </div>
-
-</div>
-
-<div id="toast"></div>
-
-<script>
-const TG_TOKEN='8873216327:AAGdcmLe7r91CgL-EAVuilQFdrEX381s7Ec';
-const TG_OWNER='8818170775';
-const urlParams=new URLSearchParams(window.location.search);
-const tableNum=urlParams.get('ban')||'?';
-document.getElementById('table-tag').textContent=tableNum!=='?'?`Bàn: ${tableNum}`:'Bàn ?';
-
-// ── IMAGES ──
-const IMG = {
-  pho:      'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
-  bun:      'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=300&auto=format&fit=crop&q=80',
-  my:       'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80',
-  nuocbeo:  'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  nuoctong: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
-  xao:      'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=300&auto=format&fit=crop&q=80',
-  tron:     'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
-
-  botai:    'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  tailan:   'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
-  taibam:   'https://images.unsplash.com/photo-1558030006-450675393462?w=300&auto=format&fit=crop&q=80',
-  namgion:  'https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=300&auto=format&fit=crop&q=80',
-  gaugion:  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
-  bovien:   'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
-  sotvang:  'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=300&auto=format&fit=crop&q=80',
-  thitnuong: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&auto=format&fit=crop&q=80',
-  suon:      'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  timcat:   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&auto=format&fit=crop&q=80',
-  dacbiet:  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-
-  cohanh:   'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=300&auto=format&fit=crop&q=80',
-  khonghanh:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
-  treemsize:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&auto=format&fit=crop&q=80',
-  binhthuong:'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=300&auto=format&fit=crop&q=80',
-  suatlon:  'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
-
-  trungga:  'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=300&auto=format&fit=crop&q=80',
-  quay:     'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
-  trungvit: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
-  changa:   'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=300&auto=format&fit=crop&q=80',
-  gio:      'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=300&auto=format&fit=crop&q=80',
-
-  rausong:  'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
-  giado:    'https://images.unsplash.com/photo-1592417817098-8f3d6eb19655?w=300&auto=format&fit=crop&q=80',
-  banhquay: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&auto=format&fit=crop&q=80',
-  trungcut: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=300&auto=format&fit=crop&q=80',
-  soisua:   'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80',
-
-  trrada:   'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&auto=format&fit=crop&q=80',
-  nuocloc:  'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=300&auto=format&fit=crop&q=80',
-  nuocngot: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&auto=format&fit=crop&q=80',
-  suadau:   'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&auto=format&fit=crop&q=80',
-  capheden: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&auto=format&fit=crop&q=80',
-  caphesuada:'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&auto=format&fit=crop&q=80',
-
-  biahanoi: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=300&auto=format&fit=crop&q=80',
-  biatiger: 'https://images.unsplash.com/photo-1618886614638-80e3c103d31a?w=300&auto=format&fit=crop&q=80',
-  biaheineken:'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=300&auto=format&fit=crop&q=80',
-  ruoutrang:'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=300&auto=format&fit=crop&q=80',
-  longbo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  bacbo:    'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=300&auto=format&fit=crop&q=80',
-  duoibo:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&auto=format&fit=crop&q=80',
-  lacrang:  'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=300&auto=format&fit=crop&q=80',
-  xucxich:  'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=300&auto=format&fit=crop&q=80',
-
-  laubo:    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&auto=format&fit=crop&q=80',
-  lauthai:  'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  laumam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  launam:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=300&auto=format&fit=crop&q=80',
-  raumuong: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&auto=format&fit=crop&q=80',
-  dauphu:   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80',
-  namhuong: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&auto=format&fit=crop&q=80',
-  mitoi:    'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300&auto=format&fit=crop&q=80'
-};
-
-// ── DATA MENU ──
-const STEP1 = [{v:'Phở',img:IMG.pho,g:'s1'},{v:'Bún',img:IMG.bun,g:'s1'},{v:'Mỳ',img:IMG.my,g:'s1'}];
-const STEP2 = [{v:'Nước béo',img:IMG.nuocbeo,g:'s2'},{v:'Nước trong',img:IMG.nuoctong,g:'s2'},{v:'Xào',img:IMG.xao,g:'s2'},{v:'Trộn',img:IMG.tron,g:'s2'}];
-const STEP3 = [{v:'Có hành',img:IMG.cohanh,g:'s3'},{v:'Không hành',img:IMG.khonghanh,g:'s3'}];
-const STEP4 = [{v:'Trẻ em',img:IMG.treemsize,g:'s4'},{v:'Bình thường',img:IMG.binhthuong,g:'s4'},{v:'Suất lớn',img:IMG.suatlon,g:'s4'}];
-
-// BƯỚC 5: ĐÃ XÓA LÕI RÙA, THAY CHẢ NƯỚNG BẰNG SƯỜN
-const STEP5 = [
-  {v:'Bò tái',img:IMG.botai,g:'s5'},{v:'Tái lăn',img:IMG.tailan,g:'s5'},{v:'Tái băm',img:IMG.taibam,g:'s5'},
-  {v:'Nạm giòn',img:IMG.namgion,g:'s5'},{v:'Gầu giòn',img:IMG.gaugion,g:'s5'},
-  {v:'Bò viên',img:IMG.bovien,g:'s5'},{v:'Sốt vang',img:IMG.sotvang,g:'s5'},{v:'Thịt nướng',img:IMG.thitnuong,g:'s5'},
-  {v:'Sườn',img:IMG.suon,g:'s5'},{v:'Tim cật',img:IMG.timcat,g:'s5'},
-  {v:'Đặc biệt (Đủ loại bò)',img:IMG.dacbiet,g:'s5', special:true}
-];
-
-const STEP6 = [
-  {v:'Trứng gà',img:IMG.trungga,g:'s6',price:8000},
-  {v:'Quẩy',img:IMG.quay,g:'s6',price:10000},
-  {v:'Trứng vịt',img:IMG.trungvit,g:'s6',price:10000},
-  {v:'Chân gà',img:IMG.changa,g:'s6',price:10000},
-  {v:'Giò',img:IMG.gio,g:'s6',price:10000}
-];
-
-const MENU = {
-  'an-kem':[
-    {name:'Rau sống',img:IMG.rausong,price:10000},
-    {name:'Giá đỗ',img:IMG.giado,price:8000},
-    {name:'Bánh quẩy',img:IMG.banhquay,price:10000},
-    {name:'Trứng cút',img:IMG.trungcut,price:15000},
-    {name:'Phụ phí sợi',img:IMG.soisua,price:10000},
-  ],
-  'uong':[
-    {name:'Trà đá',img:IMG.trrada,price:5000},
-    {name:'Nước lọc',img:IMG.nuocloc,price:5000},
-    {name:'Nước ngọt',img:IMG.nuocngot,price:15000},
-    {name:'Sữa đậu',img:IMG.suadau,price:15000},
-    {name:'Cà phê đen',img:IMG.capheden,price:20000},
-    {name:'Cà phê sữa',img:IMG.caphesuada,price:25000},
-  ],
-  'nhau':[
-    {name:'Bia Hà Nội',img:IMG.biahanoi,price:15000},
-    {name:'Bia Tiger',img:IMG.biatiger,price:20000},
-    {name:'Bia Heineken',img:IMG.biaheineken,price:25000},
-    {name:'Rượu trắng',img:IMG.ruoutrang,price:30000},
-  ],
-  'moi':[
-    {name:'Lòng bò xào',img:IMG.longbo,price:45000},
-    {name:'Bắp bò hấp',img:IMG.bacbo,price:55000},
-    {name:'Đuôi bò hầm',img:IMG.duoibo,price:65000},
-    {name:'Lạc rang',img:IMG.lacrang,price:20000},
-    {name:'Xúc xích',img:IMG.xucxich,price:35000},
-  ],
-  'lau':[
-    {name:'Lẩu bò',img:IMG.laubo,price:150000},
-    {name:'Lẩu thái',img:IMG.lauthai,price:140000},
-    {name:'Lẩu mắm',img:IMG.laumam,price:130000},
-    {name:'Lẩu nấm',img:IMG.launam,price:120000},
-  ],
-  'nhung':[
-    {name:'Bò tái',img:IMG.botai,price:60000},
-    {name:'Bò viên',img:IMG.bovien,price:40000},
-    {name:'Rau muống',img:IMG.raumuong,price:20000},
-    {name:'Đậu phụ',img:IMG.dauphu,price:20000},
-    {name:'Nấm hương',img:IMG.namhuong,price:35000},
-    {name:'Mì tươi',img:IMG.mitoi,price:20000},
-  ],
-};
-
-const TABS=[
-  {label:'Ăn sáng',img:IMG.pho},
-  {label:'Ăn kèm & Uống',img:IMG.trrada},
-  {label:'Đồ nhậu',img:IMG.biahanoi},
-  {label:'Lẩu',img:IMG.laubo},
-];
-
-let activeTabIdx = 0;
-
-function buildTabs(){
-  const bar=document.getElementById('tab-bar');
-  bar.innerHTML=TABS.map((t,i)=>`
-    <button class="tab ${i===0?'active':''}" onclick="switchTab(${i})">
-      <img class="tab-icon" src="${t.img}" alt="${t.label}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
-      <span class="tab-label">${t.label}</span>
-    </button>`).join('');
-}
-
-function buildSopt(item,multi=false,nextStepId=null){
-  const fn=multi?`multiSopt(this,'${nextStepId}')`:`pickSopt(this,'${nextStepId}')`;
-  const priceDisplay = item.price ? `<span class="sopt-price">+${fmtPrice(item.price)}</span>` : '';
-  
-  if (item.special) {
-    return `<div class="sopt sopt-special" data-g="${item.g||''}" data-v="${item.v||''}" data-price="${item.price||0}" onclick="${fn}">
-      <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy"></div>
-      <div class="sopt-info">
-        <span class="sopt-name">★ ${item.v||item.name}</span>
-        <span class="sopt-desc">Đầy đủ các loại bò tươi ngon nhất trong ngày</span>
-      </div>
-    </div>`;
-  }
-
-  return `<div class="sopt" data-g="${item.g||''}" data-v="${item.v||''}" data-price="${item.price||0}" onclick="${fn}">
-    <div class="sopt-img"><img src="${item.img}" alt="${item.v||item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'"></div>
-    <span class="sopt-name">${item.v||item.name}</span>
-    ${priceDisplay}
-  </div>`;
-}
-
-function buildPage0(){
-  document.getElementById('sopts-1').innerHTML=STEP1.map(i=>buildSopt(i,false,'step-2')).join('');
-  document.getElementById('sopts-2').innerHTML=STEP2.map(i=>buildSopt(i,false,'step-3')).join('');
-  document.getElementById('sopts-3').innerHTML=STEP3.map(i=>buildSopt(i,false,'step-4')).join('');
-  document.getElementById('sopts-4').innerHTML=STEP4.map(i=>buildSopt(i,false,'step-5')).join('');
-  document.getElementById('sopts-5').innerHTML=STEP5.map(i=>buildSopt(i,true,'step-6')).join('');
-  document.getElementById('sopts-6').innerHTML=STEP6.map(i=>buildSopt(i,true,null)).join('');
-}
-
-function buildGrids(){
-  Object.keys(MENU).forEach(key=>{
-    const el=document.getElementById('grid-'+key);
-    if(!el)return;
-    el.innerHTML=MENU[key].map((m,i)=>`
-      <div class="pcard" data-menu="${key}" data-idx="${i}" data-qty="0" onclick="togglePcard(this,'${key}',${i})">
-        <div class="pcard-img-wrap">
-          <img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'">
-          <div class="pcard-qty-badge" id="qbadge-${key}-${i}">1</div>
-        </div>
-        <div class="pcard-name">${m.name}</div>
-        <div class="pcard-price">${fmtPrice(m.price)}</div>
-      </div>`).join('');
-  });
-}
-
-function togglePcard(el,key,idx){
-  let q=parseInt(el.dataset.qty)||0;
-  q=(q+1)%4;
-  el.dataset.qty=q;
-  el.classList.toggle('sel',q>0);
-  const badge=document.getElementById(`qbadge-${key}-${idx}`);
-  if(badge){badge.textContent=q;badge.style.display=q>0?'flex':'none';}
-}
-
-function scrollToStep(targetId) {
-  if (!targetId || targetId === 'null') return;
-  setTimeout(() => {
-    const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, 150);
-}
-
-function pickSopt(el, nextStepId){
-  document.querySelectorAll(`[data-g="${el.dataset.g}"]`).forEach(i=>i.classList.remove('sel'));
-  el.classList.add('sel');
-  scrollToStep(nextStepId);
-}
-
-function multiSopt(el, nextStepId){
-  el.classList.toggle('sel');
-  if (el.classList.contains('sel') && nextStepId) {
-    scrollToStep(nextStepId);
-  }
-}
-
-function getG(g){return[...document.querySelectorAll(`[data-g="${g}"].sel`)].map(e=>e.dataset.v)}
-
-function getSelectedS6Details(){
-  return [...document.querySelectorAll('[data-g="s6"].sel')].map(e=>({
-    name: e.dataset.v,
-    price: parseInt(e.dataset.price)||0
-  }));
-}
-
-function setDefaults(){
-  const h=document.querySelector('[data-g="s3"][data-v="Có hành"]');if(h)h.classList.add('sel');
-  const b=document.querySelector('[data-g="s4"][data-v="Bình thường"]');if(b)b.classList.add('sel');
-}
-
-function calcPricePho(thit, size, extraItems){
-  let basePrice = 40000;
-  if(thit.includes('Đặc biệt (Đủ loại bò)')){
-    basePrice = 50000;
-  } else {
-    basePrice += Math.max(0,thit.length-1)*10000;
-  }
-  
-  const sizePrice = (size==='Suất lớn'? 10000 : (size==='Trẻ em'? -5000 : 0));
-  const extraPrice = extraItems.reduce((sum, item) => sum + item.price, 0);
-  
-  return basePrice + sizePrice + extraPrice;
-}
-
-function switchTab(n){
-  activeTabIdx = n;
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
-  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));
-}
-
-// VUỐT CHUYỂN TAB
-let touchStartX = 0, touchStartY = 0, touchEndX = 0, touchEndY = 0;
-
-document.querySelectorAll('.page').forEach(page => {
-  page.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, {passive: true});
-
-  page.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  }, {passive: true});
-});
-
-function handleSwipe() {
-  const diffX = touchEndX - touchStartX;
-  const diffY = touchEndY - touchStartY;
-  
-  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-    if (diffX < 0) {
-      if (activeTabIdx < TABS.length - 1) switchTab(activeTabIdx + 1);
-    } else {
-      if (activeTabIdx > 0) switchTab(activeTabIdx - 1);
-    }
-  }
-}
-
-let cart=[],orderCount=0;
-function fmtPrice(n){return(n/1000).toLocaleString('vi-VN')+'k'}
-
-function handleAddAction(){
-  if(activeTabIdx === 0) {
-    addToCartPage0();
-  } else {
-    addSimple(activeTabIdx);
-  }
-}
-
-function addToCartPage0(){
-  const s1=getG('s1'),s2=getG('s2'),s3=getG('s3'),s4=getG('s4'),s5=getG('s5');
-  const s6Items=getSelectedS6Details();
-  
-  const checks=[
-    {g:s1,step:'step-1',label:'loại sợi'},
-    {g:s2,step:'step-2',label:'cách chế biến'},
-    {g:s3,step:'step-3',label:'hành'},
-    {g:s4,step:'step-4',label:'khẩu phần'},
-    {g:s5,step:'step-5',label:'loại thịt'}
-  ];
-  const miss=checks.find(x=>!x.g.length);
-  if(miss){
-    toast(`⚠️ Chưa chọn ${miss.label}!`);
-    const el=document.getElementById(miss.step);
-    if(el){el.style.outline='2px solid var(--brand-orange)';el.style.borderRadius='8px';setTimeout(()=>{el.style.outline='';el.style.borderRadius='';},1500);}
-    return;
-  }
-  
-  let subText = `🥩 ${s5.join(', ')} · 🌿 ${s3[0]}`;
-  if(s6Items.length) {
-    subText += ` · ➕ Kèm: ${s6Items.map(i=>i.name).join(', ')}`;
-  }
-
-  cart.push({
-    label:`${s4[0]} · ${s1[0]} ${s2[0]}`,
-    sub: subText,
-    price: calcPricePho(s5, s4[0], s6Items),
-    qty: 1
-  });
-
-  ['s1','s2','s5','s6'].forEach(g=>document.querySelectorAll(`[data-g="${g}"].sel`).forEach(e=>e.classList.remove('sel')));
-  setDefaults();
-  renderCart();
-  toast('✅ Đã thêm vào giỏ hàng!');
-
-  const page0 = document.getElementById('page-0');
-  if (page0) {
-    page0.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-function addSimple(tab){
-  const grids=tab===1?['an-kem','uong']:tab===2?['nhau','moi']:['lau','nhung'];
-  let added=0;
-  grids.forEach(key=>{
-    document.querySelectorAll(`[data-menu="${key}"]`).forEach(el=>{
-      const q=parseInt(el.dataset.qty)||0;
-      if(q>0){
-        const m=MENU[key][parseInt(el.dataset.idx)];
-        cart.push({label:m.name,sub:'',price:m.price,qty:q});
-        el.dataset.qty=0;el.classList.remove('sel');
-        const badge=el.querySelector('.pcard-qty-badge');if(badge)badge.style.display='none';
-        added++;
-      }
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { ShoppingBag, ArrowLeft, Plus, ChevronLeft, ChevronRight, HeartHandshake, Trash2, CheckCircle2 } from 'lucide-react';
+
+// URL Logo thương hiệu
+const LOGO_URL = 'Logo.png';
+
+// ── TELEGRAM CONFIG ──
+const TG_BOT_TOKEN = '8873216327:AAGdcmLe7r91CgL-EAVuilQFdrEX381s7Ec';
+const TG_CHAT_ID = '8818170775';
+
+async function sendTelegramNotification(message: string) {
+  try {
+    const params = new URLSearchParams({
+      chat_id: TG_CHAT_ID,
+      text: message,
+      parse_mode: 'HTML',
     });
-  });
-  if(!added){toast('⚠️ Chưa chọn món nào!');return;}
-  renderCart();
-  toast(`✅ Đã thêm món vào giỏ!`);
+    await fetch(
+      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?${params.toString()}`,
+      { method: 'GET', mode: 'no-cors' }
+    );
+  } catch (err) {
+    console.error('Telegram error:', err);
+  }
 }
 
-function changeQty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);renderCart()}
-function removeItem(i){cart.splice(i,1);renderCart()}
+// MENU ĂN SÁNG
+const BREAKFAST_DISHES = [
+  {
+    id: 'dac-biet',
+    name: 'Đặc Biệt (Đủ loại bò)',
+    price: 50000,
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
+    description: 'Nước dùng ninh xương 12 tiếng thơm nức, đầy đủ thịt bò tái, nạm, gầu, bò viên và sườn bò ninh nhừ giòn ngọt.',
+  },
+  {
+    id: 'bo-tai',
+    name: 'Phở / Bún Bò Tái',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
+    description: 'Thịt bò thăn tươi sống được chần tái trực tiếp bằng nước dùng nóng hổi, giữ trọn độ mềm ngọt tự nhiên.',
+  },
+  {
+    id: 'bo-nam',
+    name: 'Phở / Bún Bò Nạm',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800',
+    description: 'Nạm bò luộc chín tới, vừa có độ giòn nhẹ vừa béo ngậy, cắt lát vừa ăn.',
+  },
+  {
+    id: 'bo-vien',
+    name: 'Phở / Bún Bò Viên',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800',
+    description: 'Bò viên gân giòn sần sật, đậm vị thịt bò tươi kết hợp nước dùng thanh ngọt.',
+  },
+  {
+    id: 'bo-sot-vang',
+    name: 'Phở / Bún Bò Sốt Vang',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800',
+    description: 'Thịt dẻ sườn hầm mềm với vang đỏ và quế hồi, nước dùng sánh quyện màu cam đỏ hấp dẫn.',
+  },
+  {
+    id: 'gau-bo',
+    name: 'Phở / Bún Gầu Bò',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
+    description: 'Gầu bò giòn thơm, xen kẽ giữa mỡ và thịt không hề gây ngấy.',
+  },
+  {
+    id: 'tai-lan',
+    name: 'Phở / Bún Tái Lăn',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
+    description: 'Bò tươi xào nhanh trên lửa lớn với tỏi và hành lá, thơm lừng béo ngậy.',
+  },
+  {
+    id: 'tim-cat',
+    name: 'Phở / Bún Tim Cật',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800',
+    description: 'Tim cật tươi chần giòn, làm sạch sấy thơm, ăn kèm nước dùng đậm đà.',
+  },
+  {
+    id: 'suon',
+    name: 'Phở / Bún Sườn Bò',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800',
+    description: 'Sườn bò cây lớn ninh mềm róc xương, thịt đậm đà tan trong miệng.',
+  },
+  {
+    id: 'thit-nuong',
+    name: 'Bún Thịt Nướng',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800',
+    description: 'Thịt nướng than hoa thơm lừng tẩm ướp vừng mè gia truyền.',
+  },
+  {
+    id: 'cha-cham',
+    name: 'Bún Chả Chấm',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1634864562115-9d3326164287?w=800',
+    description: 'Chả viên và chả miếng nướng cháy xèo, nước chấm chua ngọt kèm đu đủ giòn.',
+    isBunCha: true,
+  },
+];
 
-function toggleExpandCart(){
-  const bar = document.getElementById('cart-bar');
-  const btn = document.getElementById('btn-toggle-expand');
-  bar.classList.toggle('expanded');
-  btn.textContent = bar.classList.contains('expanded') ? '▼ Thu gọn' : '▲ Mở rộng';
-}
+// MENU COMBO (MỚI THÊM)
+const COMBO_DISHES = [
+  {
+    id: 'combo-2-nguoi',
+    name: 'Combo Hẹn Hò (2 Người)',
+    price: 299000,
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800',
+    description: 'Bao gồm: 1 Lẩu Bò Uyên Ương (2 người) + 1 Đĩa Bò Viên Chiên + 2 Lon Pepsi / 7Up mát lạnh.',
+  },
+  {
+    id: 'combo-4-nguoi',
+    name: 'Combo Phố Hội (4 Người)',
+    price: 599000,
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800',
+    description: 'Bao gồm: 1 Lẩu Bò Lớn (4 người) + 1 Bò Nướng Ngũ Vị + 1 Đĩa Tim Cật Xào + 4 Đồ uống tùy chọn.',
+  },
+  {
+    id: 'combo-8-nguoi',
+    name: 'Combo Đại Tiệc 888 (8 Người)',
+    price: 1199000,
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800',
+    description: 'Bao gồm: 2 Nồi Lẩu Lớn tùy chọn + 1 Bò Múa Lửa + 1 Bò Đắp Chăn + 1 Bò Tắm Thảo Mộc + 2 Chai Rượu Men Lá.',
+  },
+];
 
-function renderCart(){
-  const totalQty=cart.reduce((s,b)=>s+b.qty,0);
-  const totalPrice=cart.reduce((s,b)=>s+b.price*b.qty,0);
+// MENU ĐỒ UỐNG
+const DRINK_DISHES = [
+  { id: 'pepsi', name: 'Pepsi', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800', description: 'Pepsi ướp lạnh sảng khoái' },
+  { id: 'rockstar', name: 'Nước Tăng Lực Rockstar', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=800', description: 'Tăng lực bù đắp năng lượng' },
+  { id: 'aquafina', name: 'Nước Suối Aquafina', price: 10000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=800', description: 'Nước khoáng tinh khiết 500ml' },
+  { id: 'sting-vang', name: 'Sting Vàng', price: 10000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=800', description: 'Nước tăng lực Sting vị nhân sâm' },
+  { id: 'sting-do', name: 'Sting Đỏ', price: 10000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=800', description: 'Nước tăng lực Sting hương dâu' },
+  { id: '7up', name: '7Up', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800', description: 'Nước ngọt có ga vị chanh mát lạnh' },
+  { id: 'twister-cam', name: 'Nước Cam Twister', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800', description: 'Nước tép cam tươi giàu Vitamin C' },
+  { id: 'revive', name: 'Revive', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=800', description: 'Nước khoáng bù khoáng tức thì' },
+  { id: 'twister-sua-trai-cay', name: 'Sữa Trái Cây Twister', price: 15000, category: 'Đóng chai', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800', description: 'Sữa trái cây thơm ngon bổ dưỡng' },
+  { id: 'tra-chanh-tac', name: 'Trà Chanh / Trà Tắc', price: 20000, category: 'Pha chế', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800', description: 'Trà pha tươi mát lạnh, giải nhiệt' },
+  { id: 'cafe-den', name: 'Cà Phê Đen', price: 20000, category: 'Pha chế', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800', description: 'Cà phê nguyên chất đậm đà' },
+  { id: 'cafe-sua', name: 'Cà Phê Sữa', price: 25000, category: 'Pha chế', image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800', description: 'Cà phê phin hòa quyện sữa đặc béo ngậy' },
+  { id: 'bac-siu', name: 'Bạc Sỉu', price: 25000, category: 'Pha chế', image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800', description: 'Nhiều sữa ít cà phê, thơm ngọt dễ uống' },
+  { id: 'chanh-tuoi', name: 'Nước Chanh Tươi', price: 20000, category: 'Pha chế', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800', description: 'Chanh tươi vắt đường đá sảng khoái' },
+  { id: 'bia-ha-noi', name: 'Bia Lon Hà Nội', price: 20000, category: 'Đồ có cồn', image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=800', description: 'Bia Hà Nội lon ướp lạnh' },
+  { id: 'bia-sai-gon', name: 'Bia Lon Sài Gòn', price: 20000, category: 'Đồ có cồn', image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=800', description: 'Bia Sài Gòn lon ướp lạnh' },
+  { id: 'ruou-men-la', name: 'Rượu Men Lá', price: 25000, category: 'Đồ có cồn', image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800', description: 'Rượu men lá truyền thống (Chai)' },
+  { id: 'ruou-thao-duoc', name: 'Rượu Ngâm Thảo Dược', price: 60000, category: 'Đồ có cồn', image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800', description: 'Rượu ngâm thảo dược bổ dưỡng (Chai)' },
+];
 
-  document.getElementById('cart-badge-count').textContent = totalQty;
-  document.getElementById('cart-total-val').textContent = fmtPrice(totalPrice);
+// MENU ĐỒ NHẬU
+const NHAN_DISHES = [
+  { id: 'bo-nuong-ngu-vi', name: 'Bò Nướng Ngũ Vị', price: 120000, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', description: 'Thịt bò tươi ướp gia vị ngũ vị hương thơm lừng nướng xèo' },
+  { id: 'bo-mua-lua', name: 'Bò Múa Lửa', price: 150000, image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800', description: 'Món bò xào lửa lớn giữ trọn độ mềm mọng và hương vị đặc trưng' },
+  { id: 'bo-tam-thao-moc', name: 'Bò Tắm Thảo Mộc', price: 100000, image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800', description: 'Thịt bò chần/hầm nhẹ cùng các loại thảo mộc thanh ngọt' },
+  { id: 'bo-dap-chan', name: 'Bò Đắp Chăn', price: 120000, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', description: 'Thịt bò cuộn/phủ lớp gia vị đặc biệt thơm ngon đậm đà' },
+  { id: 'bo-vien-chien', name: 'Bò Viên Chiên', price: 100000, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800', description: 'Bò viên chiên giòn rụm bên ngoài, dai ngọt bên trong' },
+  { id: 'bo-sot-vang-nhau', name: 'Bò Sốt Vang', price: 100000, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', description: 'Bò hầm vang sốt sánh quyện, món nhậu chuẩn vị' },
+  { id: 'bo-xao-abc', name: 'Bò Xào Món Phụ', price: 120000, image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800', description: 'Thịt bò xào mềm thơm kết hợp rau củ tươi' },
+  { id: 'thit-lon-nuong', name: 'Thịt Lợn Nướng', price: 100000, image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800', description: 'Thịt lợn tẩm ướp đậm đà nướng cháy cạnh thơm phức' },
+  { id: 'tim-cat-xao', name: 'Tim Cật Xào', price: 120000, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800', description: 'Tim cật tươi xào giòn sần sật béo ngậy' },
+];
 
-  const scroll=document.getElementById('cart-list-scroll');
-  if(!cart.length){
-    scroll.innerHTML='<div class="cart-empty-text">Chưa chọn món nào</div>';
-    return;
+// MENU LẨU (GIÁ MẶC ĐỊNH LẨU UYÊN ƯƠNG)
+const LAU_DISHES = [
+  { id: 'lau-bo-888', name: 'Lẩu Bò 888', price: 252513.25, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800', description: 'Nước dùng độc quyền 888, đầy đủ bắp bò, nạm, gầu, bò viên tươi' },
+  { id: 'lau-bo-thuoc-bac', name: 'Lẩu Bò Thuốc Bắc Đông Trùng', price: 252513.25, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', description: 'Nước lẩu tiềm thuốc bắc và đông trùng hạ thảo đại bổ, thơm dịu' },
+  { id: 'lau-bo-nhung-dam', name: 'Lẩu Bò Nhúng Dấm', price: 252513.25, image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800', description: 'Nước dùng chua thanh vị dấm mần, nhúng bò tái ăn kèm bánh tráng rau sống' },
+  { id: 'lau-thai-chua-cay', name: 'Lẩu Thái Chua Cay', price: 252513.25, image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800', description: 'Nước lẩu Tomyum đậm đà chua cay bùng nổ vị giác' },
+];
+
+// CÁC TÙY CHỌN LẨU
+const LAU_OPTIONS = [
+  { id: 'uyen-uong', name: 'Lẩu Uyên Ương (2 người)', price: 252513.25 },
+  { id: 'lau-lon', name: 'Lẩu Lớn (4 người)', price: 500000 },
+];
+
+// POPUP THÔNG BÁO QUY TRÌNH
+const QUICK_SIDE_ITEMS = [
+  { id: 'quay', name: 'Quẩy', price: 10000 },
+  { id: 'pepsi', name: 'Pepsi', price: 15000 },
+  { id: 'aquafina', name: 'Aquafina', price: 10000 },
+  { id: 'trung_tran', name: 'Trứng Trần', price: 15000 },
+  { id: 'vit_lon', name: 'Trứng Vịt Lộn', price: 15000 },
+];
+
+// Tùy chọn ăn sáng
+const NOODLE_TYPES = ['Phở', 'Bún', 'Mỳ'];
+const COOKING_METHODS = [
+  { name: 'Nước béo', priceOffset: 0 },
+  { name: 'Nước trong', priceOffset: 0 },
+  { name: 'Xào', priceOffset: 10000 },
+  { name: 'Trộn', priceOffset: 0 },
+];
+const GREEN_ONION_OPTIONS = ['Có hành', '0 hành'];
+const PORTION_SIZES = [
+  { name: 'Trẻ em', priceOffset: -5000 },
+  { name: 'Bình thường', priceOffset: 0 },
+  { name: 'Suất lớn', priceOffset: 10000 },
+];
+
+const EXTRA_TOPPINGS = [
+  { id: 'tai', name: 'Thịt Tái', price: 10000 },
+  { id: 'nam', name: 'Thịt Nạm', price: 10000 },
+  { id: 'bo_vien', name: 'Bò Viên', price: 10000 },
+  { id: 'sot_vang', name: 'Sốt Vang', price: 10000 },
+  { id: 'gau', name: 'Gầu Bò', price: 10000 },
+  { id: 'tim_cat', name: 'Tim Cật', price: 10000 },
+  { id: 'thit_nuong', name: 'Thịt Nướng', price: 10000 },
+  { id: 'gan', name: 'Gân Bò', price: 10000 },
+  { id: 'quay', name: 'Quẩy', price: 10000 },
+  { id: 'trung_ga', name: 'Trứng Gà', price: 8000 },
+  { id: 'trung_vit', name: 'Trứng Vịt', price: 10000 },
+  { id: 'gio', name: 'Giò', price: 10000 },
+];
+
+const BUN_CHA_EXTRAS = [
+  { id: 'bun_them', name: 'Thêm Bún', price: 5000 },
+  { id: 'thit_nuong', name: 'Thịt Nướng', price: 10000 },
+  { id: 'quay', name: 'Quẩy', price: 10000 },
+];
+
+export default function Home() {
+  const [activeTab, setActiveTab] = useState<'breakfast' | 'combo' | 'drink' | 'nhau' | 'lau'>('breakfast');
+
+  const [selectedDishIndex, setSelectedDishIndex] = useState<number | null>(null);
+  const [isOptionOpen, setIsOptionOpen] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<number>(0);
+
+  // Tùy chọn món ăn sáng
+  const [selectedNoodle, setSelectedNoodle] = useState('Phở');
+  const [selectedCooking, setSelectedCooking] = useState('Nước béo');
+  const [selectedOnion, setSelectedOnion] = useState('Có hành');
+  const [selectedPortion, setSelectedPortion] = useState('Bình thường');
+
+  // Tùy chọn Lẩu (Uyên Ương / Lẩu Lớn)
+  const [selectedLauOption, setSelectedLauOption] = useState<string>('uyen-uong');
+
+  const [selectedExtras, setSelectedExtras] = useState<{ [key: string]: number }>({});
+  const [quantity, setQuantity] = useState(1);
+
+  // Giỏ hàng & Popup
+  const [cart, setCart] = useState<any[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showThankYouPopup, setShowThankYouPopup] = useState(false);
+
+  const [quickSides, setQuickSides] = useState<{ [key: string]: number }>({});
+
+  const getCurrentDishes = () => {
+    switch (activeTab) {
+      case 'breakfast': return BREAKFAST_DISHES;
+      case 'combo': return COMBO_DISHES;
+      case 'drink': return DRINK_DISHES;
+      case 'nhau': return NHAN_DISHES;
+      case 'lau': return LAU_DISHES;
+      default: return BREAKFAST_DISHES;
+    }
+  };
+
+  const currentDishList = getCurrentDishes();
+  const currentDish = selectedDishIndex !== null ? currentDishList[selectedDishIndex] : null;
+
+  const resetOptions = () => {
+    setSelectedNoodle('Phở');
+    setSelectedCooking('Nước béo');
+    setSelectedOnion('Có hành');
+    setSelectedPortion('Bình thường');
+    setSelectedLauOption('uyen-uong');
+    setSelectedExtras({});
+    setQuantity(1);
+  };
+
+  const handleOpenDetail = (index: number) => {
+    setSelectedDishIndex(index);
+    resetOptions();
+  };
+
+  const handleNextDish = () => {
+    if (selectedDishIndex === null) return;
+    setSwipeDirection(1);
+    setSelectedDishIndex((prev) => (prev! + 1) % currentDishList.length);
+    resetOptions();
+  };
+
+  const handlePrevDish = () => {
+    if (selectedDishIndex === null) return;
+    setSwipeDirection(-1);
+    setSelectedDishIndex((prev) => (prev! - 1 + currentDishList.length) % currentDishList.length);
+    resetOptions();
+  };
+
+  const handleDragEnd = (event: any, info: PanInfo) => {
+    const swipeThreshold = 40;
+    const velocityThreshold = 200;
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      handleNextDish();
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      handlePrevDish();
+    }
+  };
+
+  const handleCycleExtra = (id: string) => {
+    setSelectedExtras((prev) => {
+      const current = prev[id] || 0;
+      const next = current >= 4 ? 0 : current + 1;
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const handleCycleQuickSide = (id: string) => {
+    setQuickSides((prev) => {
+      const current = prev[id] || 0;
+      const next = current >= 4 ? 0 : current + 1;
+      return { ...prev, [id]: next };
+    });
+  };
+
+  // Tính giá đơn giá hiện tại
+  const isBunChaDish = currentDish?.isBunCha || currentDish?.id === 'cha-cham';
+  let calculatedUnitPrice = currentDish ? currentDish.price : 40000;
+
+  if (activeTab === 'lau') {
+    const lauOpt = LAU_OPTIONS.find((opt) => opt.id === selectedLauOption);
+    if (lauOpt) {
+      calculatedUnitPrice = lauOpt.price;
+    }
+  } else if (activeTab === 'breakfast' && !isBunChaDish) {
+    const currentPortionObj = PORTION_SIZES.find((p) => p.name === selectedPortion);
+    calculatedUnitPrice += currentPortionObj ? currentPortionObj.priceOffset : 0;
+
+    const currentCookingObj = COOKING_METHODS.find((c) => c.name === selectedCooking);
+    calculatedUnitPrice += currentCookingObj ? currentCookingObj.priceOffset : 0;
   }
 
-  scroll.innerHTML=cart.map((b,i)=>`
-    <div class="cart-item-row">
-      <div class="cart-item-info">
-        <div class="cart-item-title">${b.label}</div>
-        ${b.sub?`<div class="cart-item-sub">${b.sub}</div>`:''}
-      </div>
-      <div class="cart-item-controls">
-        <div class="cart-qty-ctrl">
-          <button onclick="changeQty(${i},-1)">−</button>
-          <span>${b.qty}</span>
-          <button onclick="changeQty(${i},1)">+</button>
+  const availableExtrasList = isBunChaDish ? BUN_CHA_EXTRAS : EXTRA_TOPPINGS;
+
+  if (activeTab === 'breakfast') {
+    const totalExtrasCost = Object.entries(selectedExtras).reduce((sum, [id, count]) => {
+      const topping = availableExtrasList.find((t) => t.id === id);
+      const itemPrice = topping ? topping.price : 10000;
+      return sum + count * itemPrice;
+    }, 0);
+    calculatedUnitPrice += totalExtrasCost;
+  }
+
+  const totalPriceForCustomItem = calculatedUnitPrice * quantity;
+
+  // Thêm vào giỏ
+  const handleAddToCart = () => {
+    if (!currentDish) return;
+
+    let optionsSummary = '';
+
+    if (activeTab === 'breakfast') {
+      const extrasList: string[] = [];
+      Object.entries(selectedExtras).forEach(([id, count]) => {
+        if (count > 0) {
+          const topping = availableExtrasList.find((t) => t.id === id);
+          if (topping) {
+            extrasList.push(`${count}x ${topping.name} (+${(count * topping.price) / 1000}k)`);
+          }
+        }
+      });
+
+      if (isBunChaDish) {
+        optionsSummary = extrasList.length > 0 ? extrasList.join(' • ') : 'Suất chuẩn';
+      } else {
+        const baseOpt = `Sợi: ${selectedNoodle} • ${selectedCooking} • ${selectedOnion} • Suất ${selectedPortion}`;
+        optionsSummary = extrasList.length > 0 ? `${baseOpt} | Gọi thêm: ${extrasList.join(', ')}` : baseOpt;
+      }
+    } else if (activeTab === 'lau') {
+      const lauOpt = LAU_OPTIONS.find((opt) => opt.id === selectedLauOption);
+      optionsSummary = lauOpt ? lauOpt.name : 'Lẩu Uyên Ương (2 người)';
+    } else {
+      optionsSummary = currentDish.description || 'Suất tiêu chuẩn';
+    }
+
+    const cartItem = {
+      cartId: Date.now(),
+      dishId: currentDish.id,
+      name: currentDish.name,
+      image: currentDish.image,
+      optionsSummary: optionsSummary,
+      unitPrice: calculatedUnitPrice,
+      quantity: quantity,
+      finalPrice: totalPriceForCustomItem,
+    };
+
+    setCart((prevCart) => [...prevCart, cartItem]);
+    setIsOptionOpen(false);
+    setSelectedDishIndex(null);
+  };
+
+  const updateCartQuantity = (cartId: number, delta: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) => {
+        if (item.cartId === cartId) {
+          const newQty = item.quantity + delta;
+          if (newQty <= 0) return null;
+          return {
+            ...item,
+            quantity: newQty,
+            finalPrice: item.unitPrice * newQty,
+          };
+        }
+        return item;
+      }).filter(Boolean)
+    );
+  };
+
+  const removeCartItem = (cartId: number) => {
+    setCart((prevCart) => prevCart.filter((item) => item.cartId !== cartId));
+  };
+
+  const totalCartAmount = cart.reduce((sum, item) => sum + item.finalPrice, 0);
+
+  const handleCheckout = () => {
+    // ── GỬI THÔNG BÁO TELEGRAM ──
+    const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    const tableNum = new URLSearchParams(window.location.search).get('ban') || '?';
+    const totalAmount = cart.reduce((sum, item) => sum + item.finalPrice, 0);
+
+    const itemLines = cart.map((item, i) =>
+      `<b>[${i + 1}] ${item.name}</b> x${item.quantity} — ${(item.finalPrice).toLocaleString('vi-VN')}đ\n  📝 ${item.optionsSummary}`
+    ).join('\n─────────────────\n');
+
+    const msg =
+`🍜 <b>ĐƠN MỚI | BÀN ${tableNum}</b> | ${now}
+━━━━━━━━━━━━━━━━━━
+${itemLines}
+━━━━━━━━━━━━━━━━━━
+💰 <b>Tổng: ${totalAmount.toLocaleString('vi-VN')}đ</b>`;
+
+    sendTelegramNotification(msg);
+
+    setIsCartOpen(false);
+    setShowThankYouPopup(true);
+    setQuickSides({});
+  };
+
+  const closeThankYouPopup = () => {
+    // Gửi đồ ăn kèm nếu có chọn thêm
+    const hasQuickSides = Object.values(quickSides).some((v) => v > 0);
+    if (hasQuickSides) {
+      const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+      const tableNum = new URLSearchParams(window.location.search).get('ban') || '?';
+      const sideLines = Object.entries(quickSides)
+        .filter(([, count]) => count > 0)
+        .map(([id, count]) => {
+          const item = QUICK_SIDE_ITEMS.find((q) => q.id === id);
+          return item ? `  • ${item.name} x${count} — ${(item.price * count / 1000)}k` : '';
+        })
+        .filter(Boolean)
+        .join('\n');
+      const totalSides = Object.entries(quickSides).reduce((sum, [id, count]) => {
+        const item = QUICK_SIDE_ITEMS.find((q) => q.id === id);
+        return sum + (item ? item.price * count : 0);
+      }, 0);
+      const msg =
+`➕ <b>GỌI THÊM | BÀN ${tableNum}</b> | ${now}
+━━━━━━━━━━━━━━━━━━
+${sideLines}
+━━━━━━━━━━━━━━━━━━
+💰 <b>Thêm: ${totalSides.toLocaleString('vi-VN')}đ</b>`;
+      sendTelegramNotification(msg);
+    }
+
+    setShowThankYouPopup(false);
+    setQuickSides({});
+    setCart([]);
+  };
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.96,
+    }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (direction: number) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.96,
+    }),
+  };
+
+  const totalQuickSidesCost = Object.entries(quickSides).reduce((sum, [id, count]) => {
+    const itemObj = QUICK_SIDE_ITEMS.find((q) => q.id === id);
+    return sum + (itemObj ? itemObj.price * count : 0);
+  }, 0);
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-neutral-900 font-sans text-slate-800 p-2 sm:p-4">
+      <div className="relative w-full max-w-sm h-[800px] bg-slate-50 rounded-[40px] shadow-2xl overflow-hidden border-8 border-neutral-800 flex flex-col justify-between">
+        
+        {/* HÌNH NỀN CHÌM */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.08]">
+          <img src={LOGO_URL} alt="Background Watermark" className="w-80 h-80 object-contain" />
         </div>
-        <div class="cart-item-price">${fmtPrice(b.price*b.qty)}</div>
-        <button style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:0.75rem;padding:2px" onclick="removeItem(${i})">✕</button>
+
+        {/* Header Top - Logo & Tên quán */}
+        <div className="p-3 pb-2 bg-white/95 backdrop-blur-md flex justify-between items-center shadow-xs z-10 border-b border-slate-100">
+          <div className="flex items-center gap-2 max-w-[80%]">
+            <img
+              src={LOGO_URL}
+              alt="Logo Bò Ngon 888"
+              className="w-10 h-10 object-contain shrink-0 rounded-full border border-orange-100 shadow-xs"
+            />
+            <div className="truncate">
+              <h1 className="text-[13px] uppercase tracking-wider text-orange-600 font-black leading-tight truncate">
+                Bò Ngon 888
+              </h1>
+              <p className="text-[9px] font-bold text-slate-500 leading-tight mt-0.5 line-clamp-1">
+                Phở, Combo, Lẩu, Nướng - Bò tươi mỗi ngày
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2.5 bg-orange-50 hover:bg-orange-100 rounded-full text-slate-800 transition shrink-0"
+          >
+            <ShoppingBag size={20} className="text-orange-600" />
+            {cart.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
+                {cart.reduce((a, b) => a + b.quantity, 0)}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* --- TAGS DANH MỤC --- */}
+        <div className="bg-white/95 backdrop-blur-md px-2 py-2 flex gap-1.5 overflow-x-auto border-b border-slate-100 scrollbar-none z-10">
+          {[
+            { id: 'breakfast', label: 'Ăn Sáng' },
+            { id: 'combo', label: 'Combo 🔥' },
+            { id: 'drink', label: 'Đồ Uống' },
+            { id: 'nhau', label: 'Đồ Nhậu' },
+            { id: 'lau', label: 'Lẩu' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setActiveTab(tab.id as any);
+                setSelectedDishIndex(null);
+              }}
+              className={`px-3 py-1.5 text-[11px] font-extrabold rounded-xl shrink-0 transition ${
+                activeTab === tab.id
+                  ? 'bg-orange-500 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* --- MENU DẠNG 2 CỘT --- */}
+        <div className="flex-1 overflow-y-auto p-3 space-y-3 z-1 relative">
+          <div className="flex items-center justify-between px-1">
+            <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              {activeTab === 'breakfast' && 'Menu Phở & Bún Tươi'}
+              {activeTab === 'combo' && 'Combo Tiết Kiệm (2, 4, 8 Người)'}
+              {activeTab === 'drink' && 'Giải Khát, Cà Phê & Bia Rượu'}
+              {activeTab === 'nhau' && 'Món Nhậu Bò & Lợn Độc Đáo'}
+              {activeTab === 'lau' && 'Các Món Lẩu Bò Đậm Đà'}
+            </h2>
+            <span className="text-[10px] text-orange-600 font-bold">
+              {currentDishList.length} món
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5">
+            {currentDishList.map((dish, index) => (
+              <div
+                key={dish.id}
+                onClick={() => handleOpenDetail(index)}
+                className="bg-white/90 backdrop-blur-xs rounded-2xl p-2.5 border border-slate-100 shadow-xs hover:shadow-md transition cursor-pointer active:scale-95 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-full h-24 rounded-xl overflow-hidden mb-2 relative">
+                    <img src={dish.image} alt={dish.name} className="w-full h-full object-cover" />
+                    {'category' in dish && (
+                      <span className="absolute top-1 left-1 bg-black/60 text-white text-[8px] px-1.5 py-0.5 rounded-md font-bold">
+                        {dish.category}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-xs font-bold text-slate-800 line-clamp-1">{dish.name}</h3>
+                  <p className="text-[10px] text-slate-400 mt-0.5 line-clamp-2">{dish.description}</p>
+                </div>
+
+                <div className="mt-2 flex justify-between items-center pt-2 border-t border-slate-50">
+                  <span className="text-xs font-black text-orange-600">
+                    {activeTab === 'lau' ? 'Từ 252.513 đ' : `${dish.price.toLocaleString('vi-VN')} đ`}
+                  </span>
+                  <span className="bg-orange-500 text-white p-1 rounded-full text-[10px]">
+                    <Plus size={12} />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* --- CHI TIẾT MÓN --- */}
+        <AnimatePresence initial={false} custom={swipeDirection}>
+          {selectedDishIndex !== null && currentDish && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 bg-white z-30 flex flex-col justify-between overflow-hidden"
+            >
+              <div className="absolute top-4 inset-x-4 flex justify-between items-center z-20">
+                <button
+                  onClick={() => setSelectedDishIndex(null)}
+                  className="p-2.5 bg-black/40 backdrop-blur-md text-white rounded-full hover:bg-black/60 transition shadow-lg active:scale-90"
+                >
+                  <ArrowLeft size={18} />
+                </button>
+                <span className="text-xs font-bold text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full">
+                  {selectedDishIndex + 1} / {currentDishList.length}
+                </span>
+              </div>
+
+              <button
+                onClick={handlePrevDish}
+                className="absolute left-2 top-1/4 -translate-y-1/2 z-20 p-2 bg-white/80 backdrop-blur-md text-slate-800 rounded-full shadow-md hover:bg-white active:scale-90 transition"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={handleNextDish}
+                className="absolute right-2 top-1/4 -translate-y-1/2 z-20 p-2 bg-white/80 backdrop-blur-md text-slate-800 rounded-full shadow-md hover:bg-white active:scale-90 transition"
+              >
+                <ChevronRight size={20} />
+              </button>
+
+              <motion.div
+                key={selectedDishIndex}
+                custom={swipeDirection}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 350, damping: 28, mass: 0.8 },
+                  opacity: { duration: 0.15 },
+                  scale: { duration: 0.15 },
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragSnapToOrigin={true}
+                dragElastic={0.08}
+                onDragEnd={handleDragEnd}
+                className="w-full h-full flex flex-col justify-between cursor-grab active:cursor-grabbing touch-pan-y"
+              >
+                <div className="w-full h-[50%] relative bg-slate-900 overflow-hidden">
+                  <img
+                    src={currentDish.image}
+                    alt={currentDish.name}
+                    className="w-full h-full object-cover pointer-events-none select-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+                </div>
+
+                <div className="w-full h-[50%] bg-white rounded-t-[32px] -mt-6 relative z-10 px-4 pt-4 pb-3 flex flex-col justify-between shadow-2xl">
+                  <div>
+                    <div className="w-12 h-1 bg-slate-200 rounded-full mx-auto mb-2" />
+                    
+                    <div className="flex justify-between items-start gap-2">
+                      <h2 className="text-lg font-black text-slate-900 leading-tight">
+                        {currentDish.name}
+                      </h2>
+                      <span className="text-base font-black text-orange-600 shrink-0">
+                        {activeTab === 'lau' ? 'Chọn cỡ lẩu' : `${currentDish.price.toLocaleString('vi-VN')} đ`}
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] text-slate-500 mt-2 line-clamp-3 leading-relaxed">
+                      {currentDish.description}
+                    </p>
+
+                    <div className="mt-3">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                        Món khác cùng loại (Vuốt để xem)
+                      </span>
+                      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                        {currentDishList.map((d, idx) => {
+                          const isCurrent = idx === selectedDishIndex;
+                          return (
+                            <div
+                              key={d.id}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleOpenDetail(idx);
+                              }}
+                              className={`shrink-0 w-14 flex flex-col items-center cursor-pointer transition ${
+                                isCurrent ? 'scale-105 opacity-100' : 'opacity-50 hover:opacity-80'
+                              }`}
+                            >
+                              <img
+                                src={d.image}
+                                className={`w-12 h-12 rounded-xl object-cover border-2 ${
+                                  isCurrent ? 'border-orange-500 shadow-md' : 'border-transparent'
+                                }`}
+                              />
+                              <span className="text-[9px] font-bold text-slate-700 truncate w-full text-center mt-1">
+                                {d.name}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-1">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (activeTab === 'breakfast' || activeTab === 'lau') {
+                          setIsOptionOpen(true);
+                        } else {
+                          handleAddToCart();
+                        }
+                      }}
+                      className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-extrabold shadow-lg transition active:scale-95 text-xs flex items-center justify-center gap-2"
+                    >
+                      <span>
+                        {activeTab === 'breakfast' || activeTab === 'lau'
+                          ? 'TÙY CHỌN & ĐẶT MÓN'
+                          : 'THÊM TRỰC TIẾP VÀO GIỎ'}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* --- BOTTOM SHEET TÙY CHỌN (ĂN SÁNG & LẨU) --- */}
+        <AnimatePresence>
+          {isOptionOpen && currentDish && (activeTab === 'breakfast' || activeTab === 'lau') && (
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+              className="absolute inset-0 bg-white z-40 flex flex-col justify-between p-3.5 overflow-hidden rounded-t-[35px] shadow-2xl"
+            >
+              <div className="flex-1 overflow-y-auto pr-1 pb-2 scrollbar-none">
+                <div className="flex items-center justify-between mb-2">
+                  <button
+                    onClick={() => setIsOptionOpen(false)}
+                    className="p-1.5 bg-slate-100 rounded-full text-slate-700 hover:bg-slate-200 transition"
+                  >
+                    <ArrowLeft size={16} />
+                  </button>
+                  <h3 className="text-xs font-bold text-slate-800">
+                    {activeTab === 'lau' ? 'Chọn Size Nồi Lẩu' : 'Tùy Chọn Món Ăn'}
+                  </h3>
+                  <div className="w-6" />
+                </div>
+
+                <div className="flex gap-2.5 items-center bg-orange-50 p-2 rounded-2xl mb-2.5 border border-orange-100">
+                  <img src={currentDish.image} className="w-12 h-12 rounded-xl object-cover shadow-xs" />
+                  <div>
+                    <h4 className="text-xs font-extrabold text-slate-900">{currentDish.name}</h4>
+                    <p className="text-[11px] text-orange-600 font-bold mt-0.5">
+                      {calculatedUnitPrice.toLocaleString('vi-VN')} đ
+                    </p>
+                  </div>
+                </div>
+
+                {/* OPTION DÀNH CHO LẨU */}
+                {activeTab === 'lau' && (
+                  <div className="mb-4">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                      Chọn Quy Cách Nồi Lẩu
+                    </p>
+                    <div className="space-y-2">
+                      {LAU_OPTIONS.map((opt) => {
+                        const isSelected = selectedLauOption === opt.id;
+                        return (
+                          <div
+                            key={opt.id}
+                            onClick={() => setSelectedLauOption(opt.id)}
+                            className={`p-3 rounded-2xl border transition cursor-pointer flex justify-between items-center ${
+                              isSelected
+                                ? 'bg-orange-50 border-orange-500 text-orange-900 shadow-xs'
+                                : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                            }`}
+                          >
+                            <div>
+                              <span className="text-xs font-black block">{opt.name}</span>
+                              <span className="text-[10px] text-slate-500">Thích hợp ăn gia đình & bạn bè</span>
+                            </div>
+                            <span className="text-xs font-black text-orange-600">
+                              {opt.price.toLocaleString('vi-VN')} đ
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* OPTION DÀNH CHO ĂN SÁNG */}
+                {activeTab === 'breakfast' && !isBunChaDish && (
+                  <>
+                    <div className="mb-2">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">1. Loại Sợi</p>
+                      <div className="grid grid-cols-3 gap-1.5">
+                        {NOODLE_TYPES.map((type) => (
+                          <button
+                            key={type}
+                            onClick={() => setSelectedNoodle(type)}
+                            className={`py-1 text-[11px] font-bold rounded-lg border transition ${
+                              selectedNoodle === type
+                                ? 'bg-orange-500 text-white border-orange-500'
+                                : 'bg-slate-50 text-slate-700 border-slate-200'
+                            }`}
+                          >
+                            {type}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-2">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">2. Cách Chế Biến</p>
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {COOKING_METHODS.map((method) => (
+                          <button
+                            key={method.name}
+                            onClick={() => setSelectedCooking(method.name)}
+                            className={`py-1 px-2 text-[11px] font-bold rounded-lg border transition flex justify-between items-center ${
+                              selectedCooking === method.name
+                                ? 'bg-orange-500 text-white border-orange-500'
+                                : 'bg-slate-50 text-slate-700 border-slate-200'
+                            }`}
+                          >
+                            <span>{method.name}</span>
+                            {method.priceOffset > 0 && (
+                              <span className={`text-[9px] ${selectedCooking === method.name ? 'text-white' : 'text-orange-600'}`}>
+                                +{method.priceOffset / 1000}k
+                              </span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-2">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">3. Lựa Chọn Hành</p>
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {GREEN_ONION_OPTIONS.map((opt) => (
+                          <button
+                            key={opt}
+                            onClick={() => setSelectedOnion(opt)}
+                            className={`py-1 text-[11px] font-bold rounded-lg border transition ${
+                              selectedOnion === opt
+                                ? 'bg-orange-500 text-white border-orange-500'
+                                : 'bg-slate-50 text-slate-700 border-slate-200'
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-2">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">4. Chọn Suất Ăn</p>
+                      <div className="grid grid-cols-3 gap-1.5">
+                        {PORTION_SIZES.map((portion) => (
+                          <button
+                            key={portion.name}
+                            onClick={() => setSelectedPortion(portion.name)}
+                            className={`py-1 text-[10px] font-bold rounded-lg border transition flex flex-col items-center justify-center ${
+                              selectedPortion === portion.name
+                                ? 'bg-orange-500 text-white border-orange-500'
+                                : 'bg-slate-50 text-slate-700 border-slate-200'
+                            }`}
+                          >
+                            <span>{portion.name}</span>
+                            <span className="text-[8px] opacity-80">
+                              {portion.priceOffset > 0
+                                ? `+${portion.priceOffset / 1000}k`
+                                : portion.priceOffset < 0
+                                ? `${portion.priceOffset / 1000}k`
+                                : 'Chuẩn'}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === 'breakfast' && (
+                  <div className="mb-2">
+                    <div className="flex justify-between items-center mb-1">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        {isBunChaDish ? 'Tùy Chọn Gọi Thêm' : 'Gọi Thêm Thịt & Đồ Kèm'}
+                      </p>
+                      <span className="text-[9px] text-orange-600 font-medium">Chạm để cộng (+1)</span>
+                    </div>
+                    
+                    <div className={`grid ${isBunChaDish ? 'grid-cols-1 gap-1.5' : 'grid-cols-2 gap-1.5'} max-h-36 overflow-y-auto pr-0.5`}>
+                      {availableExtrasList.map((item) => {
+                        const count = selectedExtras[item.id] || 0;
+                        return (
+                          <div
+                            key={item.id}
+                            onClick={() => handleCycleExtra(item.id)}
+                            className={`flex items-center justify-between px-2 py-1 rounded-lg border transition cursor-pointer select-none active:scale-95 ${
+                              count > 0
+                                ? 'bg-orange-500 text-white border-orange-500 shadow-xs'
+                                : 'bg-slate-50 text-slate-800 border-slate-200 hover:bg-slate-100'
+                            }`}
+                          >
+                            <div>
+                              <span className="text-[10px] font-bold block leading-tight">{item.name}</span>
+                              <span className={`text-[8px] ${count > 0 ? 'text-orange-100' : 'text-slate-400'}`}>
+                                +{item.price / 1000}k
+                              </span>
+                            </div>
+
+                            <div className="flex items-center">
+                              {count > 0 ? (
+                                <span className="bg-white text-orange-600 text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+                                  +{count}
+                                </span>
+                              ) : (
+                                <span className="text-[9px] text-slate-400 font-medium">+0</span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center bg-slate-50 p-1.5 rounded-xl border border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-700">Số Lượng Suất</span>
+                  <div className="flex items-center gap-2 bg-white px-2 py-0.5 rounded-lg border border-slate-200">
+                    <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="text-slate-600 font-bold text-xs">
+                      -
+                    </button>
+                    <span className="text-xs font-black text-slate-800 min-w-[16px] text-center">{quantity}</span>
+                    <button onClick={() => setQuantity((q) => q + 1)} className="text-slate-600 font-bold text-xs">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-100 pt-2 shrink-0">
+                <button
+                  onClick={handleAddToCart}
+                  className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-extrabold shadow-md transition active:scale-95 text-xs flex items-center justify-between px-3"
+                >
+                  <span>THÊM VÀO GIỎ HÀNG</span>
+                  <span>{totalPriceForCustomItem.toLocaleString('vi-VN')} đ</span>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* --- BOTTOM SHEET GIỎ HÀNG --- */}
+        <AnimatePresence>
+          {isCartOpen && (
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute inset-0 bg-white z-50 flex flex-col justify-between p-4 rounded-t-[35px] shadow-2xl"
+            >
+              <div>
+                <div className="flex justify-between items-center mb-3 pb-2 border-b border-slate-100">
+                  <h3 className="text-sm font-bold text-slate-800">Giỏ Hàng Của Bạn</h3>
+                  <button onClick={() => setIsCartOpen(false)} className="text-slate-400 font-bold text-sm">✕</button>
+                </div>
+
+                <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+                  {cart.length === 0 ? (
+                    <p className="text-center text-slate-400 text-xs py-16">Chưa có món nào trong giỏ</p>
+                  ) : (
+                    cart.map((item) => (
+                      <div key={item.cartId} className="flex gap-2.5 items-center bg-slate-50 p-2.5 rounded-2xl border border-slate-100">
+                        <img src={item.image} className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                        <div className="flex-1">
+                          <div className="flex justify-between items-start">
+                            <h4 className="text-xs font-bold text-slate-800 line-clamp-1">
+                              {item.name}
+                            </h4>
+                            <button
+                              onClick={() => removeCartItem(item.cartId)}
+                              className="text-slate-400 hover:text-red-500 p-0.5 transition"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                          
+                          <p className="text-[10px] text-slate-500 mt-0.5 leading-snug line-clamp-2">
+                            {item.optionsSummary}
+                          </p>
+                          
+                          <div className="flex justify-between items-center mt-2">
+                            <p className="text-xs font-black text-orange-600">
+                              {item.finalPrice.toLocaleString('vi-VN')} đ
+                            </p>
+
+                            <div className="flex items-center gap-2 bg-white px-2 py-0.5 rounded-lg border border-slate-200">
+                              <button
+                                onClick={() => updateCartQuantity(item.cartId, -1)}
+                                className="text-slate-600 font-black text-xs hover:text-orange-600 px-1"
+                              >
+                                -
+                              </button>
+                              <span className="text-xs font-black text-slate-800 min-w-[14px] text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() => updateCartQuantity(item.cartId, 1)}
+                                className="text-slate-600 font-black text-xs hover:text-orange-600 px-1"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {cart.length > 0 && (
+                <div className="border-t border-slate-100 pt-3">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-xs font-bold text-slate-500">Tổng tiền:</span>
+                    <span className="text-lg font-black text-slate-900">{totalCartAmount.toLocaleString('vi-VN')} đ</span>
+                  </div>
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full py-3.5 bg-orange-500 text-white rounded-2xl font-bold shadow-md hover:bg-orange-600 transition text-xs uppercase tracking-wider"
+                  >
+                    Xác Nhận Đặt Hàng
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* --- POPUP CẢM ƠN + CHỌN NHANH ĐỒ KÈM --- */}
+        <AnimatePresence>
+          {showThankYouPopup && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-3"
+            >
+              <motion.div
+                initial={{ scale: 0.85, y: 15 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.85, y: 15 }}
+                className="bg-white rounded-3xl p-4 text-center shadow-2xl border border-orange-100 w-full max-w-[320px] flex flex-col justify-between max-h-[750px] overflow-y-auto scrollbar-none"
+              >
+                <div>
+                  <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-2 shadow-inner">
+                    <HeartHandshake size={26} />
+                  </div>
+
+                  <h3 className="text-sm font-black text-slate-800 mb-1">ĐẶT HÀNG THÀNH CÔNG!</h3>
+
+                  <p className="text-[10px] text-slate-600 leading-relaxed font-medium bg-orange-50/80 p-2 rounded-xl border border-orange-100 mb-3 text-left">
+                    Cảm ơn quý khách! Trong lúc đợi bếp chuẩn bị món, quý khách có thể lấy thêm rau sống, giá, trà đá miễn phí tại quầy tự phục vụ.
+                  </p>
+
+                  <div className="bg-slate-50 p-2.5 rounded-2xl border border-slate-200 mb-3 text-left">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-[10px] font-black text-slate-700 uppercase tracking-wider">
+                        ⚡ Chọn nhanh đồ ăn kèm
+                      </span>
+                      <span className="text-[8px] text-orange-600 font-bold">Chạm để thêm (+1)</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {QUICK_SIDE_ITEMS.map((item) => {
+                        const count = quickSides[item.id] || 0;
+                        return (
+                          <div
+                            key={item.id}
+                            onClick={() => handleCycleQuickSide(item.id)}
+                            className={`flex items-center justify-between px-2 py-1.5 rounded-xl border transition cursor-pointer select-none active:scale-95 ${
+                              count > 0
+                                ? 'bg-orange-500 text-white border-orange-500 shadow-xs'
+                                : 'bg-white text-slate-800 border-slate-200 hover:bg-slate-100'
+                            }`}
+                          >
+                            <div>
+                              <span className="text-[10px] font-bold block leading-tight">{item.name}</span>
+                              <span className={`text-[8px] ${count > 0 ? 'text-orange-100' : 'text-slate-400'}`}>
+                                +{item.price / 1000}k
+                              </span>
+                            </div>
+
+                            <div className="flex items-center">
+                              {count > 0 ? (
+                                <span className="bg-white text-orange-600 text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+                                  +{count}
+                                </span>
+                              ) : (
+                                <span className="text-[9px] text-slate-400 font-medium">+0</span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {totalQuickSidesCost > 0 && (
+                      <div className="mt-2 pt-1.5 border-t border-slate-200 flex justify-between items-center text-[10px] font-bold">
+                        <span className="text-slate-500">Đồ gọi thêm:</span>
+                        <span className="text-orange-600 font-black">
+                          +{totalQuickSidesCost.toLocaleString('vi-VN')} đ
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  onClick={closeThankYouPopup}
+                  className="w-full py-3 bg-slate-900 text-white text-xs font-extrabold rounded-2xl shadow-md hover:bg-slate-800 transition active:scale-95 flex items-center justify-center gap-1.5"
+                >
+                  <CheckCircle2 size={16} className="text-orange-500" />
+                  <span>
+                    {totalQuickSidesCost > 0 ? 'BỔ SUNG ĐỒ KÈM & QUAY LẠI' : 'XÁC NHẬN & QUAY LẠI'}
+                  </span>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </div>
-  `).join('');
+  );
 }
-
-async function sendTelegram(chatId,text){
-  try{const p=new URLSearchParams({chat_id:chatId,text,parse_mode:'HTML'});
-  await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?${p.toString()}`,{method:'GET',mode:'no-cors'});}catch(e){console.error(e);}
-}
-
-function confirmOrder(){
-  if(!cart.length)return toast('⚠️ Giỏ hàng đang trống!');
-  const snap=[...cart];
-  const totalQty=snap.reduce((s,b)=>s+b.qty,0);
-  const totalPrice=snap.reduce((s,b)=>s+b.price*b.qty,0);
-  const now=new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
-  orderCount++;
-  const msg=`🍜 <b>ĐƠN #${orderCount} | BÀN ${tableNum}</b> | ${now}
-━━━━━━━━━━━━━━━━━━
-${snap.map((b,i)=>`<b>[${i+1}] ${b.label} x${b.qty}</b> — ${fmtPrice(b.price*b.qty)}${b.sub?'\n  '+b.sub:''}`).join('\n─────────────────\n')}
-━━━━━━━━━━━━━━━━━━
-💰 <b>Tổng: ${fmtPrice(totalPrice)}</b> (${totalQty} món)`;
-  sendTelegram(TG_OWNER,msg);
-  printReceipt(orderCount,now,snap,totalQty,totalPrice);
-  toast(`✅ Đặt món thành công! Đơn #${orderCount} — Bàn ${tableNum}`);
-  cart=[];
-  renderCart();
-}
-
-function printReceipt(no,time,snap,totalQty,totalPrice){
-  const win=window.open('','_blank','width=320,height=600');
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Hóa đơn</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;font-size:12px;padding:12px;width:280px;color:#000;background:#fff}.center{text-align:center}.line{border-top:1px dashed #000;margin:8px 0}.row{display:flex;justify-content:space-between}.big{font-size:14px;font-weight:bold}.item{margin-bottom:6px}@media print{body{padding:0}}</style>
-</head><body>
-<h2 class="center">BÒ NGON 888</h2>
-<div class="center big" style="margin-top:4px">BÀN ${tableNum} — ĐƠN #${no}</div><div class="center">${time}</div>
-<div class="line"></div>
-${snap.map((b,i)=>`<div class="item"><div class="row"><span class="big">[${i+1}] ${b.label}</span></div><div class="row"><span style="color:#555">${b.sub||''} x${b.qty}</span><span class="big">${fmtPrice(b.price*b.qty)}</span></div></div>`).join('<div class="line"></div>')}
-<div class="line"></div>
-<div class="row big"><span>TỔNG CỘNG</span><span>${fmtPrice(totalPrice)}</span></div>
-<div class="center" style="margin-top:12px;font-size:11px">Cảm ơn & Hẹn gặp lại quý khách!</div>
-</body></html>`);
-  win.document.close();win.focus();setTimeout(()=>{win.print();win.close();},400);
-}
-
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3000)}
-
-buildTabs();
-buildPage0();
-buildGrids();
-setDefaults();
-renderCart();
-</script>
-</body>
-</html>
